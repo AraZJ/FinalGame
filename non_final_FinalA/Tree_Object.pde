@@ -40,11 +40,14 @@ class Tree {
     triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight*0.5, treePosX+20, treePosY+treeHeight*0.5);  //top of tree leaves
     triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight*0.75, treePosX+20, treePosY+treeHeight*0.75); //middle of tree leaves
   }
-  void flash(){
+  void flash() {
     fill(0, random(40, 215), 0);
   }
-  void scrollDown(){
+  void scrollDown() {
     treePosY=treePosY-treeSpeed;
     treeSpeed=treeSpeed+0.01;
+    if (treePosY<=0) {
+      //println("limit reached!");
+    }
   }
 }
