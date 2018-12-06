@@ -4,3 +4,11 @@
 //} else if (r%2!=0 && c%2!=0) { //runs if r is odd
 //  treeTranslation=0;
 //}
+//for my flappy bird game, I couldn't find a way to have the poles reroll when their locations were moved from one side to the other after they went off the first side, I mean it was just the same poles, but maybe if I made their spacing more of a choice like an actual outside constraint iun the constructor Tree(RandomVAlue) wjhich would have to be for color and for x location and eventually when there's levesl, for the number per row.
+//so for some actual pseudocode...here we GO:
+//so I want the starting screen to be like "play" but have animation that's good, maybe, or just a still picture of the player and the slope, and then mabe liek a place for skins and a tutorial and all that/
+//once you hit play, it shows the view as if the camera is behind you and looks down the slope maybe, then it turns around to face you, then the game starts. I might have to make it the top of his head since it wont be 3d most likely but mayve it will...but maybe it will be a t a slight angle so that you can see the front of the opalyer a little
+//maybe ill have a top view, a vievw form the bottom of the slope up whih might actually be the same as the top view i dont knwo, and then a 3/4 view or side-ish view, but Ill start with like form teh top where the whole screen is the sliope but it would have to actualy look like a slope--ooh, ask Luna for help with a moving camera, like you would have multiple perspecives and stuff like that, but anyway...
+//you would start off with a few trees every few rows of snow, but some coins and some random stuff, and once you get to the bottom it would be like "Ooh, you won the first level!" then "continue ot level two" and score and all that for this screen, then level two would jsut be harder, and there would be ten(?) levels I guess for now, but maybe more evenetually
+//so, like what
+//when you hit a tree, an animation of shock, falling sideways then to the ground, maybe flashing red, then getting back up. 

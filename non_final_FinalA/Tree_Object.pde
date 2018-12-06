@@ -43,11 +43,19 @@ class Tree {
   void flash() {
     fill(0, random(40, 215), 0);
   }
-  void scrollDown() {
+  void scrollUp() { //I said scrollDOwn lol but it's going up...*facepalm*
     treePosY=treePosY-treeSpeed;
-    treeSpeed=treeSpeed+0.01;
+    treeSpeed=treeSpeed+0.001;
     if (treePosY<=0) {
       //println("limit reached!");
     }
+  }
+  void reWrap(){
+    //since the the trees are going up, once they equal zero they're going to go to 600 
+   treePosY=600;
+    
+  }
+  void treeCollide(){ //I wonder if I need to make the paleyr in input like in my falppy bird game...we'll see
+    
   }
 }

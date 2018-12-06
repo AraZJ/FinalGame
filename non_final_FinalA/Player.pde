@@ -24,13 +24,13 @@ class Skier {
     rect(personX, personY, personWidth, personHeight);
   }
   void moveSideways() {
-    if (key=='a') {
+    if (keyCode==LEFT) {
       personX=personX-sidewaysShift;
       //if (sidewaysShift>=0){
       //sidewaysShift=sidewaysShift-shiftDecrem;  //this is HILARIOUS! dsidewaysShift=sidewaysShift-0.1; 
       //}
     }
-    if (key=='d') {
+    if (keyCode==RIGHT) {
       personX=personX+sidewaysShift;
     }
   }
