@@ -4,6 +4,12 @@
 //} else if (r%2!=0 && c%2!=0) { //runs if r is odd
 //  treeTranslation=0;
 //}
+//Tree tree1;
+//tree1=new Tree(width/2,height/2,10,110);
+//tree1.display();
+//tree1.scrollDown();
+//tree1.treeSpeed=1;
+
 //for my flappy bird game, I couldn't find a way to have the poles reroll when their locations were moved from one side to the other after they went off the first side, I mean it was just the same poles, but maybe if I made their spacing more of a choice like an actual outside constraint iun the constructor Tree(RandomVAlue) wjhich would have to be for color and for x location and eventually when there's levesl, for the number per row.
 //so for some actual pseudocode...here we GO:
 //so I want the starting screen to be like "play" but have animation that's good, maybe, or just a still picture of the player and the slope, and then mabe liek a place for skins and a tutorial and all that/
@@ -12,3 +18,37 @@
 //you would start off with a few trees every few rows of snow, but some coins and some random stuff, and once you get to the bottom it would be like "Ooh, you won the first level!" then "continue ot level two" and score and all that for this screen, then level two would jsut be harder, and there would be ten(?) levels I guess for now, but maybe more evenetually
 //so, like what
 //when you hit a tree, an animation of shock, falling sideways then to the ground, maybe flashing red, then getting back up. 
+//order of business: nice trees so I can make them bigger, simple collide method, random placement (hard because the array is all confusing), levels/gameScreens (need menu and tutorials), health+coins, nice graphics/animations maybe
+//upTriangleOld(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //whole tree leaves
+//    upTriangleOld(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //middle tree leaves
+//    upTriangleOld(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //top tree leaves
+
+//void displayOld() { //old display method
+//  rectMode(CENTER);
+
+//  //tree trunk
+//  stroke(102, 51, 0);
+//  strokeWeight(5);
+//  fill(102, 51, 0);
+//  rect(treePosX, treePosY+treeHeight, treeWidth/8, 20);
+
+//  //tree top of first tree
+//  strokeWeight(2);
+//  noStroke();
+//  fill(treeColor);
+//  //fill(0, random(40, 215), 0); //color of tree leaves
+//  //treePos- X and Y is the top, treePosX-20, treePosY+treeHeight*something is the left bottom and treePosX+20, treePosY+treeHeight*something is the irght bottom
+//  //the width of the base is 40, the height is treeHeight (duh!), the middle is treeHeight/2+treeY
+//  triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight, treePosX+20, treePosY+treeHeight); //bottom of tree leaves
+//  triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight*0.75, treePosX+20, treePosY+treeHeight*0.75); //middle of tree leaves
+//  triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight*0.5, treePosX+20, treePosY+treeHeight*0.5);  //top of tree leaves
+
+//  println(treeHeight/2+treePosY);
+//}
+//  void upTriangleOld(float triCenterX, float triCenterY, float triBase, float triHeight) { //has the single point on top
+////I should make it the top, not the center...
+//  //if width = 10 and height = ten and center = center of screen
+//  //top of triangle = center - height/2, right point of triangle is center + height/2+width/2, left point is enter+height/2-width/2
+//  //top: x=triCenterX, y=triCenterY-triHeight/2, right: x=triCenterX+width/2, y=triCenterY+triHeight/2, left: x=triCenterX-width/2, y=triCenterY+triHeight/2
+//  triangle(triCenterX, triCenterY-triHeight/2, triCenterX+triBase/2, triCenterY+triHeight/2, triCenterX-triBase/2, triCenterY+triHeight/2);
+//}
