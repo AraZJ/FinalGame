@@ -20,6 +20,8 @@
 //when you hit a tree, an animation of shock, falling sideways then to the ground, maybe flashing red, then getting back up. 
 //order of business: nice trees so I can make them bigger, simple collide method, random placement (hard because the array is all confusing), levels/gameScreens (need menu and tutorials), health+coins, nice graphics/animations maybe
 //upTriangleOld(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //whole tree leaves
+//middle of ski slope in early levels should be not covered by trees
+//something like Luna's space game that's 3-D ish
 //    upTriangleOld(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //middle tree leaves
 //    upTriangleOld(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //top tree leaves
 
@@ -52,3 +54,38 @@
 //  //top: x=triCenterX, y=triCenterY-triHeight/2, right: x=triCenterX+width/2, y=triCenterY+triHeight/2, left: x=triCenterX-width/2, y=triCenterY+triHeight/2
 //  triangle(triCenterX, triCenterY-triHeight/2, triCenterX+triBase/2, triCenterY+triHeight/2, triCenterX-triBase/2, triCenterY+triHeight/2);
 //}
+//Tree[] [] treez = new Tree[columns][rows]; //I thnk it should actual;y be rows columns...
+//Tree[] treez = new Tree[rows];
+//ArrayList<Tree> innerTreeList; //this is my arraylist of an arraylist
+//ArrayList<innerTreeList> outerTreeList;
+//ArrayList<ArrayList<Tree>> treeList; //My attempt //you dont actually NEED list, ya dingus!
+  // treeList=new ArrayList<ArrayList<Tree>>();
+  //grid of trees
+  //nested for loops for initializing two dimensional array of trees 
+  //for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
+ // for (int r=0; r<2; r++) { //for loop for rows that's not actually for rows 
+    //treez [c][r] = new Tree(r*200+spacingValue, c*100, 10, 110); //sets for loops to run treez array ////old, fixed array
+    //treez [r] = new Tree(r*spacingValue+slideOver, 100, 40, 110); //sets for loops to run treez array ////old, fixed array
+// treeList.add(new Tree(r*spacingValue+slideOver, r*100, 40, 110));
+// treeList.add(new Tree(r*spacingValue+slideOver, 100, 40, 110));
+ //}
+ // }
+ //  treeClone.scrollUp();
+    //treez[c][r].display(); //sets for loops to display treez array
+    //treez[c][r].scrollDown();
+
+    //treez[r].display(); //sets for loops to display treez array
+    //treez[r].scrollUp();
+
+    //if (treez[r].treePosY<0) {
+    //  treez[r].reWrap();
+    //}
+    //if (key=='p') {
+    //  treez[r].pause();
+    //} else if (keyPressed&&key!='p') { //this is a bit strange but it works for now...it just messes up the speed
+    //  treez[r].scrollUp();
+    //} //'r' for loop end
+    // }
+    // }
+    //upTriangle(width/2,height/2,20,100);
+    //println(treez.length);

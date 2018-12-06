@@ -9,16 +9,18 @@ class Tree {
   float treeShift1;
   color treeColor;
   float treeSpeed;
+  //boolean onscreen/remove
 
   //tree object constructor
-  Tree(float x, float y, float tWidth, float tHeight) {
-    treePosY = y;
-    treePosX = x;
-    treeWidth = tWidth; //10 is a good value
-    treeHeight = tHeight; //110 is also
+  Tree(float x, float y, float tWidth, float tHeight,float expandValue) { //500, 350, 40, 110
+    treePosY = y*expandValue; //random(110,490);//
+    treePosX = x*expandValue; //random(20,880); 
+    treeWidth = tWidth; //10 is a good value  40*expandValue; //
+    treeHeight = tHeight; //110 is also 110*expandValue;//
     treeShift1 = treeHeight*0.5;
     treeColor=color(0, random(40, 215), 0);
     treeSpeed=1;
+    //boolean spawns as false
   }
 
   //properties
@@ -35,7 +37,7 @@ class Tree {
     stroke(102, 51, 0);
     strokeWeight(5);
     fill(102, 51, 0);
-    rect(treePosX, treePosY+110, treeWidth/8, 10);
+    rect(treePosX, treePosY+172, treeWidth/8, 10); //gonna need something different
   }
   void flash() {
     fill(0, random(40, 215), 0);
