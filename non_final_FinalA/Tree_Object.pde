@@ -9,35 +9,39 @@ class Tree {
   float treeShift1;
   color treeColor;
   float treeSpeed;
+  float treeTrunkHeight;
+  boolean collision;
+  boolean onscreen;
   //boolean onscreen/remove
 
   //tree object constructor
-  Tree(float x, float y, float tWidth, float tHeight,float expandValue) { //500, 350, 40, 110
-    treePosY = y*expandValue; //random(110,490);//
-    treePosX = x*expandValue; //random(20,880); 
-    treeWidth = tWidth; //10 is a good value  40*expandValue; //
-    treeHeight = tHeight; //110 is also 110*expandValue;//
+  Tree(float x, float y, float expandValue) { //500, 350, 40, 110 //float tWidth, float tHeight, 
+    treePosY = y; //random(110,490);//
+    treePosX = x; //random(20,880); 
+    treeWidth = 40*expandValue; //40 is a good value
+    treeHeight = 100*expandValue; //110 is a good value
+    treeTrunkHeight=treeHeight/15;
     treeShift1 = treeHeight*0.5;
     treeColor=color(0, random(40, 215), 0);
     treeSpeed=1;
+    collision=false;
     //boolean spawns as false
   }
 
   //properties
-  //trying to get the tree to be made out of my super-awesome triangle method for triangles so I can resize it easier
+  //trying to get the tree to be made out of my super-awesome triangle method for triangles so I can resize them easier
   void display() {
     //all the trees are the same width at the bottom
     fill(treeColor);
     noStroke();
-    upTriangle(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight); //whole tree leaves
-    upTriangle(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight*0.75); //middle tree leaves
-    upTriangle(treePosX, treeHeight/2+treePosY, treeWidth, treeHeight*0.5); //top tree leaves
+    upTriangle(treePosX, treePosY, treeWidth, treeHeight); //whole tree leaves
+    upTriangle(treePosX, treePosY, treeWidth, treeHeight*0.75); //middle tree leaves
+    upTriangle(treePosX, treePosY, treeWidth, treeHeight*0.5); //top tree leaves
     //tree trunk
     rectMode(CENTER);
-    stroke(102, 51, 0);
-    strokeWeight(5);
+    noStroke();
     fill(102, 51, 0);
-    rect(treePosX, treePosY+172, treeWidth/8, 10); //gonna need something different
+    rect(treePosX, treePosY+treeHeight+treeTrunkHeight/2, treeWidth/6, treeTrunkHeight); //gonna need something different
   }
   void flash() {
     fill(0, random(40, 215), 0);
@@ -58,28 +62,18 @@ class Tree {
     //since the the trees are going up, once they equal zero they're going to go to 600 
     treePosY=600;
   }
-  void treeCollide() { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
-    //maybe if, when hitting the tree headon, I make it not colide until you reach almost the base of the tree would be more 3-d...
+  void treeCollide(Player thePlayer) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
+    //maybe if, when hitting the tree head on, I make it not collide until you reach almost the base of the tree would be more 3-d...
+    //if the left part of the player hits the right of a tree
+    if (thePlayer.pX-thePlayer.pWidth/2==treePosX+treeWidth/2) {
+      println("left side player collision!");
+      collision=true;
+    }
+    //right side of player on left
+    //might need to make a loop that makes sure the trees are between all the other trees before they can be compared witht eh others
+    if (thePlayer.pX+thePlayer.pWidth/2==treePosX-treeWidth/2) {
+      println("right side player collision");
+      collision=true;
+    }
   }
-  void displayOld() { //old display method
-  rectMode(CENTER);
-
-
-
-  //tree top of first tree
-  strokeWeight(2);
-  noStroke();
-  fill(treeColor);
-  //fill(0, random(40, 215), 0); //color of tree leaves
-  //treePos- X and Y is the top, treePosX-20, treePosY+treeHeight*something is the left bottom and treePosX+20, treePosY+treeHeight*something is the irght bottom
-  //the width of the base is 40, the height is treeHeight (duh!), the middle is treeHeight/2+treeY
-  triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight, treePosX+20, treePosY+treeHeight); //bottom of tree leaves
-  triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight*0.75, treePosX+20, treePosY+treeHeight*0.75); //middle of tree leaves
-  triangle(treePosX, treePosY, treePosX-20, treePosY+treeHeight*0.5, treePosX+20, treePosY+treeHeight*0.5);  //top of tree leaves
-    //tree trunk
-  stroke(102, 51, 0);
-  strokeWeight(5);
-  fill(102, 51, 0);
-  rect(treePosX, treePosY+treeHeight, treeWidth/8, 20);
-}
 }

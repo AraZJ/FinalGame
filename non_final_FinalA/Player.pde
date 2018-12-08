@@ -1,18 +1,19 @@
-class Skier {
-  float personWidth;
-  float personHeight;
-  float personX;
-  float personY;
-  float personSpeed;
-  float sidewaysShift;
+class Player {
+  float pWidth;
+  float pHeight;
+  float pX;
+  float pY;
+  float pSpeedX;
+  float pSpeedY;
+  //float sidewaysShift;
   float shiftDecrem;
-  Skier() {
-    personWidth=25;
-    personHeight=100;
-    personX=450; //important
-    personY=300; 
-    personSpeed=1;
-    sidewaysShift=2;
+  Player() {
+    pWidth=25;
+    pHeight=100;
+    pX=450; //important
+    pY=100; 
+    pSpeedY=0.1;
+    pSpeedX=1;
     shiftDecrem=0.01;
   }
 
@@ -21,22 +22,40 @@ class Skier {
   void display() {
     rectMode(CENTER);
     fill(240, 100, 0);
-    rect(personX, personY, personWidth, personHeight);
+    noStroke();
+    rect(pX, pY, pWidth, pHeight);
   }
   void moveSideways() {
     if (keyCode==LEFT) {
-      personX=personX-sidewaysShift;
+      pX=pX-pSpeedX;
       //if (sidewaysShift>=0){
       //sidewaysShift=sidewaysShift-shiftDecrem;  //this is HILARIOUS! dsidewaysShift=sidewaysShift-0.1; 
       //}
     }
     if (keyCode==RIGHT) {
-      personX=personX+sidewaysShift;
+      pX=pX+pSpeedX;
     }
   }
+  void stop() {
+    pSpeedX=0;
+  }
+  void Straighten() {
+    //if (keyCode==DOWN){
+    //  if (sidewaysShift>=0){
+    //   sidewaysShift=sidewaysShift-0.1;
+    //} else {
+    //  sidewaysShift=2;
+    //}
+    //}
+  }
   void moveDown() { //I don't need this unless I die really
-    personY=personY+personSpeed;
-    personSpeed=personSpeed+0.01;
+    pY=pY+pSpeedY;
+    pSpeedY=pSpeedY+0.01;
+    if (pY>=600-pHeight/2) {
+      pSpeedY=0;
+      textSize(50);
+      text("you have reached the bottom!", 0, height/2);
+    }
   }
   void collision() {
   }

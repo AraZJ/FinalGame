@@ -1,41 +1,51 @@
 //Main
 //Has an ArrayList
 
-Skier me;
-//Tree tree1= new Tree(450, 350, 40, 110);
-//Tree tree2= new Tree(500, 350, 40, 110);
-int gameScreen=1;
+Player me;
+Tree tree1= new Tree(600, 45, 1);
+Tree tree2= new Tree(320, 45, 1);
+int gameScreen=0;
 int spacingValue=200;
 int slideOver=100;
 //int columns=5;
-int elements=10;
+int elements=5;
 ArrayList<Tree> treeList=new ArrayList<Tree>();
 
 void setup() {
   size(900, 600);
   background(255);
 
-  me = new Skier();
+  me = new Player();
   for (int r=0; r<elements; r++) { 
-    treeList.add(new Tree(random(20,880), random(100,300), 40, 110,1)); //r*spacingValue+slideOver
+    treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
   }
 }
 
 void draw() {
   switch(gameScreen) {
 
-  case 0:
+  case 0: //menu
+    background(255);
     fill(0);
     textSize(100);
     text("gameScreen is 0!", 0, height/2);
     //fill(tree1.treeColor);
     //upTriangleOld(tree1.treePosX+40, tree1.treeHeight/2+tree1.treePosY, 40, tree1.treeHeight); //whole tree leaves
     //upTriangle(tree1.treePosX-20, tree1.treeHeight/2+tree1.treePosY, 40, tree1.treeHeight);
-    //tree1.displayOld();
-    //tree2.display();
+    tree1.display();
+    tree1.treeCollide(me);
+    tree2.display();
+    tree2.treeCollide(me);
+    me.display(); //this should be in the gamescreens
+    me.Straighten();
+    if (key=='s'||tree2.collision||tree1.collision) {
+      me.stop();
+    }
+    me.moveSideways(); //apparently I don't actually need a keypressed...
+    //me.moveDown();
     break;
 
-  case 1:
+  case 1: //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
     //loop to remove old trees
     //make sure to backwards
     background(255);
@@ -44,14 +54,17 @@ void draw() {
       Tree treeClone = treeList.get(e);
       treeClone.display();
       treeClone.scrollUp();
-        if(treeClone.treePosY<=-115){
-          treeClone.treePosY=600;
-        }
+      treeClone.treeCollide(me);
+      if (treeClone.treePosY<=-115) {
+        treeClone.treePosY=600;
+      }
     }
     me.display(); //this should be in the gamescreens
     me.moveSideways(); //apparently I don't actually need a keypressed...
+    me.Straighten();
+    //me.moveDown();
   } 
-  //me.display(); //this should be in the gamescreens
+  //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
   //me.moveSideways(); //apparently I don't actually need a keypressed...
 }
 void keyPressed() {
