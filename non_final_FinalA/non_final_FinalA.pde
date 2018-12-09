@@ -4,17 +4,16 @@
 Player me;
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
-int gameScreen=0;
+Coin coin1=new Coin();
+int gameScreen=1;
 int spacingValue=200;
 int slideOver=100;
-//int columns=5;
 int elements=5;
 ArrayList<Tree> treeList=new ArrayList<Tree>();
 
 void setup() {
   size(900, 600);
   background(255);
-
   me = new Player();
   for (int r=0; r<elements; r++) { 
     treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
@@ -29,9 +28,6 @@ void draw() {
     fill(0);
     textSize(100);
     text("gameScreen is 0!", 0, height/2);
-    //fill(tree1.treeColor);
-    //upTriangleOld(tree1.treePosX+40, tree1.treeHeight/2+tree1.treePosY, 40, tree1.treeHeight); //whole tree leaves
-    //upTriangle(tree1.treePosX-20, tree1.treeHeight/2+tree1.treePosY, 40, tree1.treeHeight);
     tree1.display();
     tree1.treeCollide(me);
     tree2.display();
@@ -42,7 +38,7 @@ void draw() {
       me.stop();
     }
     me.moveSideways(); //apparently I don't actually need a keypressed...
-    //me.moveDown();
+    //me.moveDownAuto();
     break;
 
   case 1: //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
@@ -52,17 +48,19 @@ void draw() {
     // for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
     for (int e=0; e<elements; e++) { //for loop for rows
       Tree treeClone = treeList.get(e);
+      if (treeClone.tY<=-115) {
+        treeClone.tY=600;
+      }
       treeClone.display();
       treeClone.scrollUp();
       treeClone.treeCollide(me);
-      if (treeClone.treePosY<=-115) {
-        treeClone.treePosY=600;
-      }
     }
     me.display(); //this should be in the gamescreens
     me.moveSideways(); //apparently I don't actually need a keypressed...
     me.Straighten();
-    //me.moveDown();
+    me.moveDownManual();
+    //me.moveDownAuto();
+    coin1.display();
   } 
   //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
   //me.moveSideways(); //apparently I don't actually need a keypressed...

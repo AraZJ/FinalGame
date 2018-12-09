@@ -95,3 +95,29 @@
 //  fill(102, 51, 0);
 //  rect(treePosX, treePosY+treeHeight, treeWidth/8, 20);
 //}
+//maybe if, when hitting the tree head on, I make it not collide until you reach almost the base of the tree would be more 3-d...
+//if the left part of the player hits the right of a tree
+
+//if (thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX-thePlayer.pWidth/2>=tX-tWidth/2) {//player left side collision   //(tX+tWidth/2>=thePlayer.pX-thePlayer.pWidth/2&&){ //||tX-tWidth/2>=thePlayer.pX+thePlayer.pWidth/2) {
+//  //println("collision!");
+//  collision=true;
+//  background(255, 0, 0);
+//} 
+////thePlayer.pX+thePlayer.pWidth/2<=tX+tWidth/2 &&thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2
+//if (thePlayer.pX+thePlayer.pWidth/2<=tX+tWidth/2 &&thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) { //player right side
+//  //println("collision!");
+//  collision=true;
+//  background(255, 0, 0);
+//} 
+
+
+//if (thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2||thePlayer.pX+thePlayer.pWidth/2<=tX-tWidth/2) {
+//  println("collision!");
+//  collision=true;
+//}
+//right side of player on left
+//might need to make a loop that makes sure the trees are between all the other trees before they can be compared witht eh others
+//if (thePlayer.pX+thePlayer.pWidth/2<=tX-tWidth/2) {
+//  println("right side player collision");
+//  collision=true;
+//}

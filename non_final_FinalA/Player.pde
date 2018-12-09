@@ -7,12 +7,13 @@ class Player {
   float pSpeedY;
   //float sidewaysShift;
   float shiftDecrem;
+  int playerHealth;
   Player() {
     pWidth=25;
     pHeight=100;
     pX=450; //important
     pY=100; 
-    pSpeedY=0.1;
+    pSpeedY=1;
     pSpeedX=1;
     shiftDecrem=0.01;
   }
@@ -48,13 +49,21 @@ class Player {
     //}
     //}
   }
-  void moveDown() { //I don't need this unless I die really
+  void moveDownAuto() { //I don't need this unless I die really
     pY=pY+pSpeedY;
     pSpeedY=pSpeedY+0.01;
     if (pY>=600-pHeight/2) {
       pSpeedY=0;
       textSize(50);
       text("you have reached the bottom!", 0, height/2);
+    }
+  }
+  void moveDownManual() {
+    if (keyCode==DOWN) {
+      pY=pY+pSpeedY;
+    }
+    if (keyCode==UP) {
+      pY=pY-pSpeedY;
     }
   }
   void collision() {

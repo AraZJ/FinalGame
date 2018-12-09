@@ -15,3 +15,4 @@
 
 //ther will also be random gusts of wind cuz...why not? But only in harder levels. so far ill make 10 levels prbably
 //so it seems that I need to move the collision to the player because every tree can be both to the left and the rihgt...but that wont work either will it?
+//its checking all the trees...maybe I can get it to check only the closest tree...
