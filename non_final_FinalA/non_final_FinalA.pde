@@ -4,19 +4,24 @@
 Player me;
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
-Coin coin1=new Coin();
+Coin coin1=new Coin(1);
 int gameScreen=1;
 int spacingValue=200;
 int slideOver=100;
-int elements=5;
+int numOfTrees=5;
+int numOfCoins=3;
+ArrayList<Coin> coinList = new ArrayList<Coin>();
 ArrayList<Tree> treeList=new ArrayList<Tree>();
 
 void setup() {
   size(900, 600);
   background(255);
   me = new Player();
-  for (int r=0; r<elements; r++) { 
+  for (int r=0; r<numOfTrees; r++) { 
     treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
+  }
+  for (int r=0; r<numOfCoins; r++) { 
+    coinList.add(new Coin(0.8)); //r*spacingValue+slideOver
   }
 }
 
@@ -34,10 +39,13 @@ void draw() {
     tree2.treeCollide(me);
     me.display(); //this should be in the gamescreens
     me.Straighten();
-    if (key=='s'||tree2.collision||tree1.collision) {
+    if (key=='s'||tree2.treeCollision||tree1.treeCollision) {
       me.stop();
     }
-    me.moveSideways(); //apparently I don't actually need a keypressed...
+    me.moveSideways();
+    coin1.display();
+    coin1.coinCollide(me);
+    //apparently I don't actually need a keypressed...
     //me.moveDownAuto();
     break;
 
@@ -45,11 +53,26 @@ void draw() {
     //loop to remove old trees
     //make sure to backwards
     background(255);
+    //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
+    for (int k=0; k<numOfCoins; k++) {
+      Coin coinClone = coinList.get(k);
+      if (coinClone.hit) {
+        println("got a coin!");
+      }
+      coinClone.display();
+      coinClone.coinCollide(me);
+    }
     // for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
-    for (int e=0; e<elements; e++) { //for loop for rows
+    for (int e=0; e<numOfTrees; e++) { //for loop for rows
       Tree treeClone = treeList.get(e);
-      if (treeClone.tY<=-115) {
-        treeClone.tY=600;
+      if (treeClone.tY<=treeClone.tHeight*-1-treeClone.trunkHeight) {
+        treeClone.onscreen=false;
+        //treeClone.tY=600;
+      }
+      if (!treeClone.onscreen) {
+        //println("offscreen!");
+        treeList.remove(e); 
+        treeList.add(new Tree(random(20, 880), 600, 1.5));
       }
       treeClone.display();
       treeClone.scrollUp();
@@ -60,7 +83,6 @@ void draw() {
     me.Straighten();
     me.moveDownManual();
     //me.moveDownAuto();
-    coin1.display();
   } 
   //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
   //me.moveSideways(); //apparently I don't actually need a keypressed...

@@ -9,8 +9,8 @@ class Tree {
   float treeShift1;
   color treeColor;
   float tSpeed;
-  float treeTrunkHeight;
-  boolean collision;
+  float trunkHeight;
+  boolean treeCollision;
   boolean onscreen;
   //boolean onscreen/remove
 
@@ -20,11 +20,12 @@ class Tree {
     tX = x; //random(20,880); 
     tWidth = 40*expandValue; //40 is a good value
     tHeight = 100*expandValue; //110 is a good value
-    treeTrunkHeight=tHeight/15;
+    trunkHeight=tHeight/15;
     treeShift1 = tHeight*0.5;
     treeColor=color(0, random(40, 215), 0);
     tSpeed=1;
-    collision=false;
+    treeCollision=false;
+    onscreen=true;
     //boolean spawns as false
   }
 
@@ -41,7 +42,7 @@ class Tree {
     rectMode(CENTER);
     noStroke();
     fill(102, 51, 0);
-    rect(tX, tY+tHeight+treeTrunkHeight/2, tWidth/6, treeTrunkHeight); //gonna need something different
+    rect(tX, tY+tHeight+trunkHeight/2, tWidth/6, trunkHeight); //gonna need something different
   }
   void flash() {
     fill(0, random(40, 215), 0);
@@ -64,15 +65,15 @@ class Tree {
   }
   void treeCollide(Player thePlayer) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     //player top
-    if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY && thePlayer.pX-thePlayer.pWidth<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth>=tX-tWidth/2) {
-      collision=true;
+    if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
+      treeCollision=true;
       fill(255, 0, 0);
       textSize(50);
       text("collision!", 0, height/2);
     }
     //player bottom
-    if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth>=tX-tWidth/2) {
-      collision=true;
+    if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
+      treeCollision=true;
       fill(255, 0, 0);
       textSize(50);
       text("collision!", 0, height/2);

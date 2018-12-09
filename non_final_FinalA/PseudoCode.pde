@@ -13,6 +13,10 @@
 //middle of ski slope in early levels should be not covered by trees
 //something like Luna's space game that's 3-D ish
 
-//ther will also be random gusts of wind cuz...why not? But only in harder levels. so far ill make 10 levels prbably
+//ther will also be random gusts of wind cuz...why not? But only in harder levels. so far i'll make 10 levels prbably
 //so it seems that I need to move the collision to the player because every tree can be both to the left and the rihgt...but that wont work either will it?
 //its checking all the trees...maybe I can get it to check only the closest tree...
+//for coin collide...disappear should be it getting removed from teh screen, becasue what i called disappear before was just checking if it should be removed, and then there shoudl be an if-statement in the oop of coins--"if hit is true, remove from arraylist and add one to score
+//maybe somhing for if coins spawn ontop of trees like a conditional display an then a remove
+//I dont think i need a new case for each screen, just new variables like maybe level1=beat, and then it saves that in a file that you beat this level and this was your score and if the boolean doesn't stat true it can refer back to the daa in the saved file but hopefully I wont have to, then the elements and maybe the randomness but probaly not increase and size increases/decreases (I havent figured out, but ooh, a zoom in and zoom out function!) Maybe...but its not a real one, it jsut resizes everything
+//oh my god, I HAVE to add random gusts of wind!!!

@@ -1,3 +1,8 @@
+////this keeps trees in the sam eposition but wrPS EM AROUND, WIHTOTU REMOVING
+//if (treeClone.tY<=treeClone.tHeight*-1-treeClone.trunkHeight) {
+//        treeClone.tY=600;
+//      }
+////
 //if statements that make every other row of trees 30 to the left
 //if (r%2==0 && c%2==0) {//runs if r is even
 //  treeTranslation = -30;

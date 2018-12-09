@@ -8,7 +8,9 @@ class Player {
   //float sidewaysShift;
   float shiftDecrem;
   int playerHealth;
+  boolean living;
   Player() {
+    living=true;
     pWidth=25;
     pHeight=100;
     pX=450; //important
@@ -25,6 +27,9 @@ class Player {
     fill(240, 100, 0);
     noStroke();
     rect(pX, pY, pWidth, pHeight);
+    stroke(0, 0, 255);
+    strokeWeight(10);
+    point(pX, pY);
   }
   void moveSideways() {
     if (keyCode==LEFT) {
