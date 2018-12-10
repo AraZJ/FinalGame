@@ -4,12 +4,13 @@
 Player me;
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
-Coin coin1=new Coin(1);
+Coin coin1=new Coin(50, 1);
 int gameScreen=1;
 int spacingValue=200;
 int slideOver=100;
 int numOfTrees=5;
 int numOfCoins=3;
+float scrollSpeed=0.001;
 ArrayList<Coin> coinList = new ArrayList<Coin>();
 ArrayList<Tree> treeList=new ArrayList<Tree>();
 
@@ -21,7 +22,7 @@ void setup() {
     treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
   }
   for (int r=0; r<numOfCoins; r++) { 
-    coinList.add(new Coin(0.8)); //r*spacingValue+slideOver
+    coinList.add(new Coin(random(25, 600-25), 0.8)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
   }
 }
 
@@ -54,24 +55,31 @@ void draw() {
     //make sure to backwards
     background(255);
     //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
-    for (int k=0; k<numOfCoins; k++) {
+    for (int k=numOfCoins-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
       Coin coinClone = coinList.get(k);
-      if (coinClone.hit) {
-        println("got a coin!");
+      if (coinClone.coinY<=-coinClone.coinDiameter/2&&!coinClone.hit) {
+        coinClone.offscreen=true;
       }
+      if (coinClone.hit||coinClone.offscreen) {
+        coinList.remove(k);
+        coinClone.coinY=600+coinClone.coinDiameter;
+        coinList.add(new Coin(600, .8));
+      }
+      coinClone.scrollUp();
       coinClone.display();
       coinClone.coinCollide(me);
+      coinClone.addToScore();
     }
     // for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
-    for (int e=0; e<numOfTrees; e++) { //for loop for rows
-      Tree treeClone = treeList.get(e);
+    for (int t=numOfTrees-1; t>=0; t--) {//for (int e=0; e<numOfTrees; e++) { //for loop for rows
+      Tree treeClone = treeList.get(t);
       if (treeClone.tY<=treeClone.tHeight*-1-treeClone.trunkHeight) {
         treeClone.onscreen=false;
         //treeClone.tY=600;
       }
       if (!treeClone.onscreen) {
         //println("offscreen!");
-        treeList.remove(e); 
+        treeList.remove(t); 
         treeList.add(new Tree(random(20, 880), 600, 1.5));
       }
       treeClone.display();

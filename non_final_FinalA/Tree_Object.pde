@@ -44,22 +44,22 @@ class Tree {
     fill(102, 51, 0);
     rect(tX, tY+tHeight+trunkHeight/2, tWidth/6, trunkHeight); //gonna need something different
   }
-  void flash() {
+  void flash() { //what the hell is this??? Oh wait, is it for new colors??
     fill(0, random(40, 215), 0);
   }
   void scrollUp() { //I said scrollDOwn lol but it's going up...*facepalm*
     tY=tY-tSpeed;
     //maybe make something like treePSeedPLaceolder = running treeSPeed before pause and if x happens (the game is unpaused) running tree speed = treeSpeedPALceholder
     //or soemthing really weird..to pause, tY=tY-treeSpeed+treeSpeed;, which apparently doesn't work 
-    tSpeed=tSpeed+0.001;
-    if (tY<=0) {
-      //println("limit reached!");
-    }
+    tSpeed=tSpeed+scrollSpeed;
+    //if (tY<=0) {
+    //  //println("limit reached!");
+    //}
   }
   void pause() {
     tSpeed=0;
   }
-  void reWrap() {
+  void reWrap() { //since I don't really need this, maybe this can be for randomizing the tree's distances and making them not too close, for later leels at least, or no, making them equal distances! like rows...and then for later levels when we want more than 1 in a clsoer row we'll just make the distances smaller, find a way to have everythig happen twice, like running a for loop by two, or add more than 1 arraylsit
     //since the the trees are going up, once they equal zero they're going to go to 600 
     tY=600;
   }
@@ -67,16 +67,10 @@ class Tree {
     //player top
     if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
-      fill(255, 0, 0);
-      textSize(50);
-      text("collision!", 0, height/2);
     }
     //player bottom
     if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
-      fill(255, 0, 0);
-      textSize(50);
-      text("collision!", 0, height/2);
     }
   }
 }

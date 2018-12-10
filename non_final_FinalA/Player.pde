@@ -8,6 +8,7 @@ class Player {
   //float sidewaysShift;
   float shiftDecrem;
   int playerHealth;
+  float playerScore;
   boolean living;
   Player() {
     living=true;
@@ -18,6 +19,7 @@ class Player {
     pSpeedY=1;
     pSpeedX=1;
     shiftDecrem=0.01;
+    playerScore=0;
   }
 
 
@@ -27,9 +29,11 @@ class Player {
     fill(240, 100, 0);
     noStroke();
     rect(pX, pY, pWidth, pHeight);
-    stroke(0, 0, 255);
-    strokeWeight(10);
-    point(pX, pY);
+    fill(255, 255, 0);
+    textSize(50);
+    textAlign(CENTER);
+    text("Player score:", 450, height/2);
+    text(int(playerScore), 630,height/2);
   }
   void moveSideways() {
     if (keyCode==LEFT) {
