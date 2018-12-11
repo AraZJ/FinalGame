@@ -21,3 +21,4 @@
 //I dont think i need a new case for each screen, just new variables like maybe level1=beat, and then it saves that in a file that you beat this level and this was your score and if the boolean doesn't stat true it can refer back to the daa in the saved file but hopefully I wont have to, then the elements and maybe the randomness but probaly not increase and size increases/decreases (I havent figured out, but ooh, a zoom in and zoom out function!) Maybe...but its not a real one, it jsut resizes everything
 //oh my god, I HAVE to add random gusts of wind!!!
 //the trees all have the same y distance from each other, so I will need to randomize the distance past 600, or coins also..differs during levels
+//how to make the menu screen graphics 3d...the trees will have to get smaller as they get closer to the left edge, nd there will have to be lines like in art that they are set on...sounds like a problem for future me ;)

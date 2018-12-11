@@ -29,11 +29,11 @@ class Player {
     fill(240, 100, 0);
     noStroke();
     rect(pX, pY, pWidth, pHeight);
-    fill(255, 255, 0);
-    textSize(50);
-    textAlign(CENTER);
-    text("Player score:", 450, height/2);
-    text(int(playerScore), 630,height/2);
+    fill(0);
+    textSize(30);
+    //textAlign(CENTER);
+    text("Player score: "+int(playerScore), 0, 30);
+    //text(int(playerScore), 0,0);
   }
   void moveSideways() {
     if (keyCode==LEFT) {
@@ -63,6 +63,7 @@ class Player {
     pSpeedY=pSpeedY+0.01;
     if (pY>=600-pHeight/2) {
       pSpeedY=0;
+      textAlign(LEFT);
       textSize(50);
       text("you have reached the bottom!", 0, height/2);
     }

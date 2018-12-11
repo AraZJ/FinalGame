@@ -8,7 +8,7 @@ class Coin {
   boolean offscreen;
 
   Coin(float y, float coinExpand) {
-    coinDiameter=50*coinExpand;
+    coinDiameter=50*coinExpand; //used to be 50, but the good size was 50*0.8 when the trees were *1.5
     coinColor=color(255, 255, 0);
     coinX=random(coinDiameter, 900-coinDiameter);
     coinY=y;

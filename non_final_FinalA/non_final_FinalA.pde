@@ -5,12 +5,14 @@ Player me;
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
 Coin coin1=new Coin(50, 1);
-int gameScreen=1;
+int gameScreen=0;
 int spacingValue=200;
 int slideOver=100;
 int numOfTrees=5;
 int numOfCoins=3;
+float snowFallX=random(900);
 float scrollSpeed=0.001;
+float snowFallY=0;
 ArrayList<Coin> coinList = new ArrayList<Coin>();
 ArrayList<Tree> treeList=new ArrayList<Tree>();
 
@@ -30,10 +32,15 @@ void draw() {
   switch(gameScreen) {
 
   case 0: //menu
-    background(255);
+    background(0,180,230);
+    fill(255);
+    noStroke();
+    triangle(0,0,width,height,0,height);
+    snowFall();
     fill(0);
+    textAlign(CENTER);
     textSize(100);
-    text("gameScreen is 0!", 0, height/2);
+    text("Name of Game!", width/2, height/2);
     tree1.display();
     tree1.treeCollide(me);
     tree2.display();
@@ -47,7 +54,7 @@ void draw() {
     coin1.display();
     coin1.coinCollide(me);
     //apparently I don't actually need a keypressed...
-    //me.moveDownAuto();
+    me.moveDownManual();
     break;
 
   case 1: //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
@@ -63,7 +70,7 @@ void draw() {
       if (coinClone.hit||coinClone.offscreen) {
         coinList.remove(k);
         coinClone.coinY=600+coinClone.coinDiameter;
-        coinList.add(new Coin(600, .8));
+        coinList.add(new Coin(650, .8));
       }
       coinClone.scrollUp();
       coinClone.display();
@@ -104,4 +111,11 @@ void upTriangle(float topX, float topY, float base, float triHi) { //has the sin
   //top of triangle = center - height/2, right point of triangle is center + height/2+width/2, left point is enter+height/2-width/2
   //top: x=triCenterX, y=triCenterY-triHeight/2, right: x=triCenterX+width/2, y=triCenterY+triHeight/2, left: x=triCenterX-width/2, y=triCenterY+triHeight/2
   triangle(topX, topY, topX+base/2, topY+triHi, topX-base/2, topY+triHi);
+}
+void snowFall(){
+  noStroke();
+  fill(255);
+ ellipse(snowFallX,snowFallY,10,10); //cant remember how to fix this probelm...
+ snowFallY=snowFallY+1;
+  
 }
