@@ -22,3 +22,6 @@
 //oh my god, I HAVE to add random gusts of wind!!!
 //the trees all have the same y distance from each other, so I will need to randomize the distance past 600, or coins also..differs during levels
 //how to make the menu screen graphics 3d...the trees will have to get smaller as they get closer to the left edge, nd there will have to be lines like in art that they are set on...sounds like a problem for future me ;)
+//make snowfall really cool and put it in all of the games but transparet so you can have an excuse to makube make it more complicated than it needs to be...thouh I don't know
+//maybe evrything gets bigger as you go down and then finally you're at the bttom. also, maybe I can calculate the time it would take for the player to reach the bottom wiht the auto scroll down! and then use that to figure out how long every level should be
+//question; could you access the value of a objects vaiable if you hadnt actually declaed an object, but if i wanted to get to the widhof something which was set in teh construcot rcould i dont think so really dont thin so

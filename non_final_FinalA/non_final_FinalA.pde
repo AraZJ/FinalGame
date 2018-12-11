@@ -2,11 +2,12 @@
 //Has an ArrayList
 
 Player me;
+//for game screen one, won't keep forever
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
 Coin coin1=new Coin(50, 1);
-int gameScreen=0;
-int spacingValue=200;
+int gameScreen=0; //gamescreen value for switch statement
+//int spacingValue=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
 int slideOver=100;
 int numOfTrees=5;
 int numOfCoins=3;
@@ -15,11 +16,20 @@ float scrollSpeed=0.001;
 float snowFallY=0;
 ArrayList<Coin> coinList = new ArrayList<Coin>();
 ArrayList<Tree> treeList=new ArrayList<Tree>();
+ArrayList<Snow> snowflakes=new ArrayList<Snow>();
+int numOfSnowflakes=10;
+float [] snowFallXs=new float[numOfSnowflakes];
+float snowXMeth=450;
+float snowYMeth=300;
 
 void setup() {
   size(900, 600);
   background(255);
   me = new Player();
+  for (int s=0; s<numOfSnowflakes; s++) {
+    //snowFallXs[s]=random(900); 
+    snowflakes.add(new Snow());
+  }
   for (int r=0; r<numOfTrees; r++) { 
     treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
   }
@@ -32,11 +42,10 @@ void draw() {
   switch(gameScreen) {
 
   case 0: //menu
-    background(0,180,230);
+    background(0, 180, 230);
     fill(255);
     noStroke();
-    triangle(0,0,width,height,0,height);
-    snowFall();
+    triangle(0, 0, width, height, 0, height);
     fill(0);
     textAlign(CENTER);
     textSize(100);
@@ -55,6 +64,14 @@ void draw() {
     coin1.coinCollide(me);
     //apparently I don't actually need a keypressed...
     me.moveDownManual();
+    //loop for snowflakes
+    for (int s=0; s<numOfSnowflakes; s++) {
+      //snowFall(snowFallXs[s]);
+      Snow snowClone=snowflakes.get(s);
+      snowClone.display();
+      snowClone.fall();
+    }
+    centeredLine(50,450,300,0);
     break;
 
   case 1: //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
@@ -112,10 +129,26 @@ void upTriangle(float topX, float topY, float base, float triHi) { //has the sin
   //top: x=triCenterX, y=triCenterY-triHeight/2, right: x=triCenterX+width/2, y=triCenterY+triHeight/2, left: x=triCenterX-width/2, y=triCenterY+triHeight/2
   triangle(topX, topY, topX+base/2, topY+triHi, topX-base/2, topY+triHi);
 }
-void snowFall(){
-  noStroke();
-  fill(255);
- ellipse(snowFallX,snowFallY,10,10); //cant remember how to fix this probelm...
- snowFallY=snowFallY+1;
-  
+//void snowFall(float x) {
+//  noStroke();
+//  fill(255);
+//  ellipse(x, snowFallY, 30, 30); //cant remember how to fix this probelm...
+//  snowFallY=snowFallY+0.1;
+//}
+void centeredLine(float lLength, float lCenterX, float lCenterY, float angle){ //, float angle){ //the angle will be 60 because that's how my snowflake will be
+ stroke(0);
+ strokeWeight(5);
+ line(lCenterX,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
+ //vertial line
+  //line(lCenterX,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
+  //horizontal line
+  //line(lCenterX,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
+  //60 degrees rotated line
+  //line(lCenterX-lLength/2,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
 }
+//void rotatedLine(){
+//// pushMatrix();
+// centeredLine(20,snowXMeth,snowYMeth);
+//// popMatrix();
+  
+//}
