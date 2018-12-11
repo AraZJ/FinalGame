@@ -25,3 +25,10 @@
 //make snowfall really cool and put it in all of the games but transparet so you can have an excuse to makube make it more complicated than it needs to be...thouh I don't know
 //maybe evrything gets bigger as you go down and then finally you're at the bttom. also, maybe I can calculate the time it would take for the player to reach the bottom wiht the auto scroll down! and then use that to figure out how long every level should be
 //question; could you access the value of a objects vaiable if you hadnt actually declaed an object, but if i wanted to get to the widhof something which was set in teh construcot rcould i dont think so really dont thin so
+//make all the letters of teh game flash different colors that are related to the bluColor variable from the snow class. is ther a way I can run a loop? oohk an array!
+//cool font...though it's reallt=y frickin comp,icated horst roman gothic font is good
+
+//algorithm for tree spacing: 4 trees max onscreen and also in array first level, 5 second maybe, and so on...same amount of coins? MArgins will shrink too, so there're be a black barrier that encoraches on the player
+//question: how does duration work for mouse and key? is it only for a fe seconds and then it goes bakc to beig what it awas befreo, or once it apens foes it stay that way?
+//previous grapics are stored even when you cahgne your game screen...
+//question: can I just let all the code that makes the game run (player movement, arrays, all that) be in the level one gamescreen but still hold for the coming levels whcih are in there own gamescreens and noly change numbers and spacing (separate cases fr each level), or should I jsut have if statements based onwhcih levels were won that change thennumenrs? (one case for jsut a running game and elvels chagne based on if statemnts). We'll see...

@@ -130,3 +130,31 @@
 //  println("right side player collision");
 //  collision=true;
 //}
+
+
+////code that used to be in case 1, for graphics
+//tree1.display();
+    //tree1.treeCollide(me);
+    //tree2.display();
+    //tree2.treeCollide(me);
+    //me.display(); //this should be in the gamescreens
+    //me.Straighten();
+    //if (key=='s'||tree2.treeCollision||tree1.treeCollision) {
+    //  me.stop();
+    //}
+    //me.moveSideways();
+    ////apparently I don't actually need a keypressed...
+    //me.moveDownManual();
+    ////loop for snowflakes
+    //for (int s=0; s<numOfSnowflakes; s++) {
+    //  //snowFall(snowFallXs[s]);
+    //  Snow snowClone=snowflakes.get(s);
+    //  snowClone.display();
+    //  snowClone.fall();
+    //}
+    ////
+    //centeredLine(50, 450, 300, -60, color(200));
+    //centeredLine(50, 450, 300, 0, color(200));
+    //centeredLine(50, 450, 300, 60, color(200));
+    //centeredLine(50, 450, 300, -60, color(200));
+    ////

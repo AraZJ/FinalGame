@@ -31,7 +31,7 @@ class Player {
     rect(pX, pY, pWidth, pHeight);
     fill(0);
     textSize(30);
-    //textAlign(CENTER);
+    textAlign(LEFT);
     text("Player score: "+int(playerScore), 0, 30);
     //text(int(playerScore), 0,0);
   }
@@ -77,5 +77,8 @@ class Player {
     }
   }
   void collision() {
+  }
+  void diagonalSlide(){
+    
   }
 }

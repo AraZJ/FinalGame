@@ -73,4 +73,7 @@ class Tree {
       treeCollision=true;
     }
   }
+  void diagonalSlide(){
+    
+  }
 }
