@@ -6,10 +6,11 @@ Player me;
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
 int gameScreen=0; //gamescreen value for switch statement
-//int spacingValue=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+int ySpacing=200; //height/numOfTrees
 //int slideOver=100;
 int numOfTrees=5;
-int numOfCoins=3;
+int numOfCoins=numOfTrees-1; //probably will change
 float snowFallX=random(900);
 float scrollSpeed=0.001;
 float snowFallY=0;
@@ -22,6 +23,8 @@ int numOfSnowflakes=100;
 float [] snowFallXs=new float[numOfSnowflakes];
 float screenLeftEdge=0;
 float screenRightEdge=600;
+boolean [] levelsWon= new boolean[5];
+
 
 
 void setup() {
@@ -33,7 +36,7 @@ void setup() {
     snowflakes.add(new Snow());
   }
   for (int r=0; r<numOfTrees; r++) { 
-    treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
+    treeList.add(new Tree(random(20, 880), ySpacing*(r+1), 1.5)); //r*spacingValue+slideOver // random(100, 300)
   }
 
   for (int r=0; r<numOfCoins; r++) { 
@@ -42,6 +45,10 @@ void setup() {
 }
 
 void draw() {
+  for(int b=0; b<levelsWon.length; b++){
+    //if(1=true; set these equal to these
+    
+  }
   switch(gameScreen) {
 
   case 0: //menu
@@ -115,7 +122,12 @@ void draw() {
     //maybe an affect of, instead of a timr, o the screen slidng up an theres the rest of teh text
     break;
   case 3:
-    //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
+  gameRunning();
+  }
+
+}
+void gameRunning(){
+      //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
     //loop to remove old trees
     //make sure to backwards
     background(255);
@@ -149,12 +161,12 @@ void draw() {
         treeList.add(new Tree(random(20, 880), 600, 1.5));
       }
       treeClone.display();
-      //treeClone.scrollUp();
+      treeClone.scrollUp();
       treeClone.treeCollide(me);
     }
     me.display(); //this should be in the gamescreens
     me.moveSideways(); //apparently I don't actually need a keypressed...
-    me.Straighten();
+    //me.Straighten();
     //me.moveDownManual();
     //me.moveDownAuto();
     //me.beenHit();
@@ -166,7 +178,6 @@ void draw() {
   } 
   //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
   //me.moveSideways(); //apparently I don't actually need a keypressed...
-}
 void upTriangle(float topX, float topY, float base, float triHi) { //has the single point on top
   //I should make it the top, not the center...
   //if width = 10 and height = ten and center = center of screen
