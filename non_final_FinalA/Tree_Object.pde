@@ -64,16 +64,21 @@ class Tree {
     tY=600;
   }
   void treeCollide(Player thePlayer) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
-    //player top
+    //player top and sides
     if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
       thePlayer.playerHit=true;
     }
-    //player bottom
+    //player bottom and sides
     if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
       thePlayer.playerHit=true;
     }
+    //player left and stuff 
+    //if (thePlayer.pX+thePlayer.pWidth/2>= &&thePlayer.pX+thePlayer.pWidth/2<=){
+      
+    //}
+    
   }
   void diagonalSlide(){
     

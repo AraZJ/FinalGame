@@ -158,3 +158,27 @@
     //centeredLine(50, 450, 300, 60, color(200));
     //centeredLine(50, 450, 300, -60, color(200));
     ////
+    ////aniamtion for eing hit
+    //fill(255,0,0);
+      //animTimer=millis();
+      //startAngle-=incAngle; 
+      //if(startAngle<=-90){
+      //incAngle=0;
+      //startAngle=0;
+      //}
+      //pushMatrix();
+      //translate((pX+50), pY);
+      ////rotate(radians(startAngle));
+      //rectMode(CENTER);
+      //fill(240, 100, 0);
+      //noStroke();
+      //rect(0, 0, pWidth, pHeight);
+      //animTimer=millis();
+      //if (millis()-animTimer<=3000) {
+      //  stopMoving();
+      //} else {
+      //  moveSideways();
+      //}
+      //popMatrix();
+      //if(startAngle>=radians(180)){
+        ////

@@ -15,6 +15,8 @@ class Player {
   float incAngle;
   float tempSpeedX; //probably don't need
   long animTimer;
+  boolean fallLeft;
+  boolean fallRight;
   Player() {
     playerHit=false;
     living=true;
@@ -22,75 +24,67 @@ class Player {
     pHeight=100;
     pX=450; //important
     pY=300; 
-    pSpeedY=0;
+    pSpeedY=1;
+    pSpeedX=1;
     shiftDecrem=0.01;
     playerScore=0;
     startAngle=0;
     incAngle=10;
     playerHealth=5;
+    fallLeft=false;
+    fallRight=false;
   }
   void display() {
     //if (!playerHit) {
+    if (!fallLeft&&!fallRight&&!playerHit) {
       rectMode(CENTER);
       fill(240, 100, 0);
       noStroke();
       rect(pX, pY, pWidth, pHeight);
       //score message: should probably be moved...
-    //} else 
-    //if (playerHit) {
-      fill(255,0,0);
+    } else if (playerHit) {//(fallLeft||fallRight) {
+      
+      rectMode(CENTER);
+      fill(240, 100, 0);
+      noStroke();
+      rect(pX, pY, pWidth, pHeight);
+      text("how long is player hit?", width/2, height/2);
       //animTimer=millis();
-      //startAngle-=incAngle; 
-      //if(startAngle<=-90){
-      //incAngle=0;
-      //startAngle=0;
+      //beenHit();
+      //if (millis()-animTimer<=3000) { 
+      pSpeedX=0;
+      //} else if (millis()-animTimer>3000) {
+      //if (keyPressed&&key=='g') {
+      //  pSpeedX=1; 
+        
       //}
-      //pushMatrix();
-      //translate((pX+50), pY);
-      ////rotate(radians(startAngle));
-      //rectMode(CENTER);
-      //fill(240, 100, 0);
-      //noStroke();
-      //rect(0, 0, pWidth, pHeight);
-      //if (millis()-animTimer<=3000) {
-      //  stopMoving();
-      //} else {
-      //  moveSideways();
-      //}
-      //popMatrix();
-      //if(startAngle>=radians(180)){
-   // }
-
+    }
     fill(0);
     textSize(30);
     textAlign(LEFT);
     text("Player score: "+int(playerScore), 0, 30);
     textAlign(RIGHT);
-    text("Player health: "+int(playerHealth), 900, 30);
+    text("Player health: "+int(playerHealth), 900, 30); //maybe say the amount you add is the ammountof seconds spent with hit being true divided by itself
     //text(int(playerScore), 0,0);
   }
   void moveSideways() {
-    //if(!playerHit){
-    pSpeedX=1;
-    if (keyCode==LEFT) {
-      pX=pX-pSpeedX;
-      //if (sidewaysShift>=0){
-      //sidewaysShift=sidewaysShift-shiftDecrem;  //this is HILARIOUS! dsidewaysShift=sidewaysShift-0.1; 
-      //}
+    if (pX<=screenLeftEdge||pX>=screenRightEdge) {
+      playerHit=true;
     }
-    if (keyCode==RIGHT) {
-      pX=pX+pSpeedX;
-    } 
-    //} else if (playerHit){
-    //  pSpeedX=0;
-    //}
-  }
-  void stopMoving() {
-    tempSpeedX=pSpeedX;
-    pSpeedX=0;
-  }
-  void resumeMoving() {
-    pSpeedX=tempSpeedX;
+    if (!playerHit) {
+      pSpeedX=1;
+      if (keyCode==LEFT) {
+        pX=pX-pSpeedX;
+        //if (sidewaysShift>=0){
+        //sidewaysShift=sidewaysShift-shiftDecrem;  //this is HILARIOUS! dsidewaysShift=sidewaysShift-0.1; 
+        //}
+      }
+      if (keyCode==RIGHT) {
+        pX=pX+pSpeedX;
+      }
+    } else if (playerHit) {
+      pSpeedX=0;
+    }
   }
   void Straighten() {
     //if (keyCode==DOWN){
@@ -111,31 +105,44 @@ class Player {
   //    text("you have reached the bottom!", 0, height/2);
   //  }
   //}
-  //void moveDownManual() {
-  //  if (keyCode==DOWN) {
-  //    pY=pY+pSpeedY;
-  //  }
-  //  if (keyCode==UP) {
-  //    pY=pY-pSpeedY;
-  //  }
-  //}
+  void moveDownManual() {
+    if (keyCode==DOWN) {
+      pY=pY+pSpeedY;
+    }
+    if (keyCode==UP) {
+      pY=pY-pSpeedY;
+    }
+  }
   void beenHit() { //should be in an "if tree.collision==true statement"
 
-    if (playerHit) {
-      //pX=pX*-1;
-      pushMatrix();
-      translate(pX, pY);
-      rotate(radians(startAngle));
-      rectMode(CENTER);
-      fill(240, 100, 0);
-      noStroke();
-      rect(0, 0, pWidth, pHeight);
-      popMatrix();
-      //if(startAngle>=radians(180)){
+    //if (playerHit) {
+    //pX=pX*-1;
+    startAngle-=incAngle; 
+    if (startAngle<=-90) {
+      incAngle=0;
       startAngle=0;
-      //}
-      playerHealth-=1;
     }
+    pushMatrix();
+    translate((pX+50), pY);
+    //rotate(radians(startAngle));
+    rectMode(CENTER);
+    fill(240, 100, 0);
+    noStroke();
+    rect(0, 0, pWidth, pHeight);
+    popMatrix();
+    //pushMatrix();
+    //translate(pX, pY);
+    //rotate(radians(startAngle));
+    //rectMode(CENTER);
+    //fill(240, 100, 0);
+    //noStroke();
+    //rect(0, 0, pWidth, pHeight);
+    //popMatrix();
+    ////if(startAngle>=radians(180)){
+    //startAngle=0;
+    ////}
+    //playerHealth-=1;
+    //}
   }
   void diagonalSlide() {
   }

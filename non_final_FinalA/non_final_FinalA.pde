@@ -161,13 +161,15 @@ void gameRunning(){
         treeList.add(new Tree(random(20, 880), 600, 1.5));
       }
       treeClone.display();
-      treeClone.scrollUp();
+      //treeClone.scrollUp();
       treeClone.treeCollide(me);
     }
-    me.display(); //this should be in the gamescreens
+     //this should be in the gamescreens
+     me.display();
     me.moveSideways(); //apparently I don't actually need a keypressed...
+    
     //me.Straighten();
-    //me.moveDownManual();
+    me.moveDownManual();
     //me.moveDownAuto();
     //me.beenHit();
     //me.moveDownAuto();
