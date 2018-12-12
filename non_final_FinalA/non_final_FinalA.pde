@@ -6,10 +6,11 @@ Player me;
 Tree tree1= new Tree(600, 45, 1);
 Tree tree2= new Tree(320, 45, 1);
 int gameScreen=0; //gamescreen value for switch statement
-//int spacingValue=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+//int xSpacingValue=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
 //int slideOver=100;
-int numOfTrees=5;
-int numOfCoins=3;
+float YSpacing;
+int numOfTrees=4;
+int numOfCoins=numOfTrees; //this is not decied; could be one less, or one more or something
 float snowFallX=random(900);
 float scrollSpeed=0.001;
 float snowFallY=0;
@@ -25,13 +26,16 @@ float [] snowFallXs=new float[numOfSnowflakes];
 void setup() {
   size(900, 600);
   background(255);
+  YSpacing=200; //height/numOfTrees; //so in the first level, it's 600/4 which is 150. the first tree shoud be certain amoutn below you,m and the others should all fit (I think)...maybe it should be by five so the last trees not at the very bottom
+  
   me = new Player();
   for (int s=0; s<numOfSnowflakes; s++) {
     //snowFallXs[s]=random(900); 
     snowflakes.add(new Snow());
   }
   for (int r=0; r<numOfTrees; r++) { 
-    treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
+    //treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
+    treeList.add(new Tree(random(20, 880), YSpacing*(r+1), 1.5));
   }
   for (int r=0; r<numOfCoins; r++) { 
     coinList.add(new Coin(random(25, 600-25), 0.8)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...

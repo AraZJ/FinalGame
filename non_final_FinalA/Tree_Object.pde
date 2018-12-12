@@ -16,7 +16,7 @@ class Tree {
 
   //tree object constructor
   Tree(float x, float y, float expandValue) { //500, 350, 40, 110 //float tWidth, float tHeight, 
-    tY = y; //random(110,490);//
+    tY = y; //random(110,490);//thisis the top of the tree, not the middle
     tX = x; //random(20,880); 
     tWidth = 40*expandValue; //40 is a good value
     tHeight = 100*expandValue; //110 is a good value

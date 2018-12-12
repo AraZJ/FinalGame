@@ -1,4 +1,4 @@
-
+//quetion: if I dont commit chagnes and then change to another branch, will my changes in the old branch be lsot 
 
 //for my flappy bird game, I couldn't find a way to have the poles reroll when their locations were moved from one side to the other after they went off the first side, I mean it was just the same poles, but maybe if I made their spacing more of a choice like an actual outside constraint iun the constructor Tree(RandomVAlue) wjhich would have to be for color and for x location and eventually when there's levesl, for the number per row.
 //so for some actual pseudocode...here we GO:
