@@ -41,7 +41,7 @@ class Coin {
       //text("collision!", 300, height/2);
     }
     if (player2.pY-player2.pHeight/2<=coinY+coinDiameter/2 && player2.pY-player2.pHeight/2>=coinY-coinDiameter/2 && player2.pX-player2.pWidth/2<=coinX+coinDiameter/2 && player2.pX+player2.pWidth/2>=coinX-coinDiameter/2) {
-      //hit=true; 
+      hit=true; 
       //fill(255, 255, 0);
       //textSize(50);
       //text("collision!", 300, height/2);

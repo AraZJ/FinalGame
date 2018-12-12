@@ -20,6 +20,8 @@ float letterColor=random(100, 255);
 char [] gameName={'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'}; //why
 int numOfSnowflakes=100;
 float [] snowFallXs=new float[numOfSnowflakes];
+float screenLeftEdge=0;
+float screenRightEdge=600;
 
 
 void setup() {
@@ -33,6 +35,7 @@ void setup() {
   for (int r=0; r<numOfTrees; r++) { 
     treeList.add(new Tree(random(20, 880), random(100, 300), 1.5)); //r*spacingValue+slideOver
   }
+
   for (int r=0; r<numOfCoins; r++) { 
     coinList.add(new Coin(random(25, 600-25), 0.8)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
   }
@@ -55,30 +58,47 @@ void draw() {
     textAlign(CENTER);
     textSize(80);
     //text("Treacherous Tundra", width/2, height/2);
-    //for loop for displaying the game name  where each
+    //for loop for displaying the game name, where each letter flashes a different color
     for (int n=0; n<gameName.length; n++) { //I hate myself
+      frameRate(10);
       fill(letterColor-random(100, letterColor), letterColor-random(20, letterColor), letterColor);
       text(gameName[n], 45+n*45, height/2);
     }
-    textSize(40);
-    fill(10);
-    text("Press space to start game", width/2, height/2+100);
-    textSize(30);
-    text("Press 't' for tutorial", width/2, height/2+150);
-    if(keyPressed&&key==' '){
-    gameScreen=2;
-    } else if(keyPressed&&key=='t'){
-    gameScreen=1;
+    frameRate(60);
+    textSize(50);
+    fill(0);
+    text("Space to Start", width/2, height/2+100);
+    if (keyPressed&&key==' ') {
+      gameScreen=1;
     }
-      for (int s=0; s<numOfSnowflakes; s++) {
-    //snowFall(snowFallXs[s]);
-    Snow snowClone=snowflakes.get(s);
-    snowClone.display();
-    snowClone.fall();
-  }
+    for (int s=0; s<numOfSnowflakes; s++) {
+      //snowFall(snowFallXs[s]);
+      Snow snowClone=snowflakes.get(s);
+      snowClone.display();
+      snowClone.fall();
+    }
+    break;
+  case 1:
+    background(255);
+        for (int s=0; s<numOfSnowflakes; s++) {
+      //snowFall(snowFallXs[s]);
+      Snow snowClone=snowflakes.get(s);
+      snowClone.display();
+      snowClone.fall();
+    }
+    textSize(45);
+    fill(0);
+    text("FOR LEVEL MODE (PENDING), PRESS 'L'", width/2, 200);
+    text("FOR ADVENTURE MODE, PRESS 'A'", width/2, height/2);
+    text("FOR TUTORIAL, PRESS 'T'", width/2, height/2+100);
+    if (keyPressed&&key=='t') {
+      gameScreen=2;
+    } else if (keyPressed&&key=='a') {
+      gameScreen=3;
+    }
     break;
     //tutorial page
-    case 1:
+  case 2:
     background(255);
     fill(0);
     textSize(30);
@@ -88,17 +108,18 @@ void draw() {
     //same thign as oavobe commetn says
     textSize(17);
     text("Note: you only have to press a key once before you start sliding in that direction.", width/2, 500);
-    text("press 'r' to return to menu",width/2,height/2+100);
-    if(keyPressed&&key=='r'){
-    gameScreen=0;
+    text("press 'b' to go back to the menu", width/2, height/2+100);
+    if (keyPressed&&key=='b') {
+      gameScreen=0;
     }
     //maybe an affect of, instead of a timr, o the screen slidng up an theres the rest of teh text
     break;
-
-  case 2: //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
+  case 3:
+    //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
     //loop to remove old trees
     //make sure to backwards
     background(255);
+    //me.playerHit=false;
     //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
     for (int k=numOfCoins-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
       Coin coinClone = coinList.get(k);
@@ -128,21 +149,23 @@ void draw() {
         treeList.add(new Tree(random(20, 880), 600, 1.5));
       }
       treeClone.display();
-      treeClone.scrollUp();
+      //treeClone.scrollUp();
       treeClone.treeCollide(me);
     }
     me.display(); //this should be in the gamescreens
     me.moveSideways(); //apparently I don't actually need a keypressed...
     me.Straighten();
-    me.moveDownManual();
-    me.loseHealth();
+    //me.moveDownManual();
     //me.moveDownAuto();
+    //me.beenHit();
+    //me.moveDownAuto();
+    if (keyPressed&&key=='r') {
+      me.reset();
+      gameScreen=0;
+    }
   } 
   //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
   //me.moveSideways(); //apparently I don't actually need a keypressed...
-}
-void keyPressed() {
-  //me.moveSideways();
 }
 void upTriangle(float topX, float topY, float base, float triHi) { //has the single point on top
   //I should make it the top, not the center...
