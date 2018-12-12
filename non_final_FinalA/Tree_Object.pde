@@ -12,6 +12,9 @@ class Tree {
   float trunkHeight;
   boolean treeCollision;
   boolean onscreen;
+  float tBottom;
+  float tLeft;
+  float tRight;
   //boolean onscreen/remove
 
   //tree object constructor
@@ -26,16 +29,17 @@ class Tree {
     tSpeed=1;
     treeCollision=false;
     onscreen=true;
+    tBottom=tY+tHeight; //this oe doesn't work
+    tLeft=tX-tWidth/2; //this one is right
+    tRight=tX+tWidth/2; //this one is right
     //boolean spawns as false
   }
 
   //properties
-  //trying to get the tree to be made out of my super-awesome triangle method for triangles so I can resize them easier
   void display() {
-    //all the trees are the same width at the bottom
     fill(treeColor);
     noStroke();
-    upTriangle(tX, tY, tWidth, tHeight); //whole tree leaves
+    upTriangle(tX, tY, tWidth, tHeight); //whole tree leaves ////note that tY is the top of the tree and not the middle
     upTriangle(tX, tY, tWidth, tHeight*0.75); //middle tree leaves
     upTriangle(tX, tY, tWidth, tHeight*0.5); //top tree leaves
     //tree trunk
@@ -65,15 +69,29 @@ class Tree {
   }
   void treeCollide(Player thePlayer) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     //player top
-    if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
+    //println(tY+tHeight);
+    //println(tBottom);
+
+    if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY&&thePlayer.pLeft<=tRight&&thePlayer.pRight>=tLeft) {
+      //if (thePlayer.pTop<=tY+tHeight && thePlayer.pTop>=tY&&thePlayer.pLeft<=tRight&&thePlayer.pRight>=tLeft) {
       treeCollision=true;
-    }
+      println("collosiion!");
+      
+      
+    } 
     //player bottom
-    if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
+    //if (thePlayer.pBottom>=tY && thePlayer.pBottom<=tY+tHeight && thePlayer.pLeft<=tRight && thePlayer.pRight>=tLeft) {
+      if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
-    }
-  }
-  void diagonalSlide(){
-    
+      println("collosiion!");
+      }
+    } 
+  //  if(treeCollision){
+  //    thePlayer.pColor=color(0,0,255);
+  //  } else{
+  //    thePlayer.pColor=color(240, 100, 0);
+  //  }
+  //}
+  void diagonalSlide() {
   }
 }

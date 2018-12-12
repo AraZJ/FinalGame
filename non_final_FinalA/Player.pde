@@ -10,6 +10,11 @@ class Player {
   int playerHealth;
   float playerScore;
   boolean living;
+  float pLeft;
+  float pRight;
+  float pTop;
+  float pBottom;
+  color pColor;
   Player() {
     living=true;
     pWidth=25;
@@ -20,13 +25,18 @@ class Player {
     pSpeedX=1;
     shiftDecrem=0.01;
     playerScore=0;
+     pLeft=pX-pWidth/2; //works
+     pRight=pX+pWidth/2; //works
+     pTop=pY-pHeight/2; //this one works
+     pBottom=pY+pHeight/2; //this one works
+     pColor=color(240, 100, 0);
   }
 
 
 
   void display() {
     rectMode(CENTER);
-    fill(240, 100, 0);
+    fill(pColor);
     noStroke();
     rect(pX, pY, pWidth, pHeight);
     fill(0);
@@ -78,7 +88,6 @@ class Player {
   }
   void collision() {
   }
-  void diagonalSlide(){
-    
+  void diagonalSlide() {
   }
 }

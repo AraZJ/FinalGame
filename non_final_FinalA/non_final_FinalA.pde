@@ -21,11 +21,15 @@ float letterColor=random(100, 255);
 char [] gameName={'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'}; //why
 int numOfSnowflakes=100;
 float [] snowFallXs=new float[numOfSnowflakes];
+boolean [] levelsWon;
 
 
 void setup() {
   size(900, 600);
   background(255);
+  //for(){
+    
+  //}
   YSpacing=200; //height/numOfTrees; //so in the first level, it's 600/4 which is 150. the first tree shoud be certain amoutn below you,m and the others should all fit (I think)...maybe it should be by five so the last trees not at the very bottom
   
   me = new Player();
@@ -102,7 +106,16 @@ void draw() {
   case 2: //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
     //loop to remove old trees
     //make sure to backwards
-    background(255);
+    runningGame();
+  } 
+  //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
+  //me.moveSideways(); //apparently I don't actually need a keypressed...
+}
+void keyPressed() {
+  //me.moveSideways();
+}
+void runningGame(){
+      background(255);
     //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
     for (int k=numOfCoins-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
       Coin coinClone = coinList.get(k);
@@ -127,7 +140,6 @@ void draw() {
         //treeClone.tY=600;
       }
       if (!treeClone.onscreen) {
-        //println("offscreen!");
         treeList.remove(t); 
         treeList.add(new Tree(random(20, 880), 600, 1.5));
       }
@@ -139,13 +151,8 @@ void draw() {
     me.moveSideways(); //apparently I don't actually need a keypressed...
     me.Straighten();
     me.moveDownManual();
-    //me.moveDownAuto();
-  } 
-  //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
-  //me.moveSideways(); //apparently I don't actually need a keypressed...
-}
-void keyPressed() {
-  //me.moveSideways();
+  
+  
 }
 void upTriangle(float topX, float topY, float base, float triHi) { //has the single point on top
   //I should make it the top, not the center...

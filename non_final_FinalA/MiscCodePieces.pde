@@ -158,3 +158,43 @@
     //centeredLine(50, 450, 300, 60, color(200));
     //centeredLine(50, 450, 300, -60, color(200));
     ////
+    
+    ////running game from cASE 2 adventure mode
+    ////run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
+    //for (int k=numOfCoins-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
+    //  Coin coinClone = coinList.get(k);
+    //  if (coinClone.coinY<=-coinClone.coinDiameter/2&&!coinClone.hit) {
+    //    coinClone.offscreen=true;
+    //  }
+    //  if (coinClone.hit||coinClone.offscreen) {
+    //    coinList.remove(k);
+    //    coinClone.coinY=600+coinClone.coinDiameter;
+    //    coinList.add(new Coin(650, .8));
+    //  }
+    //  coinClone.scrollUp();
+    //  coinClone.display();
+    //  coinClone.coinCollide(me);
+    //  coinClone.addToScore();
+    //}
+    //// for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
+    //for (int t=numOfTrees-1; t>=0; t--) {//for (int e=0; e<numOfTrees; e++) { //for loop for rows
+    //  Tree treeClone = treeList.get(t);
+    //  if (treeClone.tY<=treeClone.tHeight*-1-treeClone.trunkHeight) {
+    //    treeClone.onscreen=false;
+    //    //treeClone.tY=600;
+    //  }
+    //  if (!treeClone.onscreen) {
+    //    //println("offscreen!");
+    //    treeList.remove(t); 
+    //    treeList.add(new Tree(random(20, 880), 600, 1.5));
+    //  }
+    //  treeClone.display();
+    //  //treeClone.scrollUp();
+    //  treeClone.treeCollide(me);
+    //}
+    //me.display(); //this should be in the gamescreens
+    //me.moveSideways(); //apparently I don't actually need a keypressed...
+    //me.Straighten();
+    //me.moveDownManual();
+    //me.moveDownAuto();
+    ////
