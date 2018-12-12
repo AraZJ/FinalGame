@@ -135,6 +135,7 @@ void draw() {
     me.moveSideways(); //apparently I don't actually need a keypressed...
     me.Straighten();
     me.moveDownManual();
+    me.loseHealth();
     //me.moveDownAuto();
   } 
   //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen

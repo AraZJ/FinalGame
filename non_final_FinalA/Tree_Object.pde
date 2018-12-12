@@ -67,10 +67,12 @@ class Tree {
     //player top
     if (thePlayer.pY-thePlayer.pHeight/2<=tY+tHeight && thePlayer.pY-thePlayer.pHeight/2>=tY && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
+      thePlayer.playerHit=true;
     }
     //player bottom
     if (thePlayer.pY+thePlayer.pHeight/2>=tY && thePlayer.pY+thePlayer.pHeight/2<=tY+tHeight && thePlayer.pX-thePlayer.pWidth/2<=tX+tWidth/2 && thePlayer.pX+thePlayer.pWidth/2>=tX-tWidth/2) {
       treeCollision=true;
+      thePlayer.playerHit=true;
     }
   }
   void diagonalSlide(){

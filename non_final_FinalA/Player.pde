@@ -10,7 +10,11 @@ class Player {
   int playerHealth;
   float playerScore;
   boolean living;
+  boolean playerHit;
+  float startAngle;
+  float incAngle;
   Player() {
+    playerHit=false;
     living=true;
     pWidth=25;
     pHeight=100;
@@ -20,6 +24,9 @@ class Player {
     pSpeedX=1;
     shiftDecrem=0.01;
     playerScore=0;
+    startAngle=0;
+    incAngle=10;
+    playerHealth=5;
   }
 
 
@@ -29,10 +36,13 @@ class Player {
     fill(240, 100, 0);
     noStroke();
     rect(pX, pY, pWidth, pHeight);
+    //score message: should probably be moved...
     fill(0);
     textSize(30);
     textAlign(LEFT);
     text("Player score: "+int(playerScore), 0, 30);
+    textAlign(RIGHT);
+    text("Player health: "+int(playerHealth), 900, 30);
     //text(int(playerScore), 0,0);
   }
   void moveSideways() {
@@ -76,9 +86,24 @@ class Player {
       pY=pY-pSpeedY;
     }
   }
-  void collision() {
+  void loseHealth() { //should be in an "if tree.collision==true statement"
+  if (playerHit){
+    //pX=pX*-1;
+    pSpeedX=0;
+    pushMatrix();
+    translate(pX,pY);
+    rotate(radians(startAngle));
+    rectMode(CENTER);
+    fill(240, 100, 0);
+    noStroke();
+    rect(0, 0, pWidth, pHeight);
+    popMatrix();
+    //if(startAngle>=radians(180)){
+   startAngle-=incAngle;
+   //}
+   playerHealth-=1;
   }
-  void diagonalSlide(){
-    
+  }
+  void diagonalSlide() {
   }
 }
