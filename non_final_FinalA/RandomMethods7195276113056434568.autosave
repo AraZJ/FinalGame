@@ -1,4 +1,5 @@
-int treesPassed(Player thePlayer, Tree aTree) {
+
+  int treesPassed(Player thePlayer, Tree aTree) {
   int returnNum=0;
   if (thePlayer.pY==aTree.tY+aTree.tHeight&&!thePlayer.playerHit) {
     textSize(50);
@@ -9,7 +10,6 @@ int treesPassed(Player thePlayer, Tree aTree) {
   }
   return returnNum;
 }
-
 
 //much easier way to make an upright triangle with the top point, the base and the heiggt as parameters
 void upTriangle(float topX, float topY, float base, float triHi) { //has the single point on top
@@ -31,7 +31,6 @@ void centeredLine(float lLength, float lCenterX, float lCenterY, float angle, co
   }
 }
 void snowStorm(int snowAmount) {
-  //numOfSnowflakes=snowAmount;
   for (int s=snowAmount-1; s>0; s--) {
     Snow snowClone=snowflakes.get(s);
     snowClone.display();
@@ -52,11 +51,10 @@ void pause() {
     gameIsRunning=false;
   }
 }
-//void resetTrees(Tree anyTree) {
-//  anyTree.tY=300;
-//}
-//void resetCoins(Coin anyCoin) {
-//}
+void resetTrees(Tree anyTree) {
+}
+void resetCoins(Coin anyCoin) {
+}
 void restartLevel() { //might not need...
   //might need to connect to which level it is
   me.reset();
@@ -94,7 +92,6 @@ void gameRunning() {
   noStroke();
   rect(0, 0, screenLimit, height);
   rect(width-screenLimit, 0, screenLimit, height);
-  //me.playerHit=false;
   //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
   for (int k=numOfCoins-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
     Coin coinClone = coinList.get(k);
@@ -108,8 +105,7 @@ void gameRunning() {
     }
     coinClone.scrollUp();
     coinClone.display();
-    //coinClone.coinCollide(me);
-    coinClone.addToScore(me);
+    coinClone.addToScore(me); //this is where its checked for collide
   }
   // for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
   for (int t=numOfTrees-1; t>=0; t--) {//for (int e=0; e<numOfTrees; e++) { //for loop for rows
@@ -124,15 +120,15 @@ void gameRunning() {
       treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, 1));
     }
     if(!treeClone.onscreen&&me.living==true){
-      specialNumber=specialNumber+1;
+      numOfTreesPassed=numOfTreesPassed+1;
     }
-    println(specialNumber);
+    println(numOfTreesPassed);
     treeClone.display();
     treeClone.scrollUp();
     treeClone.treeCollide(me);
     //println(treesPassed(me, treeClone));
-    // treeClone.treesPassed(me);
-     //println(treeClone.numOfTreesPassed);
+     treeClone.treesPassed(me);
+    //println(treeClone.numOfTreesPassed);
   }
   //this should be in the gamescreens
   me.display();

@@ -28,7 +28,7 @@ boolean [] levelsWon= new boolean[5];
 boolean gameIsRunning;
 long levelTimer;
 long levelStartingTime;
-int numOfTreesPassed=0;
+//int numOfTreesPassedG=0;
 int specialNumber; //My BABY I LOVE you!!!!!
 void setup() {
   size(900, 600);
@@ -52,11 +52,11 @@ void setup() {
     snowflakes.add(new Snow());
   }
   for (int r=0; r<numOfTrees; r++) { 
-    treeList.add(new Tree(random(screenLimit, width-screenLimit), ySpacing*(r+1), 1)); //r*spacingValue+slideOver // random(100, 300)
+    treeList.add(new Tree(random(screenLimit, width-screenLimit), 300+ySpacing*r, 1)); //r*spacingValue+slideOver // random(100, 300)
   }
 
   for (int r=0; r<numOfCoins; r++) { 
-    coinList.add(new Coin(random(25, 600-25), 0.8)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
+    coinList.add(new Coin(300+random(25, 600-25), 0.8)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
   }
 }
 void draw() {

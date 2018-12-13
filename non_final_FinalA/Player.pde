@@ -47,8 +47,15 @@ class Player {
       rect(pX, pY, pWidth, pHeight);
       //score message: should probably be moved...
     } else if (playerHit) {//(fallLeft||fallRight) {
-      //if(
-      animTimer=millis();
+      //if(fallLeft){
+      //  float tempX=pX;
+      // pX=tempX+10;
+      // if(pX>=tempX+20){
+      // pX=tempX+1;
+      // }
+       
+      }
+      //animTimer=millis();
       fill(240, 100, 0);
       noStroke();
       rect(pX, pY, pWidth, pHeight);
@@ -56,7 +63,7 @@ class Player {
       //animTimer=millis();
       //beenHit();
       //if (millis()-animTimer<=3000) { 
-       pSpeedX=0;
+      // pSpeedX=0;
       //} else if (millis()-animTimer>3000) {
       //if (keyPressed&&key=='g') {
       //  pSpeedX=1; 
