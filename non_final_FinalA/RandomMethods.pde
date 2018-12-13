@@ -1,11 +1,19 @@
-void levelOne(){ //or do an unpit of the boolean array(?) and each different input gives you a new level
-
+void levelOne() { //or do an unpit of the boolean array(?) and each different input gives you a new level
+//float screenScrollSpeed; //0 ////important for 
+//float scrollAccel=0.001; //0.001 for start
+////int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+//int ySpacing=200; //height/numOfTrees
+//float screenLimit=50; //50 for start
+  screenScrollSpeed=0;
+  scrollAccel=0.001;
+  screenLimit=50;
+specialNumberLimit=5;
 } 
-void adventureTime(){
- scrollAccel=0.001;
-      numOfTrees=4;
-      numOfCoins=numOfTrees;
-      screenLimit=50; 
+void adventureTime() {
+  screenScrollSpeed=0;
+  scrollAccel=0.009;
+  screenLimit=100;
+  specialNumberLimit=10;
 }
 //if this boolean is true...
 //void level(scrollSpeed, etc)
@@ -90,9 +98,20 @@ boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, 
   }
   return false;
 }
+//makes a sky behind the player
+void makeSky() {
+  skyY=skyY-screenScrollSpeed;
+  screenScrollSpeed=screenScrollSpeed+scrollAccel;
+  if (skyY>=-290) {
+    noStroke();
+    fill(180,190,200);
+    rect(0, skyY, width, 290);
+  }
+}
 //very important code with all the basics to make a running game
 void gameRunning() {
-  float skyY=0;
+  //skyY=skyY-screenScrollSpeed;
+  //screenScrollSpeed=screenScrollSpeed+scrollAccel;
   gameIsRunning=true;
   makeGameOver();
   //pause();
@@ -105,12 +124,13 @@ void gameRunning() {
   //loop to remove old trees
   //make sure to backwards
   background(255); //redraws background
+  makeSky();
   //sky at top of the screen at beginning
-  noStroke();
-  fill(0);
-  //if(skyY
-  rect(0,skyY,width,100);
-  
+  //noStroke();
+  //if(skyY>=-290){
+  //fill(0);
+  //rect(0,skyY,width,290);
+  //}
   //side rectangles that set the limit of the ski slope
   fill(209, 243, 238);
   rect(0, 0, screenLimit, height);
@@ -144,7 +164,7 @@ void gameRunning() {
       treeList.remove(t); 
       treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, 1));
     }
-    if(!treeClone.onscreen&&me.living==true){
+    if (!treeClone.onscreen&&me.living==true) {
       specialNumber=specialNumber+1;
     }
     println(specialNumber);
@@ -154,10 +174,10 @@ void gameRunning() {
     playerHitG=treeClone.pTCollideB(me);
     fill(0);
     textSize(30);
-    text("hit bool "+playerHitG,450,300);
+    text("hit bool "+playerHitG, 450, 300);
     //println(treesPassed(me, treeClone));
     // treeClone.treesPassed(me);
-     //println(treeClone.numOfTreesPassed);
+    //println(treeClone.numOfTreesPassed);
   }
   //this should be in the gamescreens
   me.display();

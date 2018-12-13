@@ -9,12 +9,12 @@ class Snow {
   float blueColor;
   boolean offscreen;
   Snow() {
-    blueColor=random(100, 255);
+    blueColor=random(230, 256);
     sSpeed=random(0.1, 2);
     sDiam=random(10, 60);
     sX=random(0, 900);  
     sY=random(-500, sDiam/2);
-    sColor=color(blueColor-random(100, blueColor), blueColor-random(20, blueColor), blueColor);
+    sColor=color(0, blueColor-random(0, blueColor), blueColor);
     initAngle=0;
     incAngle=1;
     offscreen=false;
@@ -37,7 +37,7 @@ class Snow {
   void fall() {
     sY=sY+sSpeed;
     sSpeed=sSpeed+scrollAccel;
-    if(sY>=height){
+    if (sY>=height) {
       offscreen=true;
     }
   }

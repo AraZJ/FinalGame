@@ -3,29 +3,38 @@
 
 Player me;
 int gameScreen=0; //gamescreen value for switch statement
-int numOfTrees=5;
-int numOfCoins=numOfTrees-1; //probably will change
-float screenScrollSpeed=0; //0
+////valus that differentiate levels form each other
+float screenScrollSpeed=0; //0 ////important for 
 float scrollAccel=0.001; //0.001 for start
-ArrayList<Coin> coinList = new ArrayList<Coin>();
-ArrayList<Tree> treeList=new ArrayList<Tree>();
-ArrayList<Snow> snowflakes=new ArrayList<Snow>();
-float letterColor=random(100, 255);
-char [] gameName={'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'}; //why
-int numOfSnowflakes=80;
 int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
 int ySpacing=200; //height/numOfTrees
-float [] snowFallXs=new float[numOfSnowflakes];
+float screenLimit; //50 for start
+int specialNumber; //My BABY I LOVE you!!!!!
+int specialNumberLimit;
+//everything else
+//don't really need a different numebr of trees, just different spacing, plus I don;t think the for loops will wokr if it's changed form setup to draw
+int numOfTrees=5;
+int numOfCoins=numOfTrees-1; //probably will change
+int numOfSnowflakes=80;
+//arrayLists
+ArrayList<Coin> coinList = new ArrayList<Coin>(); //ArrayList of coins
+ArrayList<Tree> treeList=new ArrayList<Tree>(); //ArrayList of trees
+ArrayList<Snow> snowflakes=new ArrayList<Snow>(); //ArrayList of snow flakes
+float letterColor=random(100, 255); //the color value for the snowflakes that determines all the values
+char [] gameName={'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'}; //array of the characters that spell out the game name
+//array of the booleans that, when true, mean you have won a level
+boolean [] levelsWon= new boolean[5];
+//boolean that determines if the game is running
+boolean gameIsRunning;
+boolean playerHitG;
+//long levelTimer;
+//long levelStartingTime;
+//int numOfTreesPassedG=0;
+//will probably replace with width and height
 float screenLeftEdge=0;
 float screenRightEdge=900;
-float screenLimit=50; //50 for start
-boolean [] levelsWon= new boolean[5];
-boolean gameIsRunning;
-long levelTimer;
-long levelStartingTime;
-//int numOfTreesPassedG=0;
-int specialNumber; //My BABY I LOVE you!!!!!
-boolean playerHitG;
+float skyY=0; //global y postition for the sky in makeSky();
+
 void setup() {
   size(900, 600);
   background(255);
@@ -82,7 +91,7 @@ void draw() {
   switch(gameScreen) {
 
   case 0: //menu
-    background(0, 180, 230);
+    background(180,190,200); //0, 180, 230
     //triangle that makes the ski slope
     fill(255);
     noStroke();
@@ -159,6 +168,7 @@ void draw() {
     //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
     //levelStartingTime=millis();
     //levelTimer=levelStartingTime/millis()+1;
+    //adventureTime();
     gameRunning(); //where the magic happens--look in RandomMethods
     //println(levelStartingTime);
     //if(levelTimer>=5000){
@@ -174,7 +184,6 @@ void draw() {
     }
     break;
   case 4: //level  mode
-
     ////for (int b=0; b<levelsWon.length; b++) {
     //  //levelsWon[b]=false;
     //  if (!levelsWon[0]) { //set these equal to these
@@ -191,6 +200,7 @@ void draw() {
     //    screenLimit=60;
     //  }
     //}
+    //levelOne();
     gameRunning();
     textAlign(CENTER);
     textSize(70);

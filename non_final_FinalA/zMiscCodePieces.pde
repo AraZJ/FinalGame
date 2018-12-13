@@ -324,3 +324,4 @@
       //tSpeed=1;
       //tSpeed=tSpeed+scrollSpeed;
       //tY=tY-tSpeed;
+      //float [] snowFallXs=new float[numOfSnowflakes];
