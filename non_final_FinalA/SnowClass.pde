@@ -37,5 +37,11 @@ class Snow {
   void fall() {
     sY=sY+sSpeed;
     sSpeed=sSpeed+scrollSpeed;
+    if(sY>=height){
+      offscreen=true;
+    }
+  }
+  void reset() {
+    sY=random(-500, sDiam/2);
   }
 }

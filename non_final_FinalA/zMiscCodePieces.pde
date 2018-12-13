@@ -134,51 +134,91 @@
 
 ////code that used to be in case 1, for graphics
 //tree1.display();
-    //tree1.treeCollide(me);
-    //tree2.display();
-    //tree2.treeCollide(me);
-    //me.display(); //this should be in the gamescreens
-    //me.Straighten();
-    //if (key=='s'||tree2.treeCollision||tree1.treeCollision) {
-    //  me.stop();
+//tree1.treeCollide(me);
+//tree2.display();
+//tree2.treeCollide(me);
+//me.display(); //this should be in the gamescreens
+//me.Straighten();
+//if (key=='s'||tree2.treeCollision||tree1.treeCollision) {
+//  me.stop();
+//}
+//me.moveSideways();
+////apparently I don't actually need a keypressed...
+//me.moveDownManual();
+////loop for snowflakes
+//for (int s=0; s<numOfSnowflakes; s++) {
+//  //snowFall(snowFallXs[s]);
+//  Snow snowClone=snowflakes.get(s);
+//  snowClone.display();
+//  snowClone.fall();
+//}
+////
+//centeredLine(50, 450, 300, -60, color(200));
+//centeredLine(50, 450, 300, 0, color(200));
+//centeredLine(50, 450, 300, 60, color(200));
+//centeredLine(50, 450, 300, -60, color(200));
+////
+////aniamtion for eing hit
+//fill(255,0,0);
+//animTimer=millis();
+//startAngle-=incAngle; 
+//if(startAngle<=-90){
+//incAngle=0;
+//startAngle=0;
+//}
+//pushMatrix();
+//translate((pX+50), pY);
+////rotate(radians(startAngle));
+//rectMode(CENTER);
+//fill(240, 100, 0);
+//noStroke();
+//rect(0, 0, pWidth, pHeight);
+//animTimer=millis();
+//if (millis()-animTimer<=3000) {
+//  stopMoving();
+//} else {
+//  moveSideways();
+//}
+//popMatrix();
+//if(startAngle>=radians(180)){
+////
+////used to be in line method\
+//println(dist(lCenterX-tan(radians(angle))*lLength/2,lCenterY-lLength/2,lCenterX+tan(radians(angle))*lLength/2,lCenterY+lLength/2));
+//println(dist(lCenterX,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2));
+//vertial line
+//line(lCenterX,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
+//horizontal line
+//line(lCenterX,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
+//60 degrees rotated line
+//line(lCenterX-lLength/2,lCenterY-lLength/2,lCenterX,lCenterY+lLength/2);
+////
+////snow fll method that's a failuuuure
+      //snowFall(snowFallXs[s]);
+      //void snowFall(float x) {
+//  noStroke();
+//  fill(255);
+//  ellipse(x, snowFallY, 30, 30); //cant remember how to fix this probelm...
+//  snowFallY=snowFallY+0.1;
+//}
+////
+  //strokeWeight(5);
+  //stroke(0,0,255);
+  //point(topX,topY);
+  //point(topX+base/2, topY+triHi);
+  //point(topX-base/2, topY+triHi);
+  ////old shity collide emthod that made me hate myself
+  //player top and sides
+    //if (p2.pY-p2.pHeight/2<=tY+tHeight && p2.pY-p2.pHeight/2>=tY && p2.pX-p2.pWidth/2<=tX+tWidth/2 && p2.pX+p2.pWidth/2>=tX-tWidth/2) {
+    //  treeCollision=true;
+    //  p2.playerHit=true;
     //}
-    //me.moveSideways();
-    ////apparently I don't actually need a keypressed...
-    //me.moveDownManual();
-    ////loop for snowflakes
-    //for (int s=0; s<numOfSnowflakes; s++) {
-    //  //snowFall(snowFallXs[s]);
-    //  Snow snowClone=snowflakes.get(s);
-    //  snowClone.display();
-    //  snowClone.fall();
+    ////player bottom and sides
+    //if (p2.pY+p2.pHeight/2>=tY && p2.pY+p2.pHeight/2<=tY+tHeight && p2.pX-p2.pWidth/2<=tX+tWidth/2 && p2.pX+p2.pWidth/2>=tX-tWidth/2) {
+    //  treeCollision=true;
+    //  p2.playerHit=true;
+    //}
+    //player left and stuff 
+    //if (p2.pX+p2.pWidth/2>= &&p2.pX+p2.pWidth/2<=){
+
     //}
     ////
-    //centeredLine(50, 450, 300, -60, color(200));
-    //centeredLine(50, 450, 300, 0, color(200));
-    //centeredLine(50, 450, 300, 60, color(200));
-    //centeredLine(50, 450, 300, -60, color(200));
-    ////
-    ////aniamtion for eing hit
-    //fill(255,0,0);
-      //animTimer=millis();
-      //startAngle-=incAngle; 
-      //if(startAngle<=-90){
-      //incAngle=0;
-      //startAngle=0;
-      //}
-      //pushMatrix();
-      //translate((pX+50), pY);
-      ////rotate(radians(startAngle));
-      //rectMode(CENTER);
-      //fill(240, 100, 0);
-      //noStroke();
-      //rect(0, 0, pWidth, pHeight);
-      //animTimer=millis();
-      //if (millis()-animTimer<=3000) {
-      //  stopMoving();
-      //} else {
-      //  moveSideways();
-      //}
-      //popMatrix();
-      //if(startAngle>=radians(180)){
-        ////
