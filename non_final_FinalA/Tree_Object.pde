@@ -50,11 +50,12 @@ class Tree {
   void scrollUp() { //I said scrollDOwn lol but it's going up...*facepalm*
     if (gameIsRunning) {
       //screenScrollSpeed=2;
-      screenScrollSpeed=screenScrollSpeed+scrollAccel;
+      //screenScrollSpeed=screenScrollSpeed+scrollAccel;
+      controlSpeed();
       tY=tY-screenScrollSpeed;
-      
+
       //maybe make something like treePSeedPLaceolder = running treeSPeed before pause and if x happens (the game is unpaused) running tree speed = treeSpeedPALceholder
-      //or soemthing really weird..to pause, tY=tY-treeSpeed+treeSpeed;, which apparently doesn't work 
+      //or soemthing really weird..to pause, tY=tY-treeSpeed+treeSpeed;, which apparently doesn't work
     }
   }
   void reset() { //since I don't really need this, maybe this can be for randomizing the tree's distances and making them not too close, for later leels at least, or no, making them equal distances! like rows...and then for later levels when we want more than 1 in a clsoer row we'll just make the distances smaller, find a way to have everythig happen twice, like running a for loop by two, or add more than 1 arraylsit
@@ -64,13 +65,13 @@ class Tree {
   boolean pTCollideB(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
       return true;
-    } else if(p2.pX<=screenLimit||p2.pX+p2.pWidth>=screenRightEdge-screenLimit){
-    return true;
     } 
-    else{
+    //else if(p2.pX<=screenLimit||p2.pX+p2.pWidth>=screenRightEdge-screenLimit){
+    //return true;
+    else {
       return false;
     }
   }
-  void diagonalSlide() {
-  }
+  //void diagonalSlide() {
+  //}
 }

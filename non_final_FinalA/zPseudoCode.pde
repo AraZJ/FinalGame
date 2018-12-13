@@ -35,4 +35,12 @@
 
 //timer sets at the beginning of the game for its length, and timer for animation and death length starts whenever you die, naturally. If a certain amoutn of time passes, collide resets to false (there will have to be something short too for losing health maber) but if health=0, game is over
 //my coin adding works because there's such a small amount of time that the player touches the coin since it disappears so it can only go up once...so if my player gets thrown to the side instantly it will only decrease by 1, hopefully...
-//(I'll do the same for the player, making it thrown to the side quickly and hopefully that will work,  and maybe I won't need that timer...but I think I still do, at least for the length of the animation...but then the animation will probably be cut short if the condition is only true for a second--but wait, I have the leftFll and right Falll! 
+//(I'll do the same for the player, making it thrown to the side quickly and hopefully that will work,  and maybe I won't need that timer...but I think I still do, at least for the length of the animation...but then the animation will probably be cut short if the condition is only true for a second--but wait, I have the leftFll and right Falll!
+////what i still want to do
+//add acceleration for player's speed, based off off the screen's scrolling speed maybe? yeah, I think that's good...-!?
+//comment!-!
+//make 5 levels-!
+//make a better tutorial?
+//snowflake graphs better
+//import player image -!
+//fix colllide with trees -!

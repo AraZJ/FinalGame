@@ -325,3 +325,32 @@
       //tSpeed=tSpeed+scrollSpeed;
       //tY=tY-tSpeed;
       //float [] snowFallXs=new float[numOfSnowflakes];
+      ////old stuff from player display with animation
+          //if (playerHit) {//(fallLeft||fallRight) {
+    //  println("should say how long is player hit?");
+    //  //if(fallLeft){
+    //  //  float tempX=pX;
+    //  // pX=tempX+10;
+    //  // if(pX>=tempX+20){
+    //  // pX=tempX+1;
+    //  // }
+    //  //animTimer=millis();
+    //  fill(240, 100, 0);
+    //  text("how long is player hit?", width/2, height/2);
+    //  //animTimer=millis();
+    //  //beenHit();
+    //  //if (millis()-animTimer<=3000) { 
+    //  // pSpeedX=0;
+    //  //} else if (millis()-animTimer>3000) {
+    //  //if (keyPressed&&key=='g') {
+    //  //  pSpeedX=1; 
+
+    //  //}
+        //if (!playerHit) {
+    //if (!fallLeft&&!fallRight&&!playerHit) {
+      //rectMode(CENTER);
+        //  if(screenScrollSpeed>=9){
+  //  println("too much");
+  //  screenScrollSpeed=5;
+  // scrollAccel=0; 
+  //}

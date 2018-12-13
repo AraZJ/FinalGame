@@ -38,39 +38,14 @@ class Player {
     fallRight=false;
   }
   void display() {
-    //if (!playerHit) {
-    //if (!fallLeft&&!fallRight&&!playerHit) {
-      //rectMode(CENTER);
-      rectMode(CORNER);
-      fill(240, 100, 0);
-      noStroke();
-      rect(pX, pY, pWidth, pHeight);
-      //score message: should probably be moved...
-    //} else 
-    if (playerHit) {//(fallLeft||fallRight) {
-      println("should say how long is player hit?");
-      //if(fallLeft){
-      //  float tempX=pX;
-      // pX=tempX+10;
-      // if(pX>=tempX+20){
-      // pX=tempX+1;
-      // }
-      //animTimer=millis();
-      fill(240, 100, 0);
-      text("how long is player hit?", width/2, height/2);
-      //animTimer=millis();
-      //beenHit();
-      //if (millis()-animTimer<=3000) { 
-      // pSpeedX=0;
-      //} else if (millis()-animTimer>3000) {
-      //if (keyPressed&&key=='g') {
-      //  pSpeedX=1; 
 
-      //}
-    }
+    rectMode(CORNER);
+    fill(240, 100, 0);
+    noStroke();
+    rect(pX, pY, pWidth, pHeight);
     textSize(30);
     textAlign(LEFT);
-    fill(230, 230, 0);
+    fill(0); //230, 230, 0
     text("Player score: "+int(playerScore), screenLimit, 30); //displays player score on left size of screen
     textAlign(RIGHT);
     text("Player health: "+int(playerHealth), width-screenLimit, 30); //displays player health on right side of screen //maybe say the amount you add is the ammountof seconds spent with hit being true divided by itself
@@ -83,32 +58,32 @@ class Player {
     //point(pX+pWidth, pY+pHeight);
   }
   void moveSideways() {
-    if (!playerHitG&&living) {
+    if (!playerHitG&&living&&gameIsRunning) { //p2.pX<=screenLimit||p2.pX+p2.pWidth>=screenRightEdge-screenLimit
       pSpeedX=1;
-      if (keyCode==LEFT) {
+      if (keyCode==LEFT&&pX>screenLimit) {
         pX=pX-pSpeedX;
         //if (sidewaysShift>=0){
         //sidewaysShift=sidewaysShift-shiftDecrem;  //this is HILARIOUS! dsidewaysShift=sidewaysShift-0.1; 
         //}
       }
-      if (keyCode==RIGHT) {
+      if (keyCode==RIGHT&&pX+pWidth<screenRightEdge-screenLimit) {
         pX=pX+pSpeedX;
-      }   
-    } else{
+      }
+    } else {
       pSpeedX=0;
     }
-    
+
     //} else 
     //if (playerHit){
-      //if(fallLeft){
-      //pSpeedX=1;
-      //} else if(fallRight){
-      // pSpeedX=-1; 
-      //} else{
-        //pSpeedX=0;
-        //println("else");
-      //}
-    
+    //if(fallLeft){
+    //pSpeedX=1;
+    //} else if(fallRight){
+    // pSpeedX=-1; 
+    //} else{
+    //pSpeedX=0;
+    //println("else");
+    //}
+
     //if (fallLeft) {
     //  println("should fall left");
     //  float tempXL=pX;
@@ -128,25 +103,25 @@ class Player {
     //  pSpeedX=0;
     //}
 
-       //println(playerHit);
+    //println(playerHit);
   }
-  void playerHasBeenHit(){
+  void playerHasBeenHit() {
     //if (playerHitG){
-      
+
     //}
-  //  //        if (pX<=screenLimit) { 
-  //  //  playerHit=true;
-  //  //  //fallRight=true;
-  //  //}
-  //  //if (pX+pWidth>=screenRightEdge-screenLimit) {
-  //  //  playerHit=true;
-  //  //  //fallLeft=true;
-  //  //} 
-  //  if(playerHit){
-  //    pSpeedX=0;
-  //    println("has been hit");
-  //  }
-  //  println(playerHit);
+    //  //        if (pX<=screenLimit) { 
+    //  //  playerHit=true;
+    //  //  //fallRight=true;
+    //  //}
+    //  //if (pX+pWidth>=screenRightEdge-screenLimit) {
+    //  //  playerHit=true;
+    //  //  //fallLeft=true;
+    //  //} 
+    //  if(playerHit){
+    //    pSpeedX=0;
+    //    println("has been hit");
+    //  }
+    //  println(playerHit);
   }
   //void moveDownAuto() { //I don't need this unless I die really
   //  pY=pY+pSpeedY;
@@ -202,10 +177,10 @@ class Player {
   void reset() {
     playerHealth=5;
     playerScore=0;
-    pX=450;
-    pY=300;
+    pX=450-pWidth/2;
+    pY=300-pHeight;
     living=true;
-    playerHit=false;
+    //playerHit=false;
   }
   //int decreaseHealthNum() {
   //  for (int p=0; p<100; p++) {

@@ -4,18 +4,22 @@
 Player me;
 int gameScreen=0; //gamescreen value for switch statement
 ////valus that differentiate levels form each other
-float screenScrollSpeed=0; //0 ////important for 
-float scrollAccel=0.001; //0.001 for start
-int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
-int ySpacing=200; //height/numOfTrees
-float screenLimit; //50 for start
+String levelMessage;
+int specialNumberLimit=7;
+float accelLimit=7;
+float screenLimit=50; //50 for start
+////everything else
+float objectScaling=0.8;
 int specialNumber; //My BABY I LOVE you!!!!!
-int specialNumberLimit;
-int [] levelEnders={5, 10{; // 15, 20, 25};
-//everything else
+int [] levelEnders={5, 10}; // 15, 20, 25};
+//int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+int ySpacing=200; //height/numOfTrees
 //don't really need a different numebr of trees, just different spacing, plus I don;t think the for loops will wokr if it's changed form setup to draw
-int numOfTrees=5;
-int numOfCoins=numOfTrees-1; //probably will change
+float screenScrollSpeed=0; //0 ////important for 
+float scrollAccel=0.0008; //0.001 for start
+//int numOfTrees=5;
+//int numOfCoins=numOfTrees; //probably will change
+int numOfObjects=5;
 int numOfSnowflakes=80;
 //arrayLists
 ArrayList<Coin> coinList = new ArrayList<Coin>(); //ArrayList of coins
@@ -57,12 +61,12 @@ void setup() {
   for (int s=0; s<numOfSnowflakes; s++) { 
     snowflakes.add(new Snow());
   }
-  for (int r=0; r<numOfTrees; r++) { 
-    treeList.add(new Tree(random(screenLimit, width-screenLimit), 300+ySpacing*r, 1)); //r*spacingValue+slideOver // random(100, 300)
+  for (int r=0; r<numOfObjects; r++) { 
+    treeList.add(new Tree(random(screenLimit, width-screenLimit), 300+ySpacing*r, objectScaling)); //r*spacingValue+slideOver // random(100, 300)
   }
 
-  for (int r=0; r<numOfCoins; r++) { 
-    coinList.add(new Coin(300+random(25, 600-25), 0.8)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
+  for (int r=0; r<numOfObjects; r++) { 
+    coinList.add(new Coin(300+random(25, 600-25), objectScaling)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
   }
 }
 void draw() {
@@ -145,7 +149,7 @@ void draw() {
     textSize(30);
     textAlign(CENTER);
     text("Use left and right keys to navigate.", width/2, 100);
-    //animation for going left and rihgt, then text saying try it! and once you do for a few seconds (make timer), move on ot the next one
+    //animation for going left and right, then text saying try it! and once you do for a few seconds (make timer), move on ot the next one
     text("Try to collect coins and avoid trees.", width/2, 300);
     //same thign as oavobe commetn says
     textSize(17);
@@ -169,7 +173,7 @@ void draw() {
     //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
     //levelStartingTime=millis();
     //levelTimer=levelStartingTime/millis()+1;
-    adventureTime();
+    //adventureTime();
     gameRunning(); //where the magic happens--look in RandomMethods
     //println(levelStartingTime);
     //if(levelTimer>=5000){
@@ -179,13 +183,27 @@ void draw() {
     //text("levelStartingTime "+levelStartingTime,width/2,height/2+50);
     //text("levelTimer: "+levelTimer,width/2,height/2+100);
     // }
-    if (specialNumber>=10) {
-      levelsWon[0]=true;
-      println("level's end!");
-    }
+
     break;
   case 4: //level  mode
-    ////for (int b=0; b<levelsWon.length; b++) {
+    levelOne("Level 1", 5, 5, 50);
+    gameRunning();
+    textAlign(CENTER);
+    textSize(70);
+    fill(0);
+    text(levelMessage, 450, 70);
+    //if (specialNumber>=specialNumberLimit) {
+    //  levelsWon[0]=true;
+    //  println("level's end!");
+    //}
+    //for (int n=0; n<levelEnders.length; n++) {
+    //  if (specialNumber>=levelEnders[n]) {
+    //    levelsWon[n]=true;
+    //    println("level's end!");
+    //  }
+    //}
+    ////went at top
+        ////for (int b=0; b<levelsWon.length; b++) {
     //  //levelsWon[b]=false;
     //  if (!levelsWon[0]) { //set these equal to these
     //println("level 1 is ongoing");
@@ -201,22 +219,7 @@ void draw() {
     //    screenLimit=60;
     //  }
     //}
-    levelOne();
-    gameRunning();
-    textAlign(CENTER);
-    textSize(70);
-    fill(0);
-    text("level 1", 450, 70);
-    //if (specialNumber>=specialNumberLimit) {
-    //  levelsWon[0]=true;
-    //  println("level's end!");
-    //}
-    //}
-    for (int n=0; n<levelEnders.length; n++) {
-      if (specialNumber>=levelEnders[n]) {
-        levelsWon[n]=true;
-        println("level's end!");
-      }
-    }
   }
+
+  //println(screenScrollSpeed);
 }
