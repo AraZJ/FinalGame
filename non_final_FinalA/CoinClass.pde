@@ -3,7 +3,6 @@ class Coin {
   color coinColor;
   float coinX;
   float coinY;
-  float coinSpeed;
   boolean hit;
   boolean offscreen;
 
@@ -12,7 +11,6 @@ class Coin {
     coinColor=color(255, 255, 0);
     coinX=random(coinDiameter+screenLimit, 900-coinDiameter-screenLimit);
     coinY=y;
-    coinSpeed=0;
     hit=false;
     offscreen=false;
   }
@@ -23,9 +21,9 @@ class Coin {
   }
   void scrollUp() {
     if(gameIsRunning){
-      coinSpeed=1;
-    coinY=coinY-coinSpeed;
-    coinSpeed=coinSpeed+scrollSpeed;
+      //screenScrollSpeed=1;
+      screenScrollSpeed=screenScrollSpeed+scrollAccel;
+      coinY=coinY-screenScrollSpeed;
     }
   }
 

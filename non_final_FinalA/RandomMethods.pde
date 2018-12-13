@@ -1,3 +1,15 @@
+void levelOne(){ //or do an unpit of the boolean array(?) and each different input gives you a new level
+
+} 
+void adventureTime(){
+ scrollAccel=0.001;
+      numOfTrees=4;
+      numOfCoins=numOfTrees;
+      screenLimit=50; 
+}
+//if this boolean is true...
+//void level(scrollSpeed, etc)
+//
 int treesPassed(Player thePlayer, Tree aTree) {
   int returnNum=0;
   if (thePlayer.pY==aTree.tY+aTree.tHeight&&!thePlayer.playerHit) {
@@ -80,18 +92,27 @@ boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, 
 }
 //very important code with all the basics to make a running game
 void gameRunning() {
+  float skyY=0;
   gameIsRunning=true;
   makeGameOver();
-  pause();
-  if (keyPressed&&key=='r') { //might need to move
+  //pause();
+  //restarts level
+  if (!me.living&&keyPressed&&key=='r') { //might need to move
     restartLevel();
+    //me.reset;
   }
   //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
   //loop to remove old trees
   //make sure to backwards
-  background(255);
-  fill(209, 243, 238);
+  background(255); //redraws background
+  //sky at top of the screen at beginning
   noStroke();
+  fill(0);
+  //if(skyY
+  rect(0,skyY,width,100);
+  
+  //side rectangles that set the limit of the ski slope
+  fill(209, 243, 238);
   rect(0, 0, screenLimit, height);
   rect(width-screenLimit, 0, screenLimit, height);
   //me.playerHit=false;
@@ -129,15 +150,21 @@ void gameRunning() {
     println(specialNumber);
     treeClone.display();
     treeClone.scrollUp();
-    treeClone.treeCollide(me);
+    //treeClone.playerTreeCollide(me);
+    playerHitG=treeClone.pTCollideB(me);
+    fill(0);
+    textSize(30);
+    text("hit bool "+playerHitG,450,300);
     //println(treesPassed(me, treeClone));
     // treeClone.treesPassed(me);
      //println(treeClone.numOfTreesPassed);
   }
   //this should be in the gamescreens
   me.display();
+  //me.playerHasBeenHit();
   me.moveSideways(); //apparently I don't actually need a keypressed...
   me.decreaseHealth();
+
   //me.beenHit();
   //me.moveDownAuto();
   if (!gameIsRunning&&!me.living) {

@@ -2,51 +2,47 @@
 //Has an ArrayList
 
 Player me;
-//for game screen one, won't keep forever
-Tree tree1= new Tree(600, 45, 1);
-Tree tree2= new Tree(320, 45, 1);
 int gameScreen=0; //gamescreen value for switch statement
-int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
-int ySpacing=200; //height/numOfTrees
-//int slideOver=100;
 int numOfTrees=5;
 int numOfCoins=numOfTrees-1; //probably will change
-float snowFallX=random(900);
-float scrollSpeed=0.001;
-float snowFallY=0;
+float screenScrollSpeed=0; //0
+float scrollAccel=0.001; //0.001 for start
 ArrayList<Coin> coinList = new ArrayList<Coin>();
 ArrayList<Tree> treeList=new ArrayList<Tree>();
 ArrayList<Snow> snowflakes=new ArrayList<Snow>();
 float letterColor=random(100, 255);
 char [] gameName={'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'}; //why
 int numOfSnowflakes=80;
+int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+int ySpacing=200; //height/numOfTrees
 float [] snowFallXs=new float[numOfSnowflakes];
 float screenLeftEdge=0;
 float screenRightEdge=900;
-float screenLimit=50;
+float screenLimit=50; //50 for start
 boolean [] levelsWon= new boolean[5];
 boolean gameIsRunning;
 long levelTimer;
 long levelStartingTime;
 //int numOfTreesPassedG=0;
 int specialNumber; //My BABY I LOVE you!!!!!
+boolean playerHitG;
 void setup() {
   size(900, 600);
   background(255);
-  for (int b=0; b<levelsWon.length; b++) {
-    levelsWon[b]=false;
-    if (!levelsWon[b]) { //set these equal to these
-      //scrollSpeed=0.001;
-      //numOfTrees=4;
-      //numOfCoins=numOfTrees;
-      //screenLimit=50;
-    } if (levelsWon[0]&&!levelsWon[1]){
-      //scrollSpeed=0.002;
-      //numOfTrees=5;
-      //numOfCoins=numOfTrees;
-      //screenLimit=60;
-    }
-  }
+  //for (int b=0; b<levelsWon.length; b++) {
+  //  levelsWon[b]=false;
+  //  if (!levelsWon[b]) { //set these equal to these
+  //    //scrollSpeed=0.001;
+  //    //numOfTrees=4;
+  //    //numOfCoins=numOfTrees;
+  //    //screenLimit=50;
+  //  } if (levelsWon[0]&&!levelsWon[1]){
+  //    //scrollSpeed=0.002;
+  //    //numOfTrees=5;
+  //    //numOfCoins=numOfTrees;
+  //    //screenLimit=60;
+  //  }
+  //}
   me = new Player();
   for (int s=0; s<numOfSnowflakes; s++) { 
     snowflakes.add(new Snow());
@@ -61,6 +57,22 @@ void setup() {
 }
 void draw() {
   //important code for booleans that determine which leel you are on--maybe should go in setup
+  //for (int b=0; b<levelsWon.length; b++) {
+  //  levelsWon[b]=false;
+  //  if (!levelsWon[0]) { //set these equal to these
+
+  //    scrollSpeed=0.001;
+  //    numOfTrees=4;
+  //    numOfCoins=numOfTrees;
+  //    screenLimit=50;
+  //  } else if (levelsWon[0]){
+  //      println("level 1 is won");
+  //    scrollSpeed=0.002;
+  //    numOfTrees=5;
+  //    numOfCoins=numOfTrees;
+  //    screenLimit=60;
+  //  }
+  //}
   //for (int b=0; b<levelsWon.length; b++) {
   //  levelsWon[b]=false;
   //  if(levelsWon[1]){ //set these equal to these
@@ -112,6 +124,8 @@ void draw() {
       gameScreen=2;
     } else if (keyPressed&&key=='a') {
       gameScreen=3;
+    } else if (keyPressed&&key=='l') {
+      gameScreen=4;
     }
     break;
     //tutorial page
@@ -131,31 +145,56 @@ void draw() {
       gameScreen=0;
     }
     //maybe an affect of, instead of a timr, o the screen slidng up an theres the rest of teh text
-     me.display();
-  //me.moveSideways(); //apparently I don't actually need a keypressed...
-  //me.moveDownManual();
-  //me.decreaseHealth();
-  //me.moveDownAuto();
-  me.beenHit();
- 
+    me.display();
+    //me.moveSideways(); //apparently I don't actually need a keypressed...
+    //me.moveDownManual();
+    //me.decreaseHealth();
+    //me.moveDownAuto();
+    me.beenHit();
+
     break;
+    //adventure mode!
   case 3:
-  
-  //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
-  //levelStartingTime=millis();
-  //levelTimer=levelStartingTime/millis()+1;
-  gameRunning(); //where the magic happens--look in RandomMethods
-  //println(levelStartingTime);
-  //if(levelTimer>=5000){
-   //println("level one won!"); 
-   //textSize(50);
-   //text("millis(): "+millis(),width/2,height/2);
-   //text("levelStartingTime "+levelStartingTime,width/2,height/2+50);
-   //text("levelTimer: "+levelTimer,width/2,height/2+100);
- // }
-    if(specialNumber>=5){
-   println("level's end!"); 
-  }
-    
+
+    //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
+    //levelStartingTime=millis();
+    //levelTimer=levelStartingTime/millis()+1;
+    gameRunning(); //where the magic happens--look in RandomMethods
+    //println(levelStartingTime);
+    //if(levelTimer>=5000){
+    //println("level one won!"); 
+    //textSize(50);
+    //text("millis(): "+millis(),width/2,height/2);
+    //text("levelStartingTime "+levelStartingTime,width/2,height/2+50);
+    //text("levelTimer: "+levelTimer,width/2,height/2+100);
+    // }
+    if (specialNumber>=10) {
+      levelsWon[0]=true;
+      println("level's end!");
+    }
+    break;
+  case 4: //level  mode
+
+    ////for (int b=0; b<levelsWon.length; b++) {
+    //  //levelsWon[b]=false;
+    //  if (!levelsWon[0]) { //set these equal to these
+    //println("level 1 is ongoing");
+    //    scrollSpeed=0.005;
+    //    numOfTrees=4;
+    //    numOfCoins=numOfTrees;
+    //    screenLimit=50;
+    //  } else if (levelsWon[0]){
+    //      println("level 1 is won");
+    //    scrollSpeed=0.002;
+    //    numOfTrees=5;
+    //    numOfCoins=numOfTrees;
+    //    screenLimit=60;
+    //  }
+    //}
+    gameRunning();
+    textAlign(CENTER);
+    textSize(70);
+    fill(0);
+    text("level 1", 450, 70);
   }
 }

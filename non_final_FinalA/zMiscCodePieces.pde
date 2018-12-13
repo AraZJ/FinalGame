@@ -278,4 +278,49 @@
   ////    //text("collision!", 300, height/2);
   ////  }
   //}
-  ////
+  //// stuff for fall ;eft and right in collide method
+  //if (p2.pX+p2.pWidth&&p2.playerHit){ //this was for if it hits from the top, but I don't think it's really important
+    //} else 
+    //if (p2.pX<=tX&&p2.playerHit) { //this sets fall Left to true if the paler's right side hits the tree (it's for the falling animation). If it collides when it's exactly in the middle, it will go left also
+    //  p2.fallLeft=true;
+    //  //println("fallLeft is true!");
+    //} else if (p2.pX+p2.pWidth>tX&&p2.playerHit) { //this sets fallRight to true if the paler's left side hits the tree
+    //  p2.fallRight=true;
+    //  println("fallRigtht is true!");
+    //}
+    ////old tree passed void from tree class
+      //void treesPassed(Player p3){
+  //  int returnNum=0;
+  //  if(p3.pY==tY+tHeight+20&&!p3.playerHit){
+  //    returnNum=returnNum+1;
+  //    numOfTreesPassedG=returnNum;
+  //  } 
+
+  //}
+  ////old collide method
+ // void playerTreeCollide(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
+ //// println(p2.playerHit);
+ //   if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
+ //     //treeCollision=true;
+ //     p2.playerHit=true;
+ //     //println("player hit!");
+ //   } else if(p2.pX<=screenLimit||p2.pX+p2.pWidth>=screenRightEdge-screenLimit){
+ //   p2.playerHit=true;
+ //   } else{
+ //     p2.playerHit=false;
+ //   }
+ //   println(p2.playerHit);
+ // }
+ ////for game screen one, won't keep forever
+//Tree tree1= new Tree(600, 45, 1);
+//Tree tree2= new Tree(320, 45, 1);
+////stuff from tree and coin class with old local speed variables
+    //     float coinSpeed;
+    //coinSpeed=0;
+    //  coinSpeed=1;
+    //coinY=coinY-coinSpeed;
+    //coinSpeed=coinSpeed+scrollAccel;
+              //tSpeed=0;
+      //tSpeed=1;
+      //tSpeed=tSpeed+scrollSpeed;
+      //tY=tY-tSpeed;

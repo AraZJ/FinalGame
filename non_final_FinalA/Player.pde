@@ -39,26 +39,24 @@ class Player {
   }
   void display() {
     //if (!playerHit) {
-    if (!fallLeft&&!fallRight&&!playerHit) {
+    //if (!fallLeft&&!fallRight&&!playerHit) {
       //rectMode(CENTER);
       rectMode(CORNER);
       fill(240, 100, 0);
       noStroke();
       rect(pX, pY, pWidth, pHeight);
       //score message: should probably be moved...
-    } else if (playerHit) {//(fallLeft||fallRight) {
+    //} else 
+    if (playerHit) {//(fallLeft||fallRight) {
+      println("should say how long is player hit?");
       //if(fallLeft){
       //  float tempX=pX;
       // pX=tempX+10;
       // if(pX>=tempX+20){
       // pX=tempX+1;
       // }
-       
-      }
       //animTimer=millis();
       fill(240, 100, 0);
-      noStroke();
-      rect(pX, pY, pWidth, pHeight);
       text("how long is player hit?", width/2, height/2);
       //animTimer=millis();
       //beenHit();
@@ -85,15 +83,7 @@ class Player {
     //point(pX+pWidth, pY+pHeight);
   }
   void moveSideways() {
-    if (pX<=screenLeftEdge){ 
-      playerHit=true;
-      fallRight=true;
-    }
-    if (pX+pWidth>=screenRightEdge) {
-      playerHit=true;
-      fallLeft=true;
-    }
-    if (!playerHit&&living) {
+    if (!playerHitG&&living) {
       pSpeedX=1;
       if (keyCode==LEFT) {
         pX=pX-pSpeedX;
@@ -103,19 +93,60 @@ class Player {
       }
       if (keyCode==RIGHT) {
         pX=pX+pSpeedX;
-      }
-    } else if (playerHit||!living) {
+      }   
+    } else{
       pSpeedX=0;
     }
+    
+    //} else 
+    //if (playerHit){
+      //if(fallLeft){
+      //pSpeedX=1;
+      //} else if(fallRight){
+      // pSpeedX=-1; 
+      //} else{
+        //pSpeedX=0;
+        //println("else");
+      //}
+    
+    //if (fallLeft) {
+    //  println("should fall left");
+    //  float tempXL=pX;
+    //  pSpeedX=1;
+    //  if (pX>=tempXL+20) {
+    //    pSpeedX=1;
+    //  }
+    //} else if (fallLeft) {
+    //  println("should fall right");
+    //  float tempXR=pX;
+    //  pSpeedX=-1;
+    //  if (pX<=tempXR-20) {
+    //    pSpeedX=-1;
+    //  }
+    ////} 
+    //}else if (!living) {
+    //  pSpeedX=0;
+    //}
+
+       //println(playerHit);
   }
-  void Straighten() {
-    //if (keyCode==DOWN){
-    //  if (sidewaysShift>=0){
-    //   sidewaysShift=sidewaysShift-0.1;
-    //} else {
-    //  sidewaysShift=2;
+  void playerHasBeenHit(){
+    //if (playerHitG){
+      
     //}
-    //}
+  //  //        if (pX<=screenLimit) { 
+  //  //  playerHit=true;
+  //  //  //fallRight=true;
+  //  //}
+  //  //if (pX+pWidth>=screenRightEdge-screenLimit) {
+  //  //  playerHit=true;
+  //  //  //fallLeft=true;
+  //  //} 
+  //  if(playerHit){
+  //    pSpeedX=0;
+  //    println("has been hit");
+  //  }
+  //  println(playerHit);
   }
   //void moveDownAuto() { //I don't need this unless I die really
   //  pY=pY+pSpeedY;
@@ -193,13 +224,11 @@ class Player {
   //}
   void decreaseHealth() {
     //float tempHealth=playerHealth;
-    if (playerHit) { //old decrease health method
+    if (playerHitG) { //old decrease health method
       playerHealth=playerHealth-0.00001;
     }
   }
-  void levelLengthChecker(){
-    
-    
+  void levelLengthChecker() {
   }
   //int decreaseLives() {
   //  for (int l=0; l<numOfLives.length; l++) {
@@ -207,6 +236,6 @@ class Player {
   //      return(numOfLives[l-1]);
   //    } //else if(numOfLives[l]==0 &&playerHit){
   //  }
-    
+
   //}
 }
