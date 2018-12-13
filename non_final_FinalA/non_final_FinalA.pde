@@ -11,6 +11,7 @@ int ySpacing=200; //height/numOfTrees
 float screenLimit; //50 for start
 int specialNumber; //My BABY I LOVE you!!!!!
 int specialNumberLimit;
+int [] levelEnders={5, 10{; // 15, 20, 25};
 //everything else
 //don't really need a different numebr of trees, just different spacing, plus I don;t think the for loops will wokr if it's changed form setup to draw
 int numOfTrees=5;
@@ -23,7 +24,7 @@ ArrayList<Snow> snowflakes=new ArrayList<Snow>(); //ArrayList of snow flakes
 float letterColor=random(100, 255); //the color value for the snowflakes that determines all the values
 char [] gameName={'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'}; //array of the characters that spell out the game name
 //array of the booleans that, when true, mean you have won a level
-boolean [] levelsWon= new boolean[5];
+boolean [] levelsWon= new boolean[2];
 //boolean that determines if the game is running
 boolean gameIsRunning;
 boolean playerHitG;
@@ -91,7 +92,7 @@ void draw() {
   switch(gameScreen) {
 
   case 0: //menu
-    background(180,190,200); //0, 180, 230
+    background(180, 190, 200); //0, 180, 230
     //triangle that makes the ski slope
     fill(255);
     noStroke();
@@ -168,7 +169,7 @@ void draw() {
     //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
     //levelStartingTime=millis();
     //levelTimer=levelStartingTime/millis()+1;
-    //adventureTime();
+    adventureTime();
     gameRunning(); //where the magic happens--look in RandomMethods
     //println(levelStartingTime);
     //if(levelTimer>=5000){
@@ -200,11 +201,22 @@ void draw() {
     //    screenLimit=60;
     //  }
     //}
-    //levelOne();
+    levelOne();
     gameRunning();
     textAlign(CENTER);
     textSize(70);
     fill(0);
     text("level 1", 450, 70);
+    //if (specialNumber>=specialNumberLimit) {
+    //  levelsWon[0]=true;
+    //  println("level's end!");
+    //}
+    //}
+    for (int n=0; n<levelEnders.length; n++) {
+      if (specialNumber>=levelEnders[n]) {
+        levelsWon[n]=true;
+        println("level's end!");
+      }
+    }
   }
 }

@@ -4,15 +4,17 @@ void levelOne() { //or do an unpit of the boolean array(?) and each different in
 ////int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
 //int ySpacing=200; //height/numOfTrees
 //float screenLimit=50; //50 for start
-  screenScrollSpeed=0;
   scrollAccel=0.001;
   screenLimit=50;
-specialNumberLimit=5;
+specialNumberLimit=levelEnders[0]; //we'll see if this works
+//specialNumberLimit=5;
 } 
+void levelTwo(){
+  
+}
 void adventureTime() {
-  screenScrollSpeed=0;
-  scrollAccel=0.009;
-  screenLimit=100;
+  scrollAccel=0.0015;
+  screenLimit=60;
   specialNumberLimit=10;
 }
 //if this boolean is true...
