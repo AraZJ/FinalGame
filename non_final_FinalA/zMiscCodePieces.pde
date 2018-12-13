@@ -222,3 +222,60 @@
 
     //}
     ////
+    ///attempts at really crazy stuuf
+    //int treesPassed(Player thePlayer, ArrayList<Tree> someArrayList){
+//  for(int t=0; t<numOfTrees; t++){
+//    Tree otherTree=someArrayList.get(t);
+//  if(thePlayer.pY==otherTree.tY+otherTree.tHeight&&!thePlayer.playerHit){
+//      textSize(50);
+//      fill(0);
+//      textAlign(CENTER);
+//      numOfTreesPassed=numOfTreesPassed+1;
+//      println("survived a tree!");
+//      return numOfTreesPassed;
+//  } else{
+//   return 0;  
+//  }
+//    }
+ 
+//}
+  //if(thePlayer.pY==tY+tHeight&&!p3.playerHit){
+  //    textSize(50);
+  //    fill(0);
+  //    textAlign(CENTER);
+  //    numOfTreesPassed=numOfTreesPassed+1;
+  //    println("survived a tree!");
+  //    return numOfTreesPassed;
+  ////
+ ////
+   //void coinCollide(Player p1) { //maybe this should be called "collide" 
+  ////float rx, float ry, float rectW, float rectT, float cx, float cy, float r 
+  //hit=rectCircCollide(p1.pX,p1.pY,p1.pWidth,p1.pHeight,coinX,coinY,coinDiameter/2);
+  //  //top corners
+  ////  if (dist(player2.pX-player2.pWidth/2, player2.pY-player2.pHeight/2, coinX, coinY)<=coinDiameter/2||dist(player2.pX+player2.pWidth/2, player2.pY-player2.pHeight/2, coinX, coinY)<=coinDiameter/2) {
+  ////    hit=true;
+  ////    //fill(255, 255, 0);
+  ////    //textSize(50);
+  ////    //text("collision!", 300, height/2);
+  ////  }
+  ////  //bottom corners
+  ////  if (dist(player2.pX-player2.pWidth/2, player2.pY+player2.pHeight/2, coinX, coinY)<=coinDiameter/2||dist(player2.pX+player2.pWidth/2, player2.pY+player2.pHeight/2, coinX, coinY)<=coinDiameter/2) {
+  ////    hit=true;
+  ////    //fill(255, 255, 0);
+  ////    //textSize(50);
+  ////    //text("collision!", 300, height/2);
+  ////  }
+  ////  if (player2.pY-player2.pHeight/2<=coinY+coinDiameter/2 && player2.pY-player2.pHeight/2>=coinY-coinDiameter/2 && player2.pX-player2.pWidth/2<=coinX+coinDiameter/2 && player2.pX+player2.pWidth/2>=coinX-coinDiameter/2) {
+  ////    hit=true; 
+  ////    //fill(255, 255, 0);
+  ////    //textSize(50);
+  ////    //text("collision!", 300, height/2);
+  ////  }
+  ////  if (player2.pY+player2.pHeight/2>=coinY-coinDiameter/2 && player2.pY+player2.pHeight/2<=coinY+coinDiameter/2 && player2.pX-player2.pWidth/2<=coinX+coinDiameter/2 && player2.pX+player2.pWidth/2>=coinX-coinDiameter/2) {
+  ////    hit=true;
+  ////    //fill(255, 255, 0);
+  ////    //textSize(50);
+  ////    //text("collision!", 300, height/2);
+  ////  }
+  //}
+  ////

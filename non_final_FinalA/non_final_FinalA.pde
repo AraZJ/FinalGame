@@ -26,6 +26,10 @@ float screenRightEdge=900;
 float screenLimit=50;
 boolean [] levelsWon= new boolean[5];
 boolean gameIsRunning;
+long levelTimer;
+long levelStartingTime;
+int numOfTreesPassed=0;
+int specialNumber; //My BABY I LOVE you!!!!!
 void setup() {
   size(900, 600);
   background(255);
@@ -115,6 +119,7 @@ void draw() {
     background(255);
     fill(0);
     textSize(30);
+    textAlign(CENTER);
     text("Use left and right keys to navigate.", width/2, 100);
     //animation for going left and rihgt, then text saying try it! and once you do for a few seconds (make timer), move on ot the next one
     text("Try to collect coins and avoid trees.", width/2, 300);
@@ -126,8 +131,31 @@ void draw() {
       gameScreen=0;
     }
     //maybe an affect of, instead of a timr, o the screen slidng up an theres the rest of teh text
+     me.display();
+  //me.moveSideways(); //apparently I don't actually need a keypressed...
+  //me.moveDownManual();
+  //me.decreaseHealth();
+  //me.moveDownAuto();
+  me.beenHit();
+ 
     break;
   case 3:
-    gameRunning(); //where the magic happens--look in RandomMethods
+  
+  //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
+  //levelStartingTime=millis();
+  //levelTimer=levelStartingTime/millis()+1;
+  gameRunning(); //where the magic happens--look in RandomMethods
+  //println(levelStartingTime);
+  //if(levelTimer>=5000){
+   //println("level one won!"); 
+   //textSize(50);
+   //text("millis(): "+millis(),width/2,height/2);
+   //text("levelStartingTime "+levelStartingTime,width/2,height/2+50);
+   //text("levelTimer: "+levelTimer,width/2,height/2+100);
+ // }
+    if(specialNumber>=5){
+   println("level's end!"); 
+  }
+    
   }
 }

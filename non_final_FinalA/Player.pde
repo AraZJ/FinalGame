@@ -17,8 +17,10 @@ class Player {
   long animTimer;
   boolean fallLeft;
   boolean fallRight;
+  int treesPassed;
   int [] numOfLives={1, 2, 3, 4, 5};
   Player() {
+    treesPassed=0;
     playerHit=false;
     living=true;
     pWidth=25;
@@ -46,6 +48,7 @@ class Player {
       //score message: should probably be moved...
     } else if (playerHit) {//(fallLeft||fallRight) {
       //if(
+      animTimer=millis();
       fill(240, 100, 0);
       noStroke();
       rect(pX, pY, pWidth, pHeight);
@@ -53,14 +56,13 @@ class Player {
       //animTimer=millis();
       //beenHit();
       //if (millis()-animTimer<=3000) { 
-      pSpeedX=0;
+       pSpeedX=0;
       //} else if (millis()-animTimer>3000) {
       //if (keyPressed&&key=='g') {
       //  pSpeedX=1; 
 
       //}
     }
-    fill(0);
     textSize(30);
     textAlign(LEFT);
     fill(230, 230, 0);
@@ -76,8 +78,13 @@ class Player {
     //point(pX+pWidth, pY+pHeight);
   }
   void moveSideways() {
-    if (pX<=screenLeftEdge||pX+pWidth>=screenRightEdge) {
+    if (pX<=screenLeftEdge){ 
       playerHit=true;
+      fallRight=true;
+    }
+    if (pX+pWidth>=screenRightEdge) {
+      playerHit=true;
+      fallLeft=true;
     }
     if (!playerHit&&living) {
       pSpeedX=1;
@@ -162,26 +169,30 @@ class Player {
     living=true;
     playerHit=false;
   }
-  int decreaseHealthNum() {
-    for (int p=0; p<100; p++) {
-      if (playerScore==(p+1)*10) {
-        return 1;
-      }
-    }
-    if (playerHit) {
-      return -1;
-    } else {
-      return 0;
-    }
-    //if (playerHealth<=0) {
-    //  living=false;
-    //}
-  }
+  //int decreaseHealthNum() {
+  //  for (int p=0; p<100; p++) {
+  //    if (playerScore==(p+1)*10) {
+  //      return 1;
+  //    }
+  //  }
+  //  if (playerHit) {
+  //    return -1;
+  //  } else {
+  //    return 0;
+  //  }
+  //  //if (playerHealth<=0) {
+  //  //  living=false;
+  //  //}
+  //}
   void decreaseHealth() {
     //float tempHealth=playerHealth;
     if (playerHit) { //old decrease health method
       playerHealth=playerHealth-0.00001;
     }
+  }
+  void levelLengthChecker(){
+    
+    
   }
   //int decreaseLives() {
   //  for (int l=0; l<numOfLives.length; l++) {

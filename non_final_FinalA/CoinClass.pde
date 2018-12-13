@@ -28,36 +28,7 @@ class Coin {
     coinSpeed=coinSpeed+scrollSpeed;
     }
   }
-  //void coinCollide(Player p1) { //maybe this should be called "collide" 
-  ////float rx, float ry, float rectW, float rectT, float cx, float cy, float r 
-  //hit=rectCircCollide(p1.pX,p1.pY,p1.pWidth,p1.pHeight,coinX,coinY,coinDiameter/2);
-  //  //top corners
-  ////  if (dist(player2.pX-player2.pWidth/2, player2.pY-player2.pHeight/2, coinX, coinY)<=coinDiameter/2||dist(player2.pX+player2.pWidth/2, player2.pY-player2.pHeight/2, coinX, coinY)<=coinDiameter/2) {
-  ////    hit=true;
-  ////    //fill(255, 255, 0);
-  ////    //textSize(50);
-  ////    //text("collision!", 300, height/2);
-  ////  }
-  ////  //bottom corners
-  ////  if (dist(player2.pX-player2.pWidth/2, player2.pY+player2.pHeight/2, coinX, coinY)<=coinDiameter/2||dist(player2.pX+player2.pWidth/2, player2.pY+player2.pHeight/2, coinX, coinY)<=coinDiameter/2) {
-  ////    hit=true;
-  ////    //fill(255, 255, 0);
-  ////    //textSize(50);
-  ////    //text("collision!", 300, height/2);
-  ////  }
-  ////  if (player2.pY-player2.pHeight/2<=coinY+coinDiameter/2 && player2.pY-player2.pHeight/2>=coinY-coinDiameter/2 && player2.pX-player2.pWidth/2<=coinX+coinDiameter/2 && player2.pX+player2.pWidth/2>=coinX-coinDiameter/2) {
-  ////    hit=true; 
-  ////    //fill(255, 255, 0);
-  ////    //textSize(50);
-  ////    //text("collision!", 300, height/2);
-  ////  }
-  ////  if (player2.pY+player2.pHeight/2>=coinY-coinDiameter/2 && player2.pY+player2.pHeight/2<=coinY+coinDiameter/2 && player2.pX-player2.pWidth/2<=coinX+coinDiameter/2 && player2.pX+player2.pWidth/2>=coinX-coinDiameter/2) {
-  ////    hit=true;
-  ////    //fill(255, 255, 0);
-  ////    //textSize(50);
-  ////    //text("collision!", 300, height/2);
-  ////  }
-  //}
+
   
   void addToScore(Player p1) { //maybe don't need this...
     if (rectCircCollide(p1.pX,p1.pY,p1.pWidth,p1.pHeight,coinX,coinY,coinDiameter/2)) {

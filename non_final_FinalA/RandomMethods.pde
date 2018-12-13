@@ -1,3 +1,16 @@
+int treesPassed(Player thePlayer, Tree aTree) {
+  int returnNum=0;
+  if (thePlayer.pY==aTree.tY+aTree.tHeight&&!thePlayer.playerHit) {
+    textSize(50);
+    fill(0);
+    textAlign(CENTER);
+    returnNum=returnNum+1;
+    println("survived a tree!");
+  }
+  return returnNum;
+}
+
+
 //much easier way to make an upright triangle with the top point, the base and the heiggt as parameters
 void upTriangle(float topX, float topY, float base, float triHi) { //has the single point on top
   //I should make it the top, not the center...
@@ -34,8 +47,8 @@ void makeGameOver() {
     gameIsRunning=false;
   }
 }
-void pause(){
-  if(me.living&&keyPressed&&key=='p'){
+void pause() {
+  if (me.living&&keyPressed&&key=='p') {
     gameIsRunning=false;
   }
 }
@@ -47,23 +60,22 @@ void restartLevel() { //might not need...
   //might need to connect to which level it is
   me.reset();
 }
-boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, float cy, float r ){ //thank you sm for this method, Joe
+boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, float cy, float r ) { //thank you sm for this method, Joe
   float rectCenterX = rx +rectW/2;
   float rectCenterY = ry + rectT/2;
   //top &bottom
-  if(abs(cx-rectCenterX)<=rectW/2 && abs(cy-rectCenterY)<=rectT/2 + r){
+  if (abs(cx-rectCenterX)<=rectW/2 && abs(cy-rectCenterY)<=rectT/2 + r) {
     return true;
   }
   //left and right
-  if(abs(cy-rectCenterY)<=rectT/2 && abs(cx-rectCenterX)<=rectW/2 +r){
+  if (abs(cy-rectCenterY)<=rectT/2 && abs(cx-rectCenterX)<=rectW/2 +r) {
     return true;
   }
   //corners
-  if(dist(rx,ry,cx,cy)<=r || dist(rx+rectW,ry,cx,cy)<=r || dist(rx,ry+rectT,cx,cy)<=r || dist(rx+rectW,ry+rectT,cx,cy)<=r){
-   return true; 
+  if (dist(rx, ry, cx, cy)<=r || dist(rx+rectW, ry, cx, cy)<=r || dist(rx, ry+rectT, cx, cy)<=r || dist(rx+rectW, ry+rectT, cx, cy)<=r) {
+    return true;
   }
   return false;
-  
 }
 //very important code with all the basics to make a running game
 void gameRunning() {
@@ -77,10 +89,10 @@ void gameRunning() {
   //loop to remove old trees
   //make sure to backwards
   background(255);
-  fill(209,243,238);
+  fill(209, 243, 238);
   noStroke();
-  rect(0,0,screenLimit,height);
-  rect(width-screenLimit,0,screenLimit,height);
+  rect(0, 0, screenLimit, height);
+  rect(width-screenLimit, 0, screenLimit, height);
   //me.playerHit=false;
   //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
   for (int k=numOfCoins-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
@@ -110,17 +122,21 @@ void gameRunning() {
       treeList.remove(t); 
       treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, 1));
     }
+    if(!treeClone.onscreen&&me.living==true){
+      specialNumber=specialNumber+1;
+    }
+    println(specialNumber);
     treeClone.display();
     treeClone.scrollUp();
-   // treeClone.treeCollide(me);
+    treeClone.treeCollide(me);
+    //println(treesPassed(me, treeClone));
+     treeClone.treesPassed(me);
+     //println(treeClone.numOfTreesPassed);
   }
   //this should be in the gamescreens
   me.display();
   me.moveSideways(); //apparently I don't actually need a keypressed...
-  //me.Straighten();
-  me.moveDownManual();
   me.decreaseHealth();
-  //me.moveDownAuto();
   //me.beenHit();
   //me.moveDownAuto();
   if (!gameIsRunning&&!me.living) {

@@ -10,10 +10,11 @@ class Tree {
   color treeColor;
   float tSpeed;
   float trunkHeight;
-  boolean treeCollision;
+  //boolean treeCollision;
   boolean onscreen;
   float treeLeft;
   float treeRight;
+  int numOfTreesPassed;
   //boolean onscreen/remove
 
   //tree object constructor
@@ -26,10 +27,11 @@ class Tree {
     treeShift1 = tHeight*0.5;
     treeColor=color(0, random(40, 215), 0);
     tSpeed=0;
-    treeCollision=false;
+    //treeCollision=false;
     onscreen=true;
     treeLeft=tX-tWidth/2;
     treeRight=tX+tWidth/2;
+    numOfTreesPassed=0;
     //boolean spawns as false
   }
 
@@ -78,8 +80,9 @@ class Tree {
   }
   void treeCollide(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
-      treeCollision=true;
+      //treeCollision=true;
       p2.playerHit=true;
+      println("player hit!");
     }
     //if (p2.pX+p2.pWidth&&p2.playerHit){ //this was for if it hits from the top, but I don't think it's really important
     //} else 
@@ -90,5 +93,13 @@ class Tree {
     }
   }
   void diagonalSlide() {
+  }
+  void treesPassed(Player p3){
+    int returnNum=0;
+    if(p3.pY==tY+tHeight+20&&!p3.playerHit){
+      returnNum=returnNum+1;
+      numOfTreesPassed=returnNum;
+    } 
+    
   }
 }
