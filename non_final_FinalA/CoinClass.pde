@@ -31,13 +31,9 @@ class Coin {
       coinY=coinY-screenScrollSpeed;
     }
   }
-  void addToScoreAdv(Player p1) { //maybe don't need this...
-    if (rectCircCollide(p1.pX, p1.pY, p1.pWidth, p1.pHeight, coinX, coinY, coinDiameter/2)) {
-      hit=true;
-      p1.playerScore=p1.playerScore+0.5; //works because the coin is only there for a split second so it can only go up once I guess
-    }
-  }
-  void addToScoreLev(Player p1) { //maybe don't need this...
+
+
+  void addToScore(Player p1) { //maybe don't need this...
     if (rectCircCollide(p1.pX, p1.pY, p1.pWidth, p1.pHeight, coinX, coinY, coinDiameter/2)) {
       hit=true;
       p1.playerScore=p1.playerScore+1; //works because the coin is only there for a split second so it can only go up once I guess

@@ -18,6 +18,7 @@ class Player {
   boolean fallLeft;
   boolean fallRight;
   int treesPassed;
+  int [] numOfLives={1, 2, 3, 4, 5};
   Player() {
     treesPassed=0;
     playerHit=false;
@@ -32,7 +33,7 @@ class Player {
     playerScore=0;
     startAngle=0;
     incAngle=10;
-    playerHealth=1.0;
+    playerHealth=5.0;
     fallLeft=false;
     fallRight=false;
   }
@@ -122,19 +123,16 @@ class Player {
     //  }
     //  println(playerHit);
   }
-  void moveDownAuto() { //I don't need this unless I die really
-    if(pY<=height){
-      pSpeedY=1;
-    pY=pY+pSpeedY;
-    }
-    
-    //if (pY>=600-pHeight/2) {
-    //  pSpeedY=0;
-    //  textAlign(LEFT);
-    //  textSize(50);
-    text("you have won!", 0, height/2);
-    //}
-  }
+  //void moveDownAuto() { //I don't need this unless I die really
+  //  pY=pY+pSpeedY;
+  //  pSpeedY=pSpeedY+scrollSpeed;
+  //  if (pY>=600-pHeight/2) {
+  //    pSpeedY=0;
+  //    textAlign(LEFT);
+  //    textSize(50);
+  //    text("you have reached the bottom!", 0, height/2);
+  //  }
+  //}
   void moveDownManual() {
     if (keyCode==DOWN) {
       pY=pY+pSpeedY;

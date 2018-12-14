@@ -10,7 +10,7 @@ float accelLimit=7;
 float screenLimit=50; //50 for start
 ////everything else
 float objectScaling=0.8;
-int treesPassed; //My BABY I LOVE you!!!!!
+int specialNumber; //My BABY I LOVE you!!!!!
 int [] levelEnders={5, 10}; // 15, 20, 25};
 //int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
 int ySpacing=200; //height/numOfTrees
@@ -39,9 +39,6 @@ boolean playerHitG;
 float screenLeftEdge=0;
 float screenRightEdge=900;
 float skyY=0; //global y postition for the sky in makeSky();
-boolean changeLevel=false;
-boolean levelIsWon=false;
-boolean reset;
 
 void setup() {
   size(900, 600);
@@ -65,15 +62,13 @@ void setup() {
     snowflakes.add(new Snow());
   }
   for (int r=0; r<numOfObjects; r++) { 
-    coinList.add(new Coin(300+random(25, 600-25), objectScaling)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
+    treeList.add(new Tree(random(screenLimit, width-screenLimit), 300+ySpacing*r, objectScaling)); //r*spacingValue+slideOver // random(100, 300)
   }
 
   for (int r=0; r<numOfObjects; r++) { 
-    treeList.add(new Tree(random(screenLimit, width-screenLimit), 600+ySpacing*r, objectScaling)); //r*spacingValue+slideOver // random(100, 300)
+    coinList.add(new Coin(300+random(25, 600-25), objectScaling)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
   }
 }
-
-
 void draw() {
   //important code for booleans that determine which leel you are on--maybe should go in setup
   //for (int b=0; b<levelsWon.length; b++) {
@@ -130,7 +125,6 @@ void draw() {
     //snow storm
     snowStorm(numOfSnowflakes);
     break;
-    //selection screen
   case 1:
     background(255);
     //snow storm
@@ -143,7 +137,6 @@ void draw() {
     if (keyPressed&&key=='t') {
       gameScreen=2;
     } else if (keyPressed&&key=='a') {
-      //gameIsRunning=true;
       gameScreen=3;
     } else if (keyPressed&&key=='l') {
       gameScreen=4;
@@ -163,21 +156,25 @@ void draw() {
     text("Note: you only have to press a key once before you start sliding in that direction.", width/2, 500);
     text("press 'b' to go back to the menu", width/2, height/2+100);
     if (keyPressed&&key=='b') {
-      gameScreen=1;
+      gameScreen=0;
     }
+    //maybe an affect of, instead of a timr, o the screen slidng up an theres the rest of teh text
+    me.display();
+    //me.moveSideways(); //apparently I don't actually need a keypressed...
+    //me.moveDownManual();
+    //me.decreaseHealth();
+    //me.moveDownAuto();
+    me.beenHit();
+
     break;
     //adventure mode!
   case 3:
-  //gameIsRunning=false;
-    specialNumberLimit=300;       
+
     //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
     //levelStartingTime=millis();
     //levelTimer=levelStartingTime/millis()+1;
     //adventureTime();
-    if(keyPressed&&key=='g'){
-    gameIsRunning=true;
-    }
-    runAdventure(); //where the magic happens--look in RandomMethods
+    gameRunning(); //where the magic happens--look in RandomMethods
     //println(levelStartingTime);
     //if(levelTimer>=5000){
     //println("level one won!"); 
@@ -186,42 +183,27 @@ void draw() {
     //text("levelStartingTime "+levelStartingTime,width/2,height/2+50);
     //text("levelTimer: "+levelTimer,width/2,height/2+100);
     // }
-    textAlign(CENTER);
-    textSize(60);
-    fill(0);
-    text("ADVENTURE MODE", 450, 100);
- 
-    
-    if(keyPressed&&key=='b'){
-      
-      gameScreen=0;
-    }
-            if(keyPressed&&key=='r'){
-      reset=true;
-    }
+
     break;
   case 4: //level  mode
-    //levelOne("Level 1", 5, 5, 50);
-    //levels();
-    levelMode(1,"Level 1", 20, 5, 50);
-    
-    runLevels(true);
+    levelOne("Level 1", 5, 5, 50);
+    gameRunning();
     textAlign(CENTER);
     textSize(70);
     fill(0);
     text(levelMessage, 450, 70);
-    //if (treesPassed>=treesPassedLimit) {
+    //if (specialNumber>=specialNumberLimit) {
     //  levelsWon[0]=true;
     //  println("level's end!");
     //}
     //for (int n=0; n<levelEnders.length; n++) {
-    //  if (treesPassed>=levelEnders[n]) {
+    //  if (specialNumber>=levelEnders[n]) {
     //    levelsWon[n]=true;
     //    println("level's end!");
     //  }
     //}
     ////went at top
-    ////for (int b=0; b<levelsWon.length; b++) {
+        ////for (int b=0; b<levelsWon.length; b++) {
     //  //levelsWon[b]=false;
     //  if (!levelsWon[0]) { //set these equal to these
     //println("level 1 is ongoing");
@@ -237,9 +219,6 @@ void draw() {
     //    screenLimit=60;
     //  }
     //}
-        if(keyPressed&&key=='b'){
-      gameScreen=0;
-    }
   }
 
   //println(screenScrollSpeed);
