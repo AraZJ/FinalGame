@@ -354,3 +354,253 @@
   //  screenScrollSpeed=5;
   // scrollAccel=0; 
   //}
+  ////////////////////////////////////
+  
+  
+  
+  
+  
+  
+  ////////////////////////////////
+//  void levels() {
+//  if (!levelsWon[0]) {
+//    levelOne("Level 1", 5, 5, 50);
+//  } else {
+//    text("beeeeech you won!!!", 450, 300);
+//    text("press space to go to the next level", 450, 400);
+//    if (keyPressed&&key==' ') {      
+//      if (levelsWon[0]) {
+//        levelTwo();
+//      }
+//    }
+//  }
+//} //levels end
+//////values that differ from level to level
+//String levelMessage
+//specialNumberLimit
+//accelLimit
+//screenLimit
+
+
+//void levelOne(String message, int levelLengthLim, float speedLim, float screenLim) { //or do an unpit of the boolean array(?) and each different input gives you a new level
+//  levelMessage=message;
+//  specialNumber=levelLengthLim;
+//  screenLimit=screenLim;
+//  accelLimit=speedLim;
+//  //if (specialNumber>=levelLengthLim) {
+//  //  println("level ended"+levelLengthLim+"="+specialNumber);
+//  //  gameIsRunning=false;
+//  //  levelsWon[0]=true;
+//  //}
+//  //text(
+//  //specialNumberLimit=levelEnders[0]; //we'll see if this works
+//}
+//void levelTwo() {
+//  levelMessage="Level 2";
+//  screenLimit=60;
+//  accelLimit=6.5;
+//  specialNumberLimit=10;
+//}
+//void adventureTime() {
+// // scrollAccel=0.001;
+// accelLimit=7.2;
+//  screenLimit=100;
+//  //specialNumberLimit=5;
+//}
+//if this boolean is true...
+//void level(scrollSpeed, etc)
+//
+//int treesPassed(Player thePlayer, Tree aTree) {
+//  int returnNum=0;
+//  if (thePlayer.pY==aTree.tY+aTree.tHeight&&!thePlayer.playerHit) {
+//    textSize(50);
+//    fill(0);
+//    textAlign(CENTER);
+//    returnNum=returnNum+1;
+//    println("survived a tree!");
+//  }
+//  return returnNum;
+//}
+//void makeGameOver() {
+//  if (me.living==false) {
+//    gameIsRunning=false;
+//  }
+//}
+//void pause() {
+//  if (me.living&&keyPressed&&key=='p') {
+//    gameIsRunning=false;
+//  }
+//}
+//void resetTrees(Tree anyTree) {
+//  anyTree.tY=300;
+//}
+//void resetCoins(Coin anyCoin) {
+////}
+//void restartLevel() { //might not need...
+//  //might need to connect to which level it is
+//  me.reset();
+//}
+///////
+  //sky at top of the screen at beginning
+  //noStroke();
+  //if(skyY>=-290){
+  //fill(0);
+  //rect(0,skyY,width,290);
+  //}
+  //me.playerHit=false;
+  //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
+   //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
+  //loop to remove old trees
+  //make sure to backwards
+  ////stuff for levels--goes right before the display stuff in tree loop
+    //if (!treeClone.onscreen&&me.living==true) {
+    //  specialNumber=specialNumber+1;
+    //}
+    //println(specialNumber);
+
+    //for (int s=0; s<levelEnders.length; s++) {
+    //  if (specialNumber>=levelEnders[0]) { //without for loop it's specialNumberLimit  println("You Won!");  gameIsRunning=false;
+    //    println("You Won!");
+    //    gameIsRunning=false;
+    //    //levelsWon[0]=true;
+    //  }
+    //}
+    //if (keyPressed&&key==' ') {
+    //}
+    ////oter random stuff
+    //    fill(0);
+    //textSize(30);
+    //text("hit bool "+playerHitG, 450, 300); 
+    //println(treesPassed(me, treeClone));
+    // treeClone.treesPassed(me);
+    //println(treeClone.numOfTreesPassed);
+    //don't really need a different numebr of trees, just different spacing, plus I don;t think the for loops will wokr if it's changed form setup to draw
+    //int specialNumber; //My BABY I LOVE you!!!!!
+////values that differentiate levels form each other
+//String levelMessage;
+//int specialNumberLimit=7;
+////everything else
+//int [] levelEnders={10,20,30}; // 15, 20, 25};
+//int xSpacing=200; //the amount of space between trees...Don't really need anymore, though when I make an algorithm for the distances between trees i might
+//long levelTimer;
+//long levelStartingTime;
+//int numOfTreesPassedG=0;
+//will probably replace with width and height
+//array of the booleans that, when true, mean you have won a level
+//boolean [] levelsWon= new boolean[2];
+//boolean that determines if the game is running
+/////stuff from caSE 4
+//break;
+//  case 4: //level  mode
+  //  levelOne("Level 1", 5, 5, 50);
+  //  gameRunning();
+  //  textAlign(CENTER);
+  //  textSize(70);
+  //  fill(0);
+  //  text(levelMessage, 450, 70);
+  //  //if (specialNumber>=specialNumberLimit) {
+  //  //  levelsWon[0]=true;
+  //  //  println("level's end!");
+  //  //}
+  //  //for (int n=0; n<levelEnders.length; n++) {
+  //  //  if (specialNumber>=levelEnders[n]) {
+  //  //    levelsWon[n]=true;
+  //  //    println("level's end!");
+  //  //  }
+  //  //}
+  //  ////went at top
+  //      ////for (int b=0; b<levelsWon.length; b++) {
+  //  //  //levelsWon[b]=false;
+  //  //  if (!levelsWon[0]) { //set these equal to these
+  //  //println("level 1 is ongoing");
+  //  //    scrollSpeed=0.005;
+  //  //    numOfTrees=4;
+  //  //    numOfCoins=numOfTrees;
+  //  //    screenLimit=50;
+  //  //  } else if (levelsWon[0]){
+  //  //      println("level 1 is won");
+  //  //    scrollSpeed=0.002;
+  //  //    numOfTrees=5;
+  //  //    numOfCoins=numOfTrees;
+  //  //    screenLimit=60;
+  //  //  }
+  ////stuff from case 3
+    //forloop for ammoiutnoflevels the first one is the amount of actual millisseconds...
+    //levelStartingTime=millis();
+    //levelTimer=levelStartingTime/millis()+1;
+    //adventureTime();
+        //println(levelStartingTime);
+    //if(levelTimer>=5000){
+    //println("level one won!"); 
+    //textSize(50);
+    //text("millis(): "+millis(),width/2,height/2);
+    //text("levelStartingTime "+levelStartingTime,width/2,height/2+50);
+    //text("levelTimer: "+levelTimer,width/2,height/2+100);
+    // }
+
+    
+  //  //}
+      //maybe an affect of, instead of a timr, o the screen slidng up an theres the rest of teh text
+    //me.display();
+    //me.moveSideways(); //apparently I don't actually need a keypressed...
+    //me.moveDownManual();
+    //me.decreaseHealth();
+    //me.moveDownAuto();
+    //me.beenHit();
+        ////triangles that are suppsoed to help with teh illusion that it's 3d
+    //triangle(0, 180, 4*width/5, height, 0, height);
+    //fill(230,230,250);
+    //triangle(0, 150, width-400, height, 0, height);
+    //for (int b=0; b<levelsWon.length; b++) {
+  //  levelsWon[b]=false;
+  //  if (!levelsWon[b]) { //set these equal to these
+  //    //scrollSpeed=0.001;
+  //    //numOfTrees=4;
+  //    //numOfCoins=numOfTrees;
+  //    //screenLimit=50;
+  //  } if (levelsWon[0]&&!levelsWon[1]){
+  //    //scrollSpeed=0.002;
+  //    //numOfTrees=5;
+  //    //numOfCoins=numOfTrees;
+  //    //screenLimit=60;
+  //  }
+  //}
+  //important code for booleans that determine which leel you are on--maybe should go in setup
+  //for (int b=0; b<levelsWon.length; b++) {
+  //  levelsWon[b]=false;
+  //  if (!levelsWon[0]) { //set these equal to these
+
+  //    scrollSpeed=0.001;
+  //    numOfTrees=4;
+  //    numOfCoins=numOfTrees;
+  //    screenLimit=50;
+  //  } else if (levelsWon[0]){
+  //      println("level 1 is won");
+  //    scrollSpeed=0.002;
+  //    numOfTrees=5;
+  //    numOfCoins=numOfTrees;
+  //    screenLimit=60;
+  //  }
+  //}
+  //for (int b=0; b<levelsWon.length; b++) {
+  //  levelsWon[b]=false;
+  //  if(levelsWon[1]){ //set these equal to these
+
+  //  }
+  //}
+  //'T', 'r', 'e', 'a', 'c', 'h', 'e', 'r', 'o', 'u', 's', ' ', 'T', 'u', 'n', 'd', 'r', 'a'
+  //case 1:
+    //background(255);
+    //snow storm
+    //snowStorm(numOfSnowflakes);
+    //textSize(45);
+    //fill(0);
+    //text("FOR ADVENTURE MODE, PRESS 'A'", width/2, height/2);
+    //text("FOR TUTORIAL, PRESS 'T'", width/2, height/2+100);
+    //if (keyPressed&&key=='t') {
+    //  gameScreen=2;
+    //} else if (keyPressed&&key=='a') {
+    //  gameScreen=3;
+    //}
+    //break;
+    //tutorial page

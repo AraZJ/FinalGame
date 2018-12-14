@@ -62,6 +62,20 @@ class Tree {
     //since the the trees are going up, once they equal zero they're going to go to 600 
     tY=600;
   }
+  void playerTreeCollide(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
+    if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
+        p2.playerHitL=true;
+      //if(p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<tX){
+        //println("leftCol");
+        //p2.pSpeedX=0;
+        //p2.xDirection*=-1;
+        p2.pColor=color(255,0,0);
+      //}
+    } else if (p2.pX+p2.pWidth<=tX-tWidth/2||p2.pX>=tX+tWidth/2||p2.pY+p2.pHeight<=tY||p2.pY>=tY+tHeight){
+      p2.playerHitL=false;
+      p2.pColor=color(240, 100, 0);
+    }
+  }
   boolean pTCollideB(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
       return true;

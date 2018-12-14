@@ -1,101 +1,78 @@
 //very important code with all the basics to make a running game
 void gameRunning() {
   //skyY=skyY-screenScrollSpeed;
-
-  gameIsRunning=true;
+  gameIsRunning=true; //sets the game to running so things move
+  if (screenLimit<300) { //makes the screen limit slowly expland as long as it's less than 300
+    screenLimit=screenLimit+scrollAccel;
+  }
   // makeGameOver();
   //pause();
   //restarts level
   if (!me.living&&keyPressed&&key=='r') { //might need to move
-    restartLevel();
+    //restartLevel();
     //me.reset;
   }
-  //running-maybe i can make sub gamescreens in here but i doubt it, jsut multiple game screens, and sme of teh code for running like the methods should go outside of the cases i think
-  //loop to remove old trees
-  //make sure to backwards
   background(255); //redraws background
-  //sky at top of the screen at beginning
-  //noStroke();
-  //if(skyY>=-290){
-  //fill(0);
-  //rect(0,skyY,width,290);
-  //}
-  //side rectangles that set the limit of the ski slope
+  //side rectangles that set the limit of the ski slope horizontally
   fill(209, 243, 238);
   rect(0, 0, screenLimit, height);
   rect(width-screenLimit, 0, screenLimit, height);
-  makeSky();
-  //me.playerHit=false;
-  //run loops backwards...hopefully it doent effect anything else, otherwise ill have to make separate backwards loops for removing and then a forwards loop for everything else like display and all that...hpefully not
-  for (int k=numOfObjects-1; k>=0; k--) {//for (int k=0; k<numOfCoins; k++) {
-    Coin coinClone = coinList.get(k);
+  makeSky(); //makes a sky appear at the top of the slope
+  //backwards for loop that runs through the coins arraylist
+  for (int k=numOfObjects-1; k>=0; k--) { //backwards to get rid of flash when objects are removed
+    Coin coinClone = coinList.get(k); //gets all the elements of the arraylist so you can do stuff to them
+    //sets the local variable offscreen to true whenever the coins are offscreen and uncollected
     if (coinClone.coinY<=-coinClone.coinDiameter/2&&!coinClone.hit) {
       coinClone.offscreen=true;
     }
+    //removes coins whenever they're offscreen or have been collected
     if (coinClone.hit||coinClone.offscreen) {
       coinList.remove(k);
-      coinClone.coinY=600+coinClone.coinDiameter; //might be doing nothing
       coinList.add(new Coin(650, objectScaling));
     }
-    //coinClone.scrollUp();
+    //displays, scrolls and calls the addToScore method on the coins 
+    coinClone.scrollUp();
     coinClone.display();
-    //coinClone.coinCollide(me);
-    coinClone.addToScore(me);
+    coinClone.addToScore(me); //functions as a collide method and adds a point after every collision 
   }
-  // for (int c = 0; c < columns; c=c+1) { //for loop for columns of rows
-  for (int t=numOfObjects-1; t>=0; t--) {//for (int e=0; e<numOfTrees; e++) { //for loop for rows
-    Tree treeClone = treeList.get(t);
+ //backwards for loop that runs through the trees arraylist
+  for (int t=numOfObjects-1; t>=0; t--) { //backwards to get rid of flash when objects are removed
+    Tree treeClone = treeList.get(t); //gets all the elements of the arraylist so you can do stuff to them
+    //sets the tree variable onscreen to false whenever tree is past the top of the screen
     if (treeClone.tY<=treeClone.tHeight*-1-treeClone.trunkHeight) {
       treeClone.onscreen=false;
-      //treeClone.tY=600;
     }
+    //removes and then adds new trees whenever trees are not onscreen
     if (!treeClone.onscreen) {
-      //println("offscreen!");
       treeList.remove(t); 
       treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, objectScaling));
     }
-    if (!treeClone.onscreen&&me.living==true) {
-      specialNumber=specialNumber+1;
-    }
-     println(specialNumber);
-      if (specialNumber>=specialNumberLimit) {
-    println("level ended");
-    gameIsRunning=false;
-    //levelsWon[0]=true;
-  }
-   
+    //displays, scrolls and runs collision method
     treeClone.display();
     treeClone.scrollUp();
-    //treeClone.playerTreeCollide(me);
-    playerHitG=treeClone.pTCollideB(me); //problem code
-    fill(0);
-    textSize(30);
-    //text("hit bool "+playerHitG, 450, 300); 
-    //println(treesPassed(me, treeClone));
-    // treeClone.treesPassed(me);
-    //println(treeClone.numOfTreesPassed);
+    treeClone.playerTreeCollide(me);
+    //playerHitG=treeClone.pTCollideB(me); //old collision method--problem code
   }
-  //this should be in the gamescreens
+  //displays and calls methods for moving sideways and decreasing health
   me.display();
-  //me.playerHasBeenHit();
-  me.moveSideways(); //apparently I don't actually need a keypressed...
+  me.moveSideways();
   me.decreaseHealth();
-
-  //me.beenHit();
-  //me.moveDownAuto();
-  if (!gameIsRunning&&!me.living) {
+  me.moveDownManual();
+  //println(me.playerHitL);
+  //if the player is dead, stop the screen from scrolling and print two messages
+  if (!me.living) {
+    gameIsRunning=false;
+    //game over message
     textAlign(CENTER);
     textSize(50);
     fill(150, 0, 0);
     text("Game Over Sucka!", width/2, height/2);
+    //restart and return to selection screen message
     textSize(40);
     fill(0);
     text("Press 'b' to return to start screen and 'r' to restart level", width/2, height/2+50);
     if (keyPressed&&key=='b') {
-      restartLevel();
       gameScreen=0;
     }
   }
-  //me.display(); //this should be in the gamescreens..but then agian, maybe not..? depends on my graphics for the menu screen
-  //me.moveSideways(); //apparently I don't actually need a keypressed...
 } 

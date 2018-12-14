@@ -10,18 +10,21 @@ class Player {
   float playerHealth;
   float playerScore;
   boolean living;
-  boolean playerHit;
+  boolean playerHitL;
   float startAngle;
   float incAngle;
   float tempSpeedX; //probably don't need
   long animTimer;
-  boolean fallLeft;
-  boolean fallRight;
+  boolean leftCol;
+  boolean rightCol;
+  boolean topCol;
+  color pColor;
+  int xDirection;
   int treesPassed;
   int [] numOfLives={1, 2, 3, 4, 5};
   Player() {
     treesPassed=0;
-    playerHit=false;
+    playerHitL=false;
     living=true;
     pWidth=25;
     pHeight=100;
@@ -34,13 +37,16 @@ class Player {
     startAngle=0;
     incAngle=10;
     playerHealth=5.0;
-    fallLeft=false;
-    fallRight=false;
+    leftCol=false;
+    rightCol=false;
+    topCol=false;
+    xDirection=1;
+    pColor=color(240, 100, 0);
   }
   void display() {
 
     rectMode(CORNER);
-    fill(240, 100, 0);
+    fill(pColor);
     noStroke();
     rect(pX, pY, pWidth, pHeight);
     textSize(30);
@@ -58,16 +64,16 @@ class Player {
     //point(pX+pWidth, pY+pHeight);
   }
   void moveSideways() {
-    if (!playerHitG&&living&&gameIsRunning) { //p2.pX<=screenLimit||p2.pX+p2.pWidth>=screenRightEdge-screenLimit
+    if (gameIsRunning) { //p2.pX<=screenLimit||p2.pX+p2.pWidth>=screenRightEdge-screenLimit //!playerHitG&&living&&
       pSpeedX=1;
-      if (keyCode==LEFT&&pX>screenLimit) {
-        pX=pX-pSpeedX;
+      if (keyCode==LEFT&&pX>screenLimit&&!playerHitL){//||!playerHitG) {
+        pX=pX*xDirection-pSpeedX; //*xDirection
         //if (sidewaysShift>=0){
         //sidewaysShift=sidewaysShift-shiftDecrem;  //this is HILARIOUS! dsidewaysShift=sidewaysShift-0.1; 
         //}
       }
-      if (keyCode==RIGHT&&pX+pWidth<screenRightEdge-screenLimit) {
-        pX=pX+pSpeedX;
+      if (keyCode==RIGHT&&pX+pWidth<screenRightEdge-screenLimit&&!playerHitL) {
+        pX=pX*xDirection+pSpeedX;
       }
     } else {
       pSpeedX=0;
@@ -199,7 +205,7 @@ class Player {
   //}
   void decreaseHealth() {
     //float tempHealth=playerHealth;
-    if (playerHitG) { //old decrease health method
+    if (playerHitG||playerHitL) { //old decrease health method
       playerHealth=playerHealth-0.00001;
     }
   }
