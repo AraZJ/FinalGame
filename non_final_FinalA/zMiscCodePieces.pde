@@ -354,3 +354,12 @@
   //  screenScrollSpeed=5;
   // scrollAccel=0; 
   //}
+    //   println(treesPassed);
+    //  if (treesPassed>=specialNumberLimit) {
+    //println("level ended");
+    //gameIsRunning=false;
+    //changeLevel=true;
+    //levelIsWon=true;
+    //  }
+    ////this needs to affect the similar statement in the levelone/level place
+    ////levelsWon[0]=true;

@@ -1,12 +1,14 @@
 void levels() {
-  if (!levelsWon[0]) {
-    levelOne("Level 1", 5, 5, 50);
-  } else {
+  //if (!levelsWon[0]) {
+  levelMode(1, "Level 1", 5, 5, 50);
+  ///} else {
+  if (levelIsWon) {
     text("beeeeech you won!!!", 450, 300);
     text("press space to go to the next level", 450, 400);
-    if (keyPressed&&key==' ') {      
+    levelsWon[0]=true;
+    if (keyPressed&&key==' ') {  
       if (levelsWon[0]) {
-        levelTwo();
+        levelMode(2, "Level 2", 10, 5.5, 70);
       }
     }
   }
@@ -18,9 +20,10 @@ void levels() {
 //screenLimit
 
 
-void levelOne(String message, int levelLengthLim, float speedLim, float screenLim) { //or do an unpit of the boolean array(?) and each different input gives you a new level
+void levelMode(int level, String message, int levelLengthLim, float speedLim, float screenLim) { //or do an unpit of the boolean array(?) and each different input gives you a new level
+  //put in for loop?
   levelMessage=message;
-  specialNumber=levelLengthLim;
+  specialNumberLimit=levelLengthLim; //important!
   screenLimit=screenLim;
   accelLimit=speedLim;
   //if (specialNumber>=levelLengthLim) {
@@ -31,12 +34,12 @@ void levelOne(String message, int levelLengthLim, float speedLim, float screenLi
   //text(
   //specialNumberLimit=levelEnders[0]; //we'll see if this works
 }
-void levelTwo() {
-  levelMessage="Level 2";
-  screenLimit=60;
-  accelLimit=6.5;
-  specialNumberLimit=10;
-}
+//void levelTwo() {
+//  levelMessage="Level 2";
+//  screenLimit=60;
+//  accelLimit=6.5;
+//  specialNumberLimit=10;
+//}
 //void adventureTime() {
 // // scrollAccel=0.001;
 // accelLimit=7.2;
@@ -139,6 +142,10 @@ void makeSky() {
 void controlSpeed() {
   if (screenScrollSpeed>=accelLimit) {
     screenScrollSpeed=accelLimit;
+    scrollAccel=0;
+  }
+  if (reset){
+    screenScrollSpeed=0;
     scrollAccel=0;
   }
   screenScrollSpeed=screenScrollSpeed+scrollAccel;
