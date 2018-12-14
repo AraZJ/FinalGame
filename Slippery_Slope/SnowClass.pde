@@ -1,3 +1,4 @@
+//snow class
 class Snow {
   float sX;
   float sY;
@@ -19,6 +20,7 @@ class Snow {
     incAngle=1;
     offscreen=false;
   }
+  //rotates the snowflakes (which are just 3 lines) clockwise 
   void display() {
     pushMatrix();
     translate(sX, sY);
@@ -31,14 +33,12 @@ class Snow {
     popMatrix();
     initAngle+=incAngle;
   }
+  //makes the snowflakes fall
   void fall() {
     sY=sY+sSpeed;
     sSpeed=sSpeed+scrollAccel;
-    if (sY>=height) {
+    if (sY-sDiam/2>height) {
       offscreen=true;
     }
-  }
-  void reset() {
-    sY=random(-500, sDiam/2);
   }
 }

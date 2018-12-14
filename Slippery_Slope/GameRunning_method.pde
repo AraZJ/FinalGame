@@ -1,12 +1,10 @@
 //very important method with the code of the playable game
 void gameRunning() {
   //skyY=skyY-screenScrollSpeed;
-  gameIsRunning=true; //sets the game to running so things move
-  if (screenLimit<300) { //makes the screen limit slowly expland as long as it's less than 300
-    screenLimit=screenLimit+scrollAccel;
+  //gameIsRunning=true; //sets the game to running so things move
+  if (screenLimit<300) { //makes the screen limit reaally slowly expland as long as it's less than 300
+    screenLimit=screenLimit+0.01;
   }
-  // makeGameOver();
-  //pause();
   //restarts level
   if (!me.living&&keyPressed&&key=='r') { //might need to move
     //restartLevel();
@@ -19,7 +17,7 @@ void gameRunning() {
   rect(width-screenLimit, 0, screenLimit, height);
   makeSky(); //makes a sky appear at the top of the slope
   //backwards for loop that runs through the coins arraylist
-  for (int k=numOfObjects-1; k>=0; k--) { //backwards to get rid of flash when objects are removed
+  for (int k=numOfCoins-1; k>=0; k--) { //backwards to get rid of flash when objects are removed
     Coin coinClone = coinList.get(k); //gets all the elements of the arraylist so you can do stuff to them
     //sets the local variable offscreen to true whenever the coins are offscreen and uncollected
     if (coinClone.coinY<=-coinClone.coinDiameter/2&&!coinClone.hit) {
@@ -31,12 +29,14 @@ void gameRunning() {
       coinList.add(new Coin(650, objectScaling));
     }
     //displays, scrolls and calls the addToScore method on the coins 
-    coinClone.scrollUp();
+    if (gameIsRunning) {
+      coinClone.scrollUp();
+    }
     coinClone.display();
     coinClone.addToScore(me); //functions as a collide method and adds a point after every collision
   }
   //backwards for loop that runs through the trees arraylist
-  for (int t=numOfObjects-1; t>=0; t--) { //backwards to get rid of flash when objects are removed
+  for (int t=numOfTrees-1; t>=0; t--) { //backwards to get rid of flash when objects are removed
     Tree treeClone = treeList.get(t); //gets all the elements of the arraylist so you can do stuff to them
     //sets the tree variable onscreen to false whenever tree is past the top of the screen
     if (treeClone.tY<=treeClone.tHeight*-1-treeClone.trunkHeight) {
@@ -48,19 +48,22 @@ void gameRunning() {
       treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, objectScaling));
     }
     //displays, scrolls and runs collision method
-    treeClone.display();
     treeClone.scrollUp();
+    treeClone.display();
     treeClone.playerTreeCollide(me);
-    //playerHitG=treeClone.pTCollideB(me); //old collision method--problem code
-    //println(treeClone.pTCollideB(me));
   }
+      me.display();
   //displays and calls methods for moving sideways and decreasing health
-  me.display();
-  me.moveSideways();
-  me.decreaseHealth();
-  //me.moveDownManual();
-  //println(me.playerHitL);
   //if the player is dead, stop the screen from scrolling and print two messages
+  if(gameWon){
+    gameIsRunning=false;
+    textAlign(CENTER);
+    textSize(50);
+    fill(150, 0, 0);
+    text("You won!", width/2, height/2);
+    text("You get an imaginary gold star.", width/2, height/2+50);
+    
+  }
   if (!me.living) {
     gameIsRunning=false;
     //game over message
@@ -69,11 +72,12 @@ void gameRunning() {
     fill(150, 0, 0);
     text("Game Over Sucka!", width/2, height/2);
     //restart and return to selection screen message
-    textSize(40);
-    fill(0);
-    text("Press 'b' to return to start screen and 'r' to restart level", width/2, height/2+50);
-    if (keyPressed&&key=='b') {
-      gameScreen=0;
-    }
   }
+  if (!gameIsRunning) {
+    screenScrollSpeed=0;
+    scrollAccel=0;
+    text("Highscore: " +int(me.playerScore), width/2, height/2+100);
+  }
+  me.moveSideways();
+  me.countdown();
 } 

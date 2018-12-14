@@ -26,6 +26,7 @@ void snowStorm(int snowAmount) {
     }
   }
 }
+//checks if a circle and a rectangle have collided and returns true if they have
 boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, float cy, float r ) { //thank you sm for this method, Joe
   float rectCenterX = rx +rectW/2;
   float rectCenterY = ry + rectT/2;
@@ -43,7 +44,7 @@ boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, 
   }
   return false;
 }
-//makes a sky behind the player
+//makes a sky behind the player at the top of the ski slope
 void makeSky() {
   skyY=skyY-screenScrollSpeed;
   screenScrollSpeed=screenScrollSpeed+scrollAccel;
@@ -52,15 +53,4 @@ void makeSky() {
     fill(180, 190, 200);
     rect(0, skyY, width, 290);
   }
-}
-//controls the speed that everything scrolls at
-void controlSpeed() {
-  if (screenScrollSpeed>=accelLimit) {
-    screenScrollSpeed=accelLimit;
-    scrollAccel=0;
-  }
-  screenScrollSpeed=screenScrollSpeed+scrollAccel;
-  //quick way to pause scrolling
-  //scrollAccel=0;
-  //screenScrollSpeed=0;
 }
