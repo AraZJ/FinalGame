@@ -1,3 +1,4 @@
+//Coin class
 class Coin {
   float coinDiameter;
   color coinColor2; //the 
@@ -31,12 +32,11 @@ class Coin {
       coinY=coinY-screenScrollSpeed;
     }
   }
-
-
-  void addToScore(Player p1) { //maybe don't need this...
+  //method that checks if there is a collision and then adds to the score if there is
+  void addToScore(Player p1) {
     if (rectCircCollide(p1.pX, p1.pY, p1.pWidth, p1.pHeight, coinX, coinY, coinDiameter/2)) {
       hit=true;
-      p1.playerScore=p1.playerScore+1; //works because the coin is only there for a split second so it can only go up once I guess
+      p1.playerScore=p1.playerScore+1; //works because the coin is only there for a split second so it can only go up once I think
     }
   }
 }

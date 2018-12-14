@@ -1,4 +1,4 @@
-//very important code with all the basics to make a running game
+//very important method with the code of the playable game
 void gameRunning() {
   //skyY=skyY-screenScrollSpeed;
   gameIsRunning=true; //sets the game to running so things move
@@ -33,9 +33,9 @@ void gameRunning() {
     //displays, scrolls and calls the addToScore method on the coins 
     coinClone.scrollUp();
     coinClone.display();
-    coinClone.addToScore(me); //functions as a collide method and adds a point after every collision 
+    coinClone.addToScore(me); //functions as a collide method and adds a point after every collision
   }
- //backwards for loop that runs through the trees arraylist
+  //backwards for loop that runs through the trees arraylist
   for (int t=numOfObjects-1; t>=0; t--) { //backwards to get rid of flash when objects are removed
     Tree treeClone = treeList.get(t); //gets all the elements of the arraylist so you can do stuff to them
     //sets the tree variable onscreen to false whenever tree is past the top of the screen
@@ -52,12 +52,13 @@ void gameRunning() {
     treeClone.scrollUp();
     treeClone.playerTreeCollide(me);
     //playerHitG=treeClone.pTCollideB(me); //old collision method--problem code
+    //println(treeClone.pTCollideB(me));
   }
   //displays and calls methods for moving sideways and decreasing health
   me.display();
   me.moveSideways();
   me.decreaseHealth();
-  me.moveDownManual();
+  //me.moveDownManual();
   //println(me.playerHitL);
   //if the player is dead, stop the screen from scrolling and print two messages
   if (!me.living) {

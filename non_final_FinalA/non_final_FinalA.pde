@@ -1,6 +1,6 @@
+//Final project--Arabelle Jones
+//A skiing game called "Slippery Slope" (pun intended) that is nowhere near as complex as it was going to be but I wanted to turn in a working version
 //Main
-//Has an ArrayList
-
 Player me;
 int gameScreen=0; //gamescreen value for switch statement
 float accelLimit=9; //the highest amount the scroll speed can accelerate to before it's set to one number

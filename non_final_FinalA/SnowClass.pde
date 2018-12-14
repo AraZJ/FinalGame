@@ -25,14 +25,11 @@ class Snow {
     rotate(radians(initAngle));
     noStroke();
     fill(sColor);
-    //something for transparency...maybe a fucntion would be better actually
-    //ellipse(sX, sY, sDiam/2, sDiam/2);
     centeredLine(sDiam, 0, 0, 0, sColor);
     centeredLine(sDiam, 0, 0, 60, sColor);
     centeredLine(sDiam, 0, 0, -60, sColor);
     popMatrix();
     initAngle+=incAngle;
-    //will be cooler later
   }
   void fall() {
     sY=sY+sSpeed;

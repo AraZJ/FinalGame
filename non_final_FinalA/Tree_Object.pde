@@ -64,17 +64,19 @@ class Tree {
   }
   void playerTreeCollide(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
-        p2.playerHitL=true;
-      //if(p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<tX){
-        //println("leftCol");
-        //p2.pSpeedX=0;
-        //p2.xDirection*=-1;
-        p2.pColor=color(255,0,0);
-      //}
-    } else if (p2.pX+p2.pWidth<=tX-tWidth/2||p2.pX>=tX+tWidth/2||p2.pY+p2.pHeight<=tY||p2.pY>=tY+tHeight){
-      p2.playerHitL=false;
-      p2.pColor=color(240, 100, 0);
-    }
+      //p2.playerHitL=true; //couldn't get it to stop being true after it moved
+      if (p2.xDirection==-1||p2.xDirection==0) {
+        //p2.xDirection=1;
+        p2.pX=tX+tWidth/2+40; //+20+p2.pWidth/2;
+        //p2.loseHealth=true;
+        p2.healthNumber=1;
+      } else if (p2.xDirection==1) {
+        //p2.xDirection=-1;
+        p2.pX=tX-tWidth/2-p2.pWidth-40; //+20+p2.pWidth/2;
+        p2.healthNumber=1;
+      }
+    } 
+    //println(p2.loseHealth);      
   }
   boolean pTCollideB(Player p2) { //I wonder if I need to make the paleyr in input like in my flappy bird game...we'll see
     if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) {
@@ -86,6 +88,4 @@ class Tree {
       return false;
     }
   }
-  //void diagonalSlide() {
-  //}
 }

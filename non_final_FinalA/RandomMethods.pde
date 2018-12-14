@@ -1,24 +1,21 @@
-//much easier way to make an upright triangle with the top point, the base and the heiggt as parameters
+//assortment of various custom methods used in game
+//much easier way to make an upright triangle with the top point, the base and the height as parameters
 void upTriangle(float topX, float topY, float base, float triHi) { //has the single point on top
-  //I should make it the top, not the center...
-  //if width = 10 and height = ten and center = center of screen
-  //top of triangle = center - height/2, right point of triangle is center + height/2+width/2, left point is enter+height/2-width/2
-  //top: x=triCenterX, y=triCenterY-triHeight/2, right: x=triCenterX+width/2, y=triCenterY+triHeight/2, left: x=triCenterX-width/2, y=triCenterY+triHeight/2
   noStroke();
   triangle(topX, topY, topX+base/2, topY+triHi, topX-base/2, topY+triHi);
 }
-//time-consuming method for a line rotated 60 degrees-used to make pretty snowflakes
-void centeredLine(float lLength, float lCenterX, float lCenterY, float angle, color snowColor) { //, float angle){ //the angle will be 60 because that's how my snowflake will be
+//time-consuming method for a line rotated 60 degrees--used to make pretty snowflakes
+void centeredLine(float lLength, float lCenterX, float lCenterY, float angle, color snowColor) {
   stroke(snowColor);
   strokeWeight(2);
-  if (angle==0) {
+  if (angle==0) { //this is for vertical lines
     line(lCenterX, lCenterY-lLength, lCenterX, lCenterY+lLength);
-  } else {
+  } else { //this is for a line rotated 60 degrees
     line(lCenterX-tan(radians(angle))*lLength/2, lCenterY-lLength/2, lCenterX+tan(radians(angle))*lLength/2, lCenterY+lLength/2);
   }
 }
+//makes a snow storm with arraylist of snow objects
 void snowStorm(int snowAmount) {
-  //numOfSnowflakes=snowAmount;
   for (int s=snowAmount-1; s>0; s--) {
     Snow snowClone=snowflakes.get(s);
     snowClone.display();
