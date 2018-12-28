@@ -1,5 +1,14 @@
 //very important method with the code of the playable game
 void gameRunning() {
+  //if (!gameIsRunning&&key=='r') {
+  //  //fill(255,0,0);
+  //  //rect(0,0,400,400);
+  //  skyY=0;
+  //  screenScrollSpeed=screenScrollSpeed+scrollAccel;
+  //  scrollAccel=0.0005;
+  //  me.pX=450-me.pWidth/2;
+  //}
+  screenScrollSpeed=screenScrollSpeed+scrollAccel;
   //skyY=skyY-screenScrollSpeed;
   //gameIsRunning=true; //sets the game to running so things move
   if (screenLimit<300) { //makes the screen limit reaally slowly expland as long as it's less than 300
@@ -29,9 +38,9 @@ void gameRunning() {
       coinList.add(new Coin(650, objectScaling));
     }
     //displays, scrolls and calls the addToScore method on the coins 
-    if (gameIsRunning) {
-      coinClone.scrollUp();
-    }
+    //if (gameIsRunning) {
+    coinClone.scrollUp();
+    //}
     coinClone.display();
     coinClone.addToScore(me); //functions as a collide method and adds a point after every collision
   }
@@ -52,17 +61,16 @@ void gameRunning() {
     treeClone.display();
     treeClone.playerTreeCollide(me);
   }
-      me.display();
+  me.display();
   //displays and calls methods for moving sideways and decreasing health
   //if the player is dead, stop the screen from scrolling and print two messages
-  if(gameWon){
+  if (gameWon) {
     gameIsRunning=false;
     textAlign(CENTER);
     textSize(50);
     fill(150, 0, 0);
-    text("You won!", width/2, height/2);
-    text("You get an imaginary gold star.", width/2, height/2+50);
-    
+    text("You won!", width/2, height/2-50);
+    text("You get an imaginary gold star.", width/2, height/2);
   }
   if (!me.living) {
     gameIsRunning=false;
@@ -76,7 +84,22 @@ void gameRunning() {
   if (!gameIsRunning) {
     screenScrollSpeed=0;
     scrollAccel=0;
-    text("Highscore: " +int(me.playerScore), width/2, height/2+100);
+    text("Highscore: " +int(me.playerScore), width/2, height/2+50);
+    text("Press 'r' to retry", width/2, height/2+100);
+  }
+  if (!gameIsRunning&&key=='r') {
+    gameIsRunning=true;
+    //fill(255,0,0);
+    //rect(0,0,400,400);
+    fill(209, 243, 238);
+    rect(0, 0, screenLimit, height);
+    rect(width-screenLimit, 0, screenLimit, height);
+    skyY=0;
+    makeSky();
+    screenScrollSpeed=screenScrollSpeed+scrollAccel;
+    scrollAccel=0.0005;
+    me.pX=450-me.pWidth/2;
+    me.display();
   }
   me.moveSideways();
   me.countdown();

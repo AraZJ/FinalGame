@@ -36,7 +36,7 @@ class Tree {
   }
   //scrolls up at the rate of the global variables screenScrollSpeed and scrollAccel
   void scrollUp() {
-    screenScrollSpeed=screenScrollSpeed+scrollAccel;
+    //screenScrollSpeed=screenScrollSpeed+scrollAccel;
     tY=tY-screenScrollSpeed;
   }
   //super unconventional collide method that makes the player bounce away from the trees when it hits them and makes the countdown negative whenever a tree is hit

@@ -9,7 +9,7 @@ float screenLimit=50; //the width of the blue rectangles on the left and right o
 float objectScaling=0.8; //scales all the objects in arrays the specified value (mostly just to look nicer compared to the player)
 int ySpacing=200; //the initial amount of spacing between trees before they start to get removed
 float screenScrollSpeed=0; //sets the scroll speed of the objects in arrays
-float scrollAccel=0.0005; //the rate of speed which screenScrollSpeed accelerates at 
+float scrollAccel=0.005; //the rate of speed which screenScrollSpeed accelerates at 
 int numOfTrees=5; //the number of trees
 int numOfCoins=7; //the number of coins
 int numOfSnowflakes=80; //the number of snowflakes
@@ -23,7 +23,7 @@ boolean gameIsRunning; //determines if the game is running and thus if the objec
 float skyY=0; //global y postition for the sky, used in the makeSky method
 boolean gameWon=false;
 //you can play with the countdown's value and the amount of coins til the counter goes up below
-float countdownValue=700;
+float countdownValue=100;
 float countUp=5;
 float snowXG=450;
 float snowYG=300;
@@ -75,9 +75,6 @@ void draw() {
       gameIsRunning=true;
       gameScreen=2;
     } 
-    if (keyPressed&&key=='e') {
-      gameScreen=3;
-    }
     //makes pretty snowflakes I wasted way too much time on
     snowStorm(numOfSnowflakes);
     break;

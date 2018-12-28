@@ -47,9 +47,9 @@ boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, 
 void makeSky() {
   skyY=skyY-screenScrollSpeed;
   screenScrollSpeed=screenScrollSpeed+scrollAccel;
-  if (skyY>=-290) {
+  //if (skyY>=-290) {
     noStroke();
     fill(180, 190, 200);
     rect(0, skyY, width, 290);
-  }
+ // }
 }

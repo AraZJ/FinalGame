@@ -29,7 +29,7 @@ class Coin {
   }
   //if the game is running
   void scrollUp() {
-      screenScrollSpeed=screenScrollSpeed+scrollAccel;
+      //screenScrollSpeed=screenScrollSpeed+scrollAccel;
       coinY=coinY-screenScrollSpeed;
   }
   //method that checks if there is a collision and then adds to the score if there is
