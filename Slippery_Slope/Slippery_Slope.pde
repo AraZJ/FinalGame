@@ -25,6 +25,9 @@ boolean gameWon=false;
 //you can play with the countdown's value and the amount of coins til the counter goes up below
 float countdownValue=700;
 float countUp=5;
+float snowXG=450;
+float snowYG=300;
+float sDiamG=100;
 
 
 void setup() {
@@ -72,6 +75,9 @@ void draw() {
       gameIsRunning=true;
       gameScreen=2;
     } 
+    if (keyPressed&&key=='e') {
+      gameScreen=3;
+    }
     //makes pretty snowflakes I wasted way too much time on
     snowStorm(numOfSnowflakes);
     break;
@@ -96,7 +102,7 @@ void draw() {
     if (keyPressed&&key=='b') {
       gameScreen=0;
     }
-    if (keyPressed&&key==' '){
+    if (keyPressed&&key==' ') {
       gameIsRunning=true;
       gameScreen=2;
     }
@@ -104,5 +110,6 @@ void draw() {
     //the place where the playable game code is actually run
   case 2:
     gameRunning(); //where the magic happens--code is in GameRunning_method
-  }
+  
+}
 }

@@ -11,8 +11,8 @@ class Snow {
   boolean offscreen;
   Snow() {
     blueColor=random(230, 256);
-    sSpeed=random(0.1, 2);
-    sDiam=random(10, 60);
+    sSpeed=random(0.3, 2);
+    sDiam=random(20, 120);
     sX=random(0, 900);  
     sY=random(-500, sDiam/2);
     sColor=color(0, blueColor-random(0, blueColor), blueColor);
@@ -25,11 +25,24 @@ class Snow {
     pushMatrix();
     translate(sX, sY);
     rotate(radians(initAngle));
-    noStroke();
-    fill(sColor);
-    centeredLine(sDiam, 0, 0, 0, sColor);
-    centeredLine(sDiam, 0, 0, 60, sColor);
-    centeredLine(sDiam, 0, 0, -60, sColor);
+    stroke(sColor);
+    centeredLine(sDiam, 0, 0, true);
+    centeredLine(sDiam/4, 0, 0-sDiam*3/8, false);
+    centeredLine(sDiam/4, 0, 0+sDiam*3/8, false);
+    centeredLine(sDiam/4, 0, 0-sDiam/4, false);
+    centeredLine(sDiam/4, 0, 0+sDiam/4, false);
+    rotate(radians(60));
+    centeredLine(sDiam, 0, 0, true);
+    centeredLine(sDiam/4, 0, 0-sDiam*3/8, false);
+    centeredLine(sDiam/4, 0, 0+sDiam*3/8, false);
+    centeredLine(sDiam/4, 0, 0-sDiam/4, false);
+    centeredLine(sDiam/4, 0, 0+sDiam/4, false);
+    rotate(radians(60));
+    centeredLine(sDiam, 0, 0, true);
+    centeredLine(sDiam/4, 0, 0-sDiam*3/8, false);
+    centeredLine(sDiam/4, 0, 0+sDiam*3/8, false);
+    centeredLine(sDiam/4, 0, 0-sDiam/4, false);
+    centeredLine(sDiam/4, 0, 0+sDiam/4, false);
     popMatrix();
     initAngle+=incAngle;
   }

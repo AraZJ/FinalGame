@@ -4,14 +4,13 @@ void upTriangle(float topX, float topY, float base, float triHi) { //has the sin
   noStroke();
   triangle(topX, topY, topX+base/2, topY+triHi, topX-base/2, topY+triHi);
 }
-//time-consuming method for a line rotated 60 degrees--used to make pretty snowflakes
-void centeredLine(float lLength, float lCenterX, float lCenterY, float angle, color snowColor) {
-  stroke(snowColor);
+//method that draws a horizontal or vertical line based on a given length and coordinates for its center
+void centeredLine(float lLength, float lCenterX, float lCenterY, boolean upright) {
   strokeWeight(2);
-  if (angle==0) { //this is for vertical lines
-    line(lCenterX, lCenterY-lLength, lCenterX, lCenterY+lLength);
-  } else { //this is for a line rotated 60 degrees
-    line(lCenterX-tan(radians(angle))*lLength/2, lCenterY-lLength/2, lCenterX+tan(radians(angle))*lLength/2, lCenterY+lLength/2);
+  if (upright) { //this is for vertical lines
+    line(lCenterX, lCenterY-lLength/2, lCenterX, lCenterY+lLength/2);
+  } else if (!upright) { //this is for horizontal lines
+    line(lCenterX-lLength/2, lCenterY, lCenterX+lLength/2, lCenterY);
   }
 }
 //makes a snow storm with arraylist of snow objects
