@@ -1,38 +1,11 @@
 //very important method with the code of the playable game
 void gameRunning() {
-  //if (!gameIsRunning&&key=='r') {
-  //  //fill(255,0,0);
-  //  //rect(0,0,400,400);
-  //  skyY=0;
-  //  screenScrollSpeed=screenScrollSpeed+scrollAccel;
-  //  scrollAccel=0.0005;
-  //  me.pX=450-me.pWidth/2;
-  //}
-  //if (gameIsRunning) {
-  //  //if (screenScrollSpeed<accelLimit) {
-  //    //screenScrollSpeed=screenScrollSpeed+scrollAccel;
-  //    screenScrollSpeed=1;
-  //  //} else if (screenScrollSpeed>=accelLimit) {
-  //    //screenScrollSpeed=accelLimit;
-  //  //}
-  //} else {
-  //  screenScrollSpeed=0;
-  //}
-  //skyY=skyY-screenScrollSpeed;
-  //gameIsRunning=true; //sets the game to running so things move
-  if (screenLimit<300) { //makes the screen limit reaally slowly expland as long as it's less than 300
-    screenLimit=screenLimit+0.01;
-  }
-  //restarts level
-  if (!me.living&&keyPressed&&key=='r') { //might need to move
-    //restartLevel();
-    //me.reset;
-  }
   background(255); //redraws background
-  //side rectangles that set the limit of the ski slope horizontally
-  fill(209, 243, 238);
-  rect(0, 0, screenLimit, height);
-  rect(width-screenLimit, 0, screenLimit, height);
+  ////side rectangles that set the limit of the ski slope horizontally
+  //fill(209, 243, 238);
+  //noStroke();
+  //rect(0, 0, screenLimit, height);
+  //rect(width-screenLimit, 0, screenLimit, height);
   makeSky(); //makes a sky appear at the top of the slope
   //backwards for loop that runs through the coins arraylist
   for (int k=numOfCoins-1; k>=0; k--) { //backwards to get rid of flash when objects are removed
@@ -46,12 +19,15 @@ void gameRunning() {
       coinList.remove(k);
       coinList.add(new Coin(650, objectScaling));
     }
-    //displays, scrolls and calls the addToScore method on the coins 
-    if (gameIsRunning) {
-      coinClone.scrollUp();
+    //removes and resets coins to be below the sky when the game restarts
+    if (coinClone.resetCoins) {
+      coinList.remove(k);
+      coinList.add(new Coin(325+(k+1)*random(height-25), objectScaling));
     }
+    //displays and scrolls the coins and calls the addToScore method 
+    coinClone.scrollUp();
     coinClone.display();
-    coinClone.addToScore(me); //functions as a collide method and adds a point after every collision
+    coinClone.addToScore(me); //functions as a collide method but adds a point after every collision and makes the counter go up every time a certain multiple of coins are collected
   }
   //backwards for loop that runs through the trees arraylist
   for (int t=numOfTrees-1; t>=0; t--) { //backwards to get rid of flash when objects are removed
@@ -63,72 +39,60 @@ void gameRunning() {
     //removes and then adds new trees whenever trees are not onscreen
     if (!treeClone.onscreen) {
       treeList.remove(t); 
-      treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, objectScaling));
+      treeList.add(new Tree(random(width), height, objectScaling));
     }
-    //displays, scrolls and runs collision method
-    if (gameIsRunning) {
-      treeClone.scrollUp();
+    //removes and resets trees to be below the sky when the game restarts
+    if (treeClone.resetTrees) {
+      treeList.remove(t); 
+      treeList.add(new Tree(random(width), 500+ySpacing*t, objectScaling));
     }
+    //displays and scrolls trees and runs the collision method with the player as a parameter
+    treeClone.scrollUp();
     treeClone.display();
     treeClone.playerTreeCollide(me);
   }
-  me.display();
-  //if the player is dead, stop the screen from scrolling and print two messages
+  me.display(); //displays the player--it's before all the messages so it doesn't block them
+  //if the player is dead, stop the screen from scrolling and displays some messages
   if (!me.living) {
     gameIsRunning=false;
     //game over message
     textAlign(CENTER);
     textSize(50);
     fill(150, 0, 0);
+    //game over message
     text("Game Over Sucka!", width/2, height/2);
-    //restart and return to selection screen message
+    //highscore and reset instructions
+    text("Score: " +int(me.playerScore), width/2, height/2+50);
+    text("Highscore: " +highscore, width/2, height/2+100);
+    text("Press 'r' to retry", width/2, height/2+150);
   }
-  if (!gameIsRunning) {
-    textAlign(CENTER);
-    textSize(50);
-    fill(150, 0, 0);
-    text("Highscore: " +int(me.playerScore), width/2, height/2+50);
-    text("Press 'r' to retry", width/2, height/2+100);
-  }
+  highscore = max(int(me.playerScore), highscore);
+  //stops the game and makes messages when you win 
   if (gameWon) {
     gameIsRunning=false;
     textAlign(CENTER);
     textSize(50);
     fill(150, 0, 0);
+    //winning messages
     text("You won!", width/2, height/2-50);
     text("You get an imaginary gold star.", width/2, height/2);
+    //highscore and reset instructions
+    text("Score: " +int(me.playerScore), width/2, height/2+50);
+    text("Highscore: " +highscore, width/2, height/2+100);
+    text("Press 'r' to retry", width/2, height/2+150);
   }
-  if (keyPressed&&key=='r'||gameWon&&keyPressed&&key=='r') {
-    gameWon=false;
-    gameIsRunning=true;
-    me.living=true;
-    me.playerCountdown=countdownValue;
-    //fill(255,0,0);
-    //rect(0,0,400,400);
-    //fill(209, 243, 238);
-    //rect(0, 0, screenLimit, height);
-    //rect(width-screenLimit, 0, screenLimit, height);
-    skyY=0;
-    makeSky();
-    //screenScrollSpeed=screenScrollSpeed+scrollAccel;
-    // scrollAccel=0.0005;
-    me.pX=450-me.pWidth/2;
-    me.display();
-  }
+  //makes everything move if the game is running
   if (gameIsRunning) {
-    //screenScrollSpeed=1;
-    if (screenScrollSpeed<accelLimit) {
+    if (screenScrollSpeed<accelLimit) { //if the screen's scrolling speed is less than a certain number, it increases by scrollAccel 
       screenScrollSpeed=screenScrollSpeed+scrollAccel;
-    } else if (screenScrollSpeed>=accelLimit) {
+    } else if (screenScrollSpeed>=accelLimit) { //if the screen's scrolling speed reaches a certain point, it stops going up
       screenScrollSpeed=accelLimit;
     }
-  } else {
+  } else { //if the game is not running
     screenScrollSpeed=0;
   }
+  //runs the counter method and the method for moving sideways on the player
   me.moveSideways();
-  me.countdown();
-  //println("player Speed: "+ me.pSpeedX);
-  //println("screen speed: " + screenScrollSpeed);
-  //println("accel speed: "+ scrollAccel);
-  //println(gameWon);
+  me.counter();
+  //snowStorm(numOfSnowflakes); //makes it really hard to see when you're playing when uncommented--optional
 } 

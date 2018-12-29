@@ -1,5 +1,4 @@
 ////Tree object
-
 //tree object definition
 class Tree {
   float tX;
@@ -8,10 +7,11 @@ class Tree {
   float tHeight;
   color treeColor;
   float trunkHeight;
-  boolean onscreen; //I'm sorry I made the onscreen/offscreen so inconsistant
-
+  boolean onscreen; //I made this one opposite the onefor coins to avoid confusing myself as much
+  boolean resetTrees;
   //tree object constructor
   Tree(float x, float y, float expandValue) {
+    resetTrees=false;
     tY = y;
     tX = x;
     tWidth = 60*expandValue; //40 is a good value
@@ -39,16 +39,16 @@ class Tree {
     //screenScrollSpeed=screenScrollSpeed+scrollAccel;
     tY=tY-screenScrollSpeed;
   }
-  //collide method that makes the player bounce away from the trees, slows down the speed and makes the countdown negative when they collide
+  //collide method that makes the player bounce away from the trees, slows down the speed and makes the counting value negative when they collide (call it a feature; it makes the game more obnoxiouss to constantly be bouncing and sliding around)
   void playerTreeCollide(Player p2) { //it's p2 becaue it got really tiring to type something longer over and over again
-    if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) { //the conditions for a collision to have been made
-      if (p2.xDirection==-1||p2.xDirection==0) { //if the player hits the tree coming from the left, the leftmost half of the top or straight on from the top...
+    if (p2.pX+p2.pWidth>=tX-tWidth/2&&p2.pX<=tX+tWidth/2&&p2.pY+p2.pHeight>=tY&&p2.pY<=tY+tHeight) { //the conditions for a collision to have been made--taken from https://happycoding.io/tutorials/processing/collision-detection because I'm out of luck with collision methods
+      if (p2.xDirection==-1) { //if the player hits the tree coming from the left or the leftmost half of the top...
         p2.pX=tX+tWidth/2+40; //bounce to the right
-        p2.countdownAmount=-1; //makes the countdown number negative whenever a player hits a tree
+        p2.counterAmount=-1; //makes the counting number negative whenever a player hits a tree
         p2.pSpeedX=1;
       } else if (p2.xDirection==1) { //if the player hits the tree coming from the right or the rightmost half of the top...
         p2.pX=tX-tWidth/2-p2.pWidth-40; //bounce to the left
-        p2.countdownAmount=-1; //makes the countdown number negative whenever a player hits a tree
+        p2.counterAmount=-1; //makes the counting number negative whenever a player hits a tree
         p2.pSpeedX=1;
       }
     }
