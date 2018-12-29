@@ -8,7 +8,16 @@ void gameRunning() {
   //  scrollAccel=0.0005;
   //  me.pX=450-me.pWidth/2;
   //}
-  screenScrollSpeed=screenScrollSpeed+scrollAccel;
+  //if (gameIsRunning) {
+  //  //if (screenScrollSpeed<accelLimit) {
+  //    //screenScrollSpeed=screenScrollSpeed+scrollAccel;
+  //    screenScrollSpeed=1;
+  //  //} else if (screenScrollSpeed>=accelLimit) {
+  //    //screenScrollSpeed=accelLimit;
+  //  //}
+  //} else {
+  //  screenScrollSpeed=0;
+  //}
   //skyY=skyY-screenScrollSpeed;
   //gameIsRunning=true; //sets the game to running so things move
   if (screenLimit<300) { //makes the screen limit reaally slowly expland as long as it's less than 300
@@ -38,9 +47,9 @@ void gameRunning() {
       coinList.add(new Coin(650, objectScaling));
     }
     //displays, scrolls and calls the addToScore method on the coins 
-    //if (gameIsRunning) {
-    coinClone.scrollUp();
-    //}
+    if (gameIsRunning) {
+      coinClone.scrollUp();
+    }
     coinClone.display();
     coinClone.addToScore(me); //functions as a collide method and adds a point after every collision
   }
@@ -57,21 +66,14 @@ void gameRunning() {
       treeList.add(new Tree(random(screenLimit, width-screenLimit), 600, objectScaling));
     }
     //displays, scrolls and runs collision method
-    treeClone.scrollUp();
+    if (gameIsRunning) {
+      treeClone.scrollUp();
+    }
     treeClone.display();
     treeClone.playerTreeCollide(me);
   }
   me.display();
-  //displays and calls methods for moving sideways and decreasing health
   //if the player is dead, stop the screen from scrolling and print two messages
-  if (gameWon) {
-    gameIsRunning=false;
-    textAlign(CENTER);
-    textSize(50);
-    fill(150, 0, 0);
-    text("You won!", width/2, height/2-50);
-    text("You get an imaginary gold star.", width/2, height/2);
-  }
   if (!me.living) {
     gameIsRunning=false;
     //game over message
@@ -82,25 +84,51 @@ void gameRunning() {
     //restart and return to selection screen message
   }
   if (!gameIsRunning) {
-    screenScrollSpeed=0;
-    scrollAccel=0;
+    textAlign(CENTER);
+    textSize(50);
+    fill(150, 0, 0);
     text("Highscore: " +int(me.playerScore), width/2, height/2+50);
     text("Press 'r' to retry", width/2, height/2+100);
   }
-  if (!gameIsRunning&&key=='r') {
+  if (gameWon) {
+    gameIsRunning=false;
+    textAlign(CENTER);
+    textSize(50);
+    fill(150, 0, 0);
+    text("You won!", width/2, height/2-50);
+    text("You get an imaginary gold star.", width/2, height/2);
+  }
+  if (keyPressed&&key=='r'||gameWon&&keyPressed&&key=='r') {
+    gameWon=false;
     gameIsRunning=true;
+    me.living=true;
+    me.playerCountdown=countdownValue;
     //fill(255,0,0);
     //rect(0,0,400,400);
-    fill(209, 243, 238);
-    rect(0, 0, screenLimit, height);
-    rect(width-screenLimit, 0, screenLimit, height);
+    //fill(209, 243, 238);
+    //rect(0, 0, screenLimit, height);
+    //rect(width-screenLimit, 0, screenLimit, height);
     skyY=0;
     makeSky();
-    screenScrollSpeed=screenScrollSpeed+scrollAccel;
-    scrollAccel=0.0005;
+    //screenScrollSpeed=screenScrollSpeed+scrollAccel;
+    // scrollAccel=0.0005;
     me.pX=450-me.pWidth/2;
     me.display();
   }
+  if (gameIsRunning) {
+    //screenScrollSpeed=1;
+    if (screenScrollSpeed<accelLimit) {
+      screenScrollSpeed=screenScrollSpeed+scrollAccel;
+    } else if (screenScrollSpeed>=accelLimit) {
+      screenScrollSpeed=accelLimit;
+    }
+  } else {
+    screenScrollSpeed=0;
+  }
   me.moveSideways();
   me.countdown();
+  //println("player Speed: "+ me.pSpeedX);
+  //println("screen speed: " + screenScrollSpeed);
+  //println("accel speed: "+ scrollAccel);
+  //println(gameWon);
 } 

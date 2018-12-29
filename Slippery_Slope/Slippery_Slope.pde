@@ -3,15 +3,16 @@
 //Now, is this game full of features, or are they just bugs? Well...let's just say that it's a slippery slope
 //Main
 Player me;
+//PImage skier;
 int gameScreen=0; //gamescreen value for switch statement
-float accelLimit=9; //the highest amount the scroll speed can accelerate to before it's set to one number (that number being accelLimit)
+float accelLimit=10; //the highest amount the scroll speed can accelerate to before it's set to one number (that number being accelLimit)
 float screenLimit=50; //the width of the blue rectangles on the left and right of the slope that mark its edge
 float objectScaling=0.8; //scales all the objects in arrays the specified value (mostly just to look nicer compared to the player)
 int ySpacing=200; //the initial amount of spacing between trees before they start to get removed
 float screenScrollSpeed=0; //sets the scroll speed of the objects in arrays
 float scrollAccel=0.005; //the rate of speed which screenScrollSpeed accelerates at 
 int numOfTrees=5; //the number of trees
-int numOfCoins=7; //the number of coins
+int numOfCoins=5; //the number of coins
 int numOfSnowflakes=80; //the number of snowflakes
 //arrayLists
 ArrayList<Coin> coinList = new ArrayList<Coin>(); //ArrayList of coins
@@ -23,8 +24,8 @@ boolean gameIsRunning; //determines if the game is running and thus if the objec
 float skyY=0; //global y postition for the sky, used in the makeSky method
 boolean gameWon=false;
 //you can play with the countdown's value and the amount of coins til the counter goes up below
-float countdownValue=100;
-float countUp=5;
+float countdownValue=300;
+float countUp=1;
 float snowXG=450;
 float snowYG=300;
 float sDiamG=100;
@@ -34,6 +35,7 @@ void setup() {
   size(900, 600);
   background(255);
   me = new Player();
+  //skier=loadImage("SkierIm.jpg");
   for (int s=0; s<numOfSnowflakes; s++) { 
     snowflakes.add(new Snow());
   }
@@ -42,7 +44,7 @@ void setup() {
   }
 
   for (int r=0; r<numOfCoins; r++) { 
-    coinList.add(new Coin(300+random(25, 600-25), objectScaling)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
+    coinList.add(new Coin(325+(r+1)*random(600-25), objectScaling)); //r*spacingValue+slideOver //now can I use the local Coin varuables for this part? doesn't seem like it...
   }
 }
 void draw() {
@@ -107,6 +109,5 @@ void draw() {
     //the place where the playable game code is actually run
   case 2:
     gameRunning(); //where the magic happens--code is in GameRunning_method
-  
-}
+  }
 }

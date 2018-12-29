@@ -46,10 +46,10 @@ boolean rectCircCollide(float rx, float ry, float rectW, float rectT, float cx, 
 //makes a sky behind the player at the top of the ski slope
 void makeSky() {
   skyY=skyY-screenScrollSpeed;
-  screenScrollSpeed=screenScrollSpeed+scrollAccel;
+  //screenScrollSpeed=screenScrollSpeed+scrollAccel;
   //if (skyY>=-290) {
     noStroke();
     fill(180, 190, 200);
-    rect(0, skyY, width, 290);
+    rect(0, skyY, width, 210);
  // }
 }
